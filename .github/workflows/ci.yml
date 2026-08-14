@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    name: experiments are well-formed and fixtures pass
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Every experiment config parses
+        run: |
+          for f in experiments/*/contexttest.json; do
+            python -c "import json,sys; json.load(open('$f'))" || exit 1
+            echo "ok: $f"
+          done
+      - name: Every committed report parses and reports a verdict
+        run: |
+          python - <<'PY'
+          import glob, json, sys
+          reports = glob.glob("results/*/report.json")
+          assert reports, "no committed results"
+          for path in reports:
+              data = json.load(open(path))
+              assert data["comparison"]["winner"], path
+              print("ok:", path, "->", data["comparison"]["winner"])
+          PY
+      - name: Fixture test suites fail before the change, as they must
+        run: |
+          # Each fixture ships a failing test — that is what the agent is asked
+          # to make pass. A fixture whose tests already pass would measure
+          # nothing, so this asserts the experiment is still a real experiment.
+          for d in experiments/*/fixture; do
+            if python -m unittest discover -s "$d" -t "$d" >/dev/null 2>&1; then
+              echo "FAIL: $d tests pass before any change — the task is a no-op"
+              exit 1
+            fi
+            echo "ok: $d starts red, as intended"
+          done

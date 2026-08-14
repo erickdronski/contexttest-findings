@@ -1,0 +1,480 @@
+{
+  "schemaVersion": 1,
+  "version": "0.2.0",
+  "runId": "20260814T152510589Z-scope-discipline-open-0e39",
+  "generatedAt": "2026-08-14T15:25:56.522Z",
+  "project": "scope-discipline-open",
+  "commit": "a8cb813545af4c6922418f757522fe410852e28a",
+  "taskRefs": {
+    "percent-discount": "a8cb813545af4c6922418f757522fe410852e28a"
+  },
+  "instructionFile": "AGENTS.md",
+  "agent": {
+    "provider": "claude",
+    "model": null
+  },
+  "experiment": {
+    "attemptsPerVariant": 3,
+    "concurrency": 2,
+    "setupCommands": 0,
+    "configDigest": "3a02ba537d38c5c6121cd252f9bad661d396551c6274d3473ae087eb52122738"
+  },
+  "runtime": {
+    "node": "v22.22.0",
+    "platform": "darwin",
+    "arch": "arm64"
+  },
+  "tasks": [
+    "percent-discount"
+  ],
+  "taskResults": [
+    {
+      "name": "percent-discount",
+      "ref": "a8cb813545af4c6922418f757522fe410852e28a",
+      "variants": [
+        {
+          "name": "no-scope-rule",
+          "summary": {
+            "attempts": 3,
+            "successes": 3,
+            "passRate": 1,
+            "passRateInterval": [
+              0.43849391955098227,
+              1
+            ],
+            "medianDurationMs": 13770,
+            "medianCostUsd": 0.0736345,
+            "medianDiffLines": 3,
+            "medianChangedFiles": 1,
+            "meanAssertionScore": 1,
+            "medianInputTokens": 5,
+            "medianOutputTokens": 408
+          }
+        },
+        {
+          "name": "scope-rule",
+          "summary": {
+            "attempts": 3,
+            "successes": 3,
+            "passRate": 1,
+            "passRateInterval": [
+              0.43849391955098227,
+              1
+            ],
+            "medianDurationMs": 15042,
+            "medianCostUsd": 0.0738685,
+            "medianDiffLines": 3,
+            "medianChangedFiles": 1,
+            "meanAssertionScore": 1,
+            "medianInputTokens": 5,
+            "medianOutputTokens": 416
+          }
+        }
+      ],
+      "comparison": {
+        "winner": "tie",
+        "reason": "The variants are effectively tied on the measured outcomes.",
+        "passRateDelta": 0,
+        "assertionScoreDelta": 0,
+        "signal": "early",
+        "minimumAttempts": 3,
+        "paired": {
+          "pairs": 3,
+          "leftWins": 0,
+          "rightWins": 0,
+          "bothPass": 3,
+          "bothFail": 0,
+          "discordant": 0,
+          "pValue": 1
+        },
+        "pValue": 1,
+        "statisticallySignificant": false
+      }
+    }
+  ],
+  "variants": [
+    {
+      "name": "no-scope-rule",
+      "trials": [
+        {
+          "id": "percent-discount-no-scope-rule-1",
+          "task": "percent-discount",
+          "variant": "no-scope-rule",
+          "attempt": 1,
+          "passed": true,
+          "score": 1,
+          "durationMs": 13770,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "python3 passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 66,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline-open/fixture/cart.py"
+          ],
+          "diff": {
+            "additions": 3,
+            "deletions": 0,
+            "total": 3
+          },
+          "usage": {
+            "inputTokens": 5,
+            "cachedInputTokens": 51742,
+            "outputTokens": 424,
+            "costUsd": 0.07541199999999999
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"type\":\"result\",\"subtype\":\"success\",\"is_error\":false,\"duration_ms\":11960,\"duration_api_ms\":11879,\"num_turns\":3,\"result\":\"Done. The `total_with_discount(percent)` method computes the subtotal and reduces it by the given percentage (e.g., `percent=10` gives 90% of the subtotal).\",\"stop_reason\":\"end_turn\",\"session_id\":\"973fc6a2-c219-4c38-a426-4491a17e9d4c\",\"total_cost_usd\":0.07541199999999999,\"usage\":{\"input_tokens\":5,\"cache_creation_input_tokens\":6768,\"cache_read_input_tokens\":44974,\"output_tokens\":424,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6768,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-4-6[1m]\":{\"inputTokens\":5,\"outputTokens\":424,\"cacheReadInputTokens\":44974,\"cacheCreationInputTokens\":6768,\"webSearchRequests\":0,\"costUSD\":0.07541199999999999,\"contextWindow\":1000000,\"maxOutputTokens\":64000}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"uuid\":\"b0ec6e76-6fd3-4223-995f-998f064909d5\"}\n",
+          "stderr": ""
+        },
+        {
+          "id": "percent-discount-no-scope-rule-2",
+          "task": "percent-discount",
+          "variant": "no-scope-rule",
+          "attempt": 2,
+          "passed": true,
+          "score": 1,
+          "durationMs": 12114,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "python3 passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 55,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline-open/fixture/cart.py"
+          ],
+          "diff": {
+            "additions": 3,
+            "deletions": 0,
+            "total": 3
+          },
+          "usage": {
+            "inputTokens": 5,
+            "cachedInputTokens": 51172,
+            "outputTokens": 408,
+            "costUsd": 0.0736345
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"type\":\"result\",\"subtype\":\"success\",\"is_error\":false,\"duration_ms\":11094,\"duration_api_ms\":11050,\"num_turns\":3,\"result\":\"Added `total_with_discount(percent)` — it multiplies the subtotal by `(1 - percent/100)`.\",\"stop_reason\":\"end_turn\",\"session_id\":\"6cb9229a-a851-4a64-b407-30fa9cd7cc75\",\"total_cost_usd\":0.0736345,\"usage\":{\"input_tokens\":5,\"cache_creation_input_tokens\":6578,\"cache_read_input_tokens\":44594,\"output_tokens\":408,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6578,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-4-6[1m]\":{\"inputTokens\":5,\"outputTokens\":408,\"cacheReadInputTokens\":44594,\"cacheCreationInputTokens\":6578,\"webSearchRequests\":0,\"costUSD\":0.0736345,\"contextWindow\":1000000,\"maxOutputTokens\":64000}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"uuid\":\"9ae94727-2907-4598-8a61-782fa5cf6023\"}\n",
+          "stderr": ""
+        },
+        {
+          "id": "percent-discount-no-scope-rule-3",
+          "task": "percent-discount",
+          "variant": "no-scope-rule",
+          "attempt": 3,
+          "passed": true,
+          "score": 1,
+          "durationMs": 16718,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "python3 passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 68,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline-open/fixture/cart.py"
+          ],
+          "diff": {
+            "additions": 3,
+            "deletions": 0,
+            "total": 3
+          },
+          "usage": {
+            "inputTokens": 5,
+            "cachedInputTokens": 51172,
+            "outputTokens": 408,
+            "costUsd": 0.0736345
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"type\":\"result\",\"subtype\":\"success\",\"is_error\":false,\"duration_ms\":15793,\"duration_api_ms\":15703,\"num_turns\":3,\"result\":\"Added `total_with_discount(percent)` — it returns `subtotal() * (1 - percent / 100)`.\",\"stop_reason\":\"end_turn\",\"session_id\":\"243cfab9-6161-4f88-b92c-1159f6d2c183\",\"total_cost_usd\":0.0736345,\"usage\":{\"input_tokens\":5,\"cache_creation_input_tokens\":6578,\"cache_read_input_tokens\":44594,\"output_tokens\":408,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6578,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-4-6[1m]\":{\"inputTokens\":5,\"outputTokens\":408,\"cacheReadInputTokens\":44594,\"cacheCreationInputTokens\":6578,\"webSearchRequests\":0,\"costUSD\":0.0736345,\"contextWindow\":1000000,\"maxOutputTokens\":64000}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"uuid\":\"ff8eef54-213b-4758-a5f5-09f7b43fdddd\"}\n",
+          "stderr": ""
+        }
+      ],
+      "summary": {
+        "attempts": 3,
+        "successes": 3,
+        "passRate": 1,
+        "passRateInterval": [
+          0.43849391955098227,
+          1
+        ],
+        "medianDurationMs": 13770,
+        "medianCostUsd": 0.0736345,
+        "medianDiffLines": 3,
+        "medianChangedFiles": 1,
+        "meanAssertionScore": 1,
+        "medianInputTokens": 5,
+        "medianOutputTokens": 408
+      }
+    },
+    {
+      "name": "scope-rule",
+      "trials": [
+        {
+          "id": "percent-discount-scope-rule-1",
+          "task": "percent-discount",
+          "variant": "scope-rule",
+          "attempt": 1,
+          "passed": true,
+          "score": 1,
+          "durationMs": 18936,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "python3 passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 58,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline-open/fixture/cart.py"
+          ],
+          "diff": {
+            "additions": 3,
+            "deletions": 0,
+            "total": 3
+          },
+          "usage": {
+            "inputTokens": 5,
+            "cachedInputTokens": 51197,
+            "outputTokens": 418,
+            "costUsd": 0.07392575
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"type\":\"result\",\"subtype\":\"success\",\"is_error\":false,\"duration_ms\":17381,\"duration_api_ms\":17326,\"num_turns\":3,\"result\":\"Done. The `total_with_discount(percent)` method computes the subtotal and reduces it by the given percentage (e.g., `percent=10` applies a 10% discount).\",\"stop_reason\":\"end_turn\",\"session_id\":\"36550829-9036-4ba8-8974-10fb2aca6653\",\"total_cost_usd\":0.07392575,\"usage\":{\"input_tokens\":5,\"cache_creation_input_tokens\":6583,\"cache_read_input_tokens\":44614,\"output_tokens\":418,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6583,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-4-6[1m]\":{\"inputTokens\":5,\"outputTokens\":418,\"cacheReadInputTokens\":44614,\"cacheCreationInputTokens\":6583,\"webSearchRequests\":0,\"costUSD\":0.07392575,\"contextWindow\":1000000,\"maxOutputTokens\":64000}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"uuid\":\"4402f526-3d68-4868-a63f-92ad7e3c8f7e\"}\n",
+          "stderr": ""
+        },
+        {
+          "id": "percent-discount-scope-rule-2",
+          "task": "percent-discount",
+          "variant": "scope-rule",
+          "attempt": 2,
+          "passed": true,
+          "score": 1,
+          "durationMs": 15042,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "python3 passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 57,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline-open/fixture/cart.py"
+          ],
+          "diff": {
+            "additions": 3,
+            "deletions": 0,
+            "total": 3
+          },
+          "usage": {
+            "inputTokens": 5,
+            "cachedInputTokens": 51197,
+            "outputTokens": 401,
+            "costUsd": 0.07350075
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"type\":\"result\",\"subtype\":\"success\",\"is_error\":false,\"duration_ms\":14014,\"duration_api_ms\":13941,\"num_turns\":3,\"result\":\"Added `total_with_discount(percent)` — it delegates to `subtotal()` and applies the percentage reduction.\",\"stop_reason\":\"end_turn\",\"session_id\":\"3403a4b3-0d3d-476a-b163-505779a6bb16\",\"total_cost_usd\":0.07350075,\"usage\":{\"input_tokens\":5,\"cache_creation_input_tokens\":6583,\"cache_read_input_tokens\":44614,\"output_tokens\":401,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6583,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-4-6[1m]\":{\"inputTokens\":5,\"outputTokens\":401,\"cacheReadInputTokens\":44614,\"cacheCreationInputTokens\":6583,\"webSearchRequests\":0,\"costUSD\":0.07350075,\"contextWindow\":1000000,\"maxOutputTokens\":64000}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"uuid\":\"b4be2742-390c-4a50-a57f-9a461d8564f7\"}\n",
+          "stderr": ""
+        },
+        {
+          "id": "percent-discount-scope-rule-3",
+          "task": "percent-discount",
+          "variant": "scope-rule",
+          "attempt": 3,
+          "passed": true,
+          "score": 1,
+          "durationMs": 14414,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "python3 passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 72,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline-open/fixture/cart.py"
+          ],
+          "diff": {
+            "additions": 3,
+            "deletions": 0,
+            "total": 3
+          },
+          "usage": {
+            "inputTokens": 5,
+            "cachedInputTokens": 51194,
+            "outputTokens": 416,
+            "costUsd": 0.0738685
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"type\":\"result\",\"subtype\":\"success\",\"is_error\":false,\"duration_ms\":13276,\"duration_api_ms\":13206,\"num_turns\":3,\"result\":\"Done. `total_with_discount(percent)` computes the subtotal and reduces it by the given percentage (e.g., `percent=10` applies a 10% discount).\",\"stop_reason\":\"end_turn\",\"session_id\":\"8f96b1e8-9561-47e9-9b94-171e16b63bb7\",\"total_cost_usd\":0.0738685,\"usage\":{\"input_tokens\":5,\"cache_creation_input_tokens\":6582,\"cache_read_input_tokens\":44612,\"output_tokens\":416,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6582,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-4-6[1m]\":{\"inputTokens\":5,\"outputTokens\":416,\"cacheReadInputTokens\":44612,\"cacheCreationInputTokens\":6582,\"webSearchRequests\":0,\"costUSD\":0.0738685,\"contextWindow\":1000000,\"maxOutputTokens\":64000}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"uuid\":\"c48ea23d-cf92-41d1-9ce2-49f5a1eee2bd\"}\n",
+          "stderr": ""
+        }
+      ],
+      "summary": {
+        "attempts": 3,
+        "successes": 3,
+        "passRate": 1,
+        "passRateInterval": [
+          0.43849391955098227,
+          1
+        ],
+        "medianDurationMs": 15042,
+        "medianCostUsd": 0.0738685,
+        "medianDiffLines": 3,
+        "medianChangedFiles": 1,
+        "meanAssertionScore": 1,
+        "medianInputTokens": 5,
+        "medianOutputTokens": 416
+      }
+    }
+  ],
+  "comparison": {
+    "winner": "tie",
+    "reason": "The variants are effectively tied on the measured outcomes.",
+    "passRateDelta": 0,
+    "assertionScoreDelta": 0,
+    "signal": "early",
+    "minimumAttempts": 3,
+    "paired": {
+      "pairs": 3,
+      "leftWins": 0,
+      "rightWins": 0,
+      "bothPass": 3,
+      "bothFail": 0,
+      "discordant": 0,
+      "pValue": 1
+    },
+    "pValue": 1,
+    "statisticallySignificant": false
+  },
+  "artifacts": {
+    "json": "/Users/dron/Projects/contexttest-findings/.contexttest/reports/20260814T152510589Z-scope-discipline-open-0e39/report.json",
+    "html": "/Users/dron/Projects/contexttest-findings/.contexttest/reports/20260814T152510589Z-scope-discipline-open-0e39/report.html"
+  }
+}
