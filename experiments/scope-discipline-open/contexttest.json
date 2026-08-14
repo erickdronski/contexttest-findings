@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "project": "scope-discipline-open",
+  "baseRef": "HEAD",
+  "instructionFile": "AGENTS.md",
+  "agent": {
+    "provider": "claude",
+    "timeoutMinutes": 6
+  },
+  "trials": {
+    "attempts": 3,
+    "concurrency": 2
+  },
+  "environment": {
+    "inherit": true
+  },
+  "variants": [
+    {
+      "name": "no-scope-rule",
+      "disabled": true
+    },
+    {
+      "name": "scope-rule",
+      "source": "AGENTS.candidate.md"
+    }
+  ],
+  "tasks": [
+    {
+      "name": "percent-discount",
+      "prompt": "In experiments/scope-discipline-open/fixture/cart.py, add a total_with_discount(percent) method that returns the subtotal reduced by the given percentage.",
+      "assertions": [
+        {
+          "type": "command",
+          "command": [
+            "python3",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "experiments/scope-discipline-open/fixture",
+            "-t",
+            "experiments/scope-discipline-open/fixture"
+          ]
+        },
+        {
+          "type": "allowedPaths",
+          "patterns": [
+            "experiments/scope-discipline-open/fixture/**"
+          ]
+        }
+      ]
+    }
+  ]
+}
