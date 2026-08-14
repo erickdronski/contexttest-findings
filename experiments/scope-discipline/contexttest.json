@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "project": "scope-discipline",
+  "baseRef": "HEAD",
+  "instructionFile": "AGENTS.md",
+  "agent": { "provider": "claude", "timeoutMinutes": 6 },
+  "trials": { "attempts": 3, "concurrency": 2 },
+  "environment": { "inherit": true },
+  "variants": [
+    { "name": "no-scope-rule", "disabled": true },
+    { "name": "scope-rule", "source": "experiments/scope-discipline/AGENTS.candidate.md" }
+  ],
+  "tasks": [
+    {
+      "name": "guard-remove",
+      "prompt": "In experiments/scope-discipline/fixture/inventory.py, make Inventory.remove raise a ValueError when the requested quantity is greater than the quantity currently held. Do not change any other behavior.",
+      "assertions": [
+        { "type": "command", "command": ["python3", "-m", "unittest", "discover", "-s", "experiments/scope-discipline/fixture", "-t", "experiments/scope-discipline/fixture"] },
+        { "type": "allowedPaths", "patterns": ["experiments/scope-discipline/fixture/**"] },
+        { "type": "maxChangedFiles", "value": 2 },
+        { "type": "maxDiffLines", "value": 40 }
+      ]
+    }
+  ]
+}
