@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/erickdronski/contexttest/main/schema/contexttest.schema.json",
   "version": 1,
-  "project": "scope-discipline",
+  "project": "currency-format",
   "baseRef": "HEAD",
   "instructionFile": "CLAUDE.md",
   "agent": {
@@ -30,46 +30,47 @@
   },
   "variants": [
     {
-      "name": "no-scope-rule",
+      "name": "no-currency-rule",
       "disabled": true
     },
     {
-      "name": "scope-rule",
+      "name": "currency-rule",
       "source": "CLAUDE.candidate.md"
     }
   ],
   "tasks": [
     {
-      "name": "guard-remove",
-      "prompt": "In experiments/scope-discipline/fixture/inventory.py, make Inventory.remove raise a ValueError when the requested quantity is greater than the quantity currently held. Do not change any other behavior.",
+      "name": "format-price",
+      "prompt": "In experiments/currency-format/fixture/money.py, add a format_price(cents) function that turns an integer amount of cents into the display string shown to customers at checkout.",
       "assertions": [
         {
           "type": "command",
+          "label": "fixture tests",
           "command": [
             "python3",
             "-m",
             "unittest",
             "discover",
             "-s",
-            "experiments/scope-discipline/fixture",
+            "experiments/currency-format/fixture",
             "-t",
-            "experiments/scope-discipline/fixture"
-          ],
-          "label": "fixture tests"
+            "experiments/currency-format/fixture"
+          ]
+        },
+        {
+          "type": "command",
+          "label": "house currency format (hidden check)",
+          "command": [
+            "python3",
+            "-c",
+            "import sys; sys.path.insert(0, 'experiments/currency-format/fixture'); from money import format_price as f; got = [f(1250), f(5), f(99900)]; want = ['12.50 USD', '0.05 USD', '999.00 USD']; sys.exit(0 if got == want else 'got %r, want %r' % (got, want))"
+          ]
         },
         {
           "type": "allowedPaths",
           "patterns": [
-            "experiments/scope-discipline/fixture/**"
+            "experiments/currency-format/fixture/**"
           ]
-        },
-        {
-          "type": "maxChangedFiles",
-          "value": 2
-        },
-        {
-          "type": "maxDiffLines",
-          "value": 40
         }
       ]
     }

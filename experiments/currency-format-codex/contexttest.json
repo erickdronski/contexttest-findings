@@ -1,0 +1,76 @@
+{
+  "$schema": "https://raw.githubusercontent.com/erickdronski/contexttest/main/schema/contexttest.schema.json",
+  "version": 1,
+  "project": "currency-format-codex",
+  "baseRef": "HEAD",
+  "instructionFile": "AGENTS.md",
+  "agent": {
+    "provider": "codex",
+    "model": "gpt-6-astra",
+    "isolate": true,
+    "timeoutMinutes": 10
+  },
+  "trials": {
+    "attempts": 5,
+    "concurrency": 2
+  },
+  "setup": {
+    "commands": [
+      [
+        "python3",
+        "tools/sanitize_worktree.py"
+      ]
+    ],
+    "timeoutMinutes": 2
+  },
+  "environment": {
+    "inherit": true
+  },
+  "variants": [
+    {
+      "name": "no-currency-rule",
+      "disabled": true
+    },
+    {
+      "name": "currency-rule",
+      "source": "AGENTS.candidate.md"
+    }
+  ],
+  "tasks": [
+    {
+      "name": "format-price",
+      "prompt": "In experiments/currency-format/fixture/money.py, add a format_price(cents) function that turns an integer amount of cents into the display string shown to customers at checkout.",
+      "assertions": [
+        {
+          "type": "command",
+          "label": "fixture tests",
+          "command": [
+            "python3",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "experiments/currency-format/fixture",
+            "-t",
+            "experiments/currency-format/fixture"
+          ]
+        },
+        {
+          "type": "command",
+          "label": "house currency format (hidden check)",
+          "command": [
+            "python3",
+            "-c",
+            "import sys; sys.path.insert(0, 'experiments/currency-format/fixture'); from money import format_price as f; got = [f(1250), f(5), f(99900)]; want = ['12.50 USD', '0.05 USD', '999.00 USD']; sys.exit(0 if got == want else 'got %r, want %r' % (got, want))"
+          ]
+        },
+        {
+          "type": "allowedPaths",
+          "patterns": [
+            "experiments/currency-format/fixture/**"
+          ]
+        }
+      ]
+    }
+  ]
+}

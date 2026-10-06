@@ -15,22 +15,33 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Every experiment config parses
+      - name: Every experiment is complete and states its hypothesis up front
         run: |
-          for f in experiments/*/contexttest.json; do
-            python -c "import json,sys; json.load(open('$f'))" || exit 1
-            echo "ok: $f"
-          done
+          python - <<'PY'
+          import glob, json, os
+          experiments = sorted(glob.glob("experiments/*/"))
+          assert experiments, "no experiments"
+          for d in experiments:
+              config = json.load(open(os.path.join(d, "contexttest.json")))
+              treated = [v for v in config["variants"] if not v.get("disabled")]
+              assert len(treated) == 1, f"{d}: expected exactly one treated variant"
+              source = os.path.join(d, treated[0]["source"])
+              assert os.path.isfile(source), f"{d}: missing {source}"
+              assert os.path.isfile(os.path.join(d, "HYPOTHESIS.md")), f"{d}: no HYPOTHESIS.md"
+              assert config["agent"].get("model"), f"{d}: model is not pinned"
+              print("ok:", d)
+          PY
       - name: Every committed report parses and reports a verdict
         run: |
           python - <<'PY'
-          import glob, json, sys
-          reports = glob.glob("results/*/report.json")
+          import glob, json, os
+          reports = sorted(glob.glob("results/*/*/report.json"))
           assert reports, "no committed results"
           for path in reports:
               data = json.load(open(path))
               assert data["comparison"]["winner"], path
-              print("ok:", path, "->", data["comparison"]["winner"])
+              retracted = os.path.isfile(os.path.join(os.path.dirname(path), "RETRACTED.md"))
+              print("ok:", path, "->", data["comparison"]["winner"], "(retracted)" if retracted else "")
           PY
       - name: Fixture test suites fail before the change, as they must
         run: |
@@ -44,3 +55,16 @@ jobs:
             fi
             echo "ok: $d starts red, as intended"
           done
+      - name: The trial worktree cannot see the answer key
+        run: |
+          # The agent works inside a checkout of this repository. If it could
+          # read a candidate instruction file or an assertion, the arm without
+          # instructions would receive the treatment anyway.
+          copy="$(mktemp -d)"
+          git archive HEAD | tar -x -C "$copy"
+          cd "$copy"
+          python tools/sanitize_worktree.py
+          leaks="$(find . -name '*.candidate.md' -o -name 'contexttest.json' -o -name 'HYPOTHESIS.md' -o -name 'README.md' -o -path './results*')"
+          if [ -n "$leaks" ]; then echo "answer key visible to the agent:"; echo "$leaks"; exit 1; fi
+          ls -d experiments/*/fixture
+          echo "ok: only fixtures remain"
