@@ -1,0 +1,940 @@
+{
+  "schemaVersion": 1,
+  "kind": "experiment",
+  "version": "0.3.0",
+  "runId": "20261006T222216130Z-currency-format-9816",
+  "generatedAt": "2026-10-06T22:26:26.075Z",
+  "project": "currency-format",
+  "commit": "af742fce8090abdc83be08bfacc0a1cb41e7ee0a",
+  "taskRefs": {
+    "format-price": "af742fce8090abdc83be08bfacc0a1cb41e7ee0a"
+  },
+  "instructionFile": "CLAUDE.md",
+  "agent": {
+    "provider": "claude",
+    "model": "claude-opus-5",
+    "isolate": true
+  },
+  "experiment": {
+    "attemptsPerVariant": 5,
+    "concurrency": 2,
+    "setupCommands": 1,
+    "configDigest": "13c93a23ce5df9038d981a536758936119216418e5478ba0d55598e365fcc146",
+    "order": "sequential",
+    "seed": null
+  },
+  "runtime": {
+    "node": "v24.20.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "agents": [
+      {
+        "provider": "claude",
+        "executable": "claude",
+        "version": "2.1.272 (Claude Code)"
+      }
+    ]
+  },
+  "tasks": [
+    "format-price"
+  ],
+  "taskResults": [
+    {
+      "name": "format-price",
+      "ref": "af742fce8090abdc83be08bfacc0a1cb41e7ee0a",
+      "variants": [
+        {
+          "name": "no-currency-rule",
+          "summary": {
+            "attempts": 5,
+            "successes": 0,
+            "passRate": 0,
+            "passRateInterval": [
+              0,
+              0.43449149475208104
+            ],
+            "medianDurationMs": 64438,
+            "medianCostUsd": 0.366947,
+            "medianDiffLines": 11,
+            "medianChangedFiles": 1,
+            "meanAssertionScore": 0.75,
+            "medianInputTokens": 20,
+            "medianOutputTokens": 4327
+          }
+        },
+        {
+          "name": "currency-rule",
+          "summary": {
+            "attempts": 5,
+            "successes": 5,
+            "passRate": 1,
+            "passRateInterval": [
+              0.5655085052479191,
+              1
+            ],
+            "medianDurationMs": 35603,
+            "medianCostUsd": 0.25531550000000003,
+            "medianDiffLines": 11,
+            "medianChangedFiles": 1,
+            "meanAssertionScore": 1,
+            "medianInputTokens": 14,
+            "medianOutputTokens": 2670
+          }
+        }
+      ],
+      "comparison": {
+        "winner": "candidate",
+        "basis": "success",
+        "reason": "100 percentage-point difference in task success.",
+        "passRateDelta": 1,
+        "assertionScoreDelta": 0.25,
+        "signal": "directional",
+        "minimumAttempts": 5,
+        "paired": {
+          "pairs": 5,
+          "leftWins": 0,
+          "rightWins": 5,
+          "bothPass": 0,
+          "bothFail": 0,
+          "discordant": 5,
+          "pValue": 0.0625
+        },
+        "pValue": 0.0625,
+        "statisticallySignificant": false,
+        "treatmentDelivery": "consistent",
+        "deliveryCheck": {
+          "status": "consistent",
+          "reason": "currency-rule sent about 1054 more input tokens per request than no-currency-rule; its instructions should add about 67.",
+          "basis": "request",
+          "instructionBytes": [
+            0,
+            267
+          ],
+          "expectedTokens": 66.8,
+          "observedTokens": 1053.9,
+          "ratio": 15.789,
+          "spreadTokens": 1829
+        }
+      }
+    }
+  ],
+  "variants": [
+    {
+      "name": "no-currency-rule",
+      "agent": {
+        "provider": "claude",
+        "model": "claude-opus-5",
+        "isolate": true,
+        "digest": "3a1d8a95f59d65bd"
+      },
+      "instructions": {
+        "mode": "disabled",
+        "bytes": 0,
+        "digest": null
+      },
+      "delivery": {
+        "file": "CLAUDE.md",
+        "method": "native",
+        "bridgedVia": null
+      },
+      "invocation": {
+        "command": "claude",
+        "args": [
+          "-p",
+          "[PROMPT]",
+          "--output-format",
+          "json",
+          "--permission-mode",
+          "acceptEdits",
+          "--max-turns",
+          "30",
+          "--strict-mcp-config",
+          "--setting-sources",
+          "project,local",
+          "--model",
+          "claude-opus-5"
+        ]
+      },
+      "trials": [
+        {
+          "id": "format-price-no-currency-rule-1",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 1,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 63379,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 54,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": false,
+              "message": "house currency format (hidden check) exited 1.",
+              "actual": 1,
+              "expected": 0,
+              "durationMs": 26,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "got ['$12.50', '$0.05', '$999.00'], want ['12.50 USD', '0.05 USD', '999.00 USD']\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 11,
+            "deletions": 0,
+            "total": 11
+          },
+          "usage": {
+            "inputTokens": 20,
+            "cachedInputTokens": 310429,
+            "outputTokens": 4101,
+            "costUsd": 0.366947,
+            "totalInputTokens": 310449,
+            "requests": 14
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":60930,\"stop_reason\":\"end_turn\",\"session_id\":\"d4204e3f-6d4c-4335-a20c-3247d7135ddc\",\"total_cost_usd\":0.366947,\"usage\":{\"input_tokens\":20,\"cache_creation_input_tokens\":11485,\"cache_read_input_tokens\":298944,\"output_tokens\":4101,\"output_tokens_details\":{\"thinking_tokens\":1037},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":11485,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":618,\"cache_read_input_tokens\":32922,\"cache_creation_input_tokens\":979,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":979},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":20,\"outputTokens\":4101,\"cacheReadInputTokens\":298944,\"cacheCreationInputTokens\":11485,\"webSearchRequests\":0,\"costUSD\":0.366947,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":1037,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01GC36JReAfFK11eP7Vdoari\",\"tool_input\":{\"command\":\"grep -rniE 'currency|locale|usd|format_price|\\\\$' --include='*.py' --include='*.md' --include='*.json' --include='*.toml' --include='*.txt' . 2>/dev/null | grep -v '^\\\\./\\\\.git/' | head -40\",\"description\":\"Search repo for currency conventions\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01NdoPNvFiU3ycZnTrobi1VC\",\"tool_input\":{\"command\":\"cd experiments/currency-format/fixture && python3 -m unittest test_money -v 2>&1 | tail -15 && python3 -c \\\"\\nfrom money import format_price\\nfor c in (1250, 0, 5, 99, 100, 123456789, -1250, -5):\\n    print(c, '->', format_price(c))\\n\\\"\",\"description\":\"Run the test suite and spot-check outputs\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01U5uaEvPFjumq2DEBjCAvhA\",\"tool_input\":{\"command\":\"python3 -m unittest discover -s experiments/currency-format/fixture -v\",\"description\":\"Run the fixture test suite\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01RK2bgQr2vMjHnTr1pUACMM\",\"tool_input\":{\"command\":\"python3 -m unittest discover -s experiments/currency-format/fixture\",\"description\":\"Run the fixture test suite\"}}],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":14,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Added `format_price` to `experiments/currency-format/fixture/money.py:17`.\\n\\nIt stays inside the module's stated rule that floats never touch money — `divmod` on ints returns ints, and `%02d` pads the cents — and it matches the module's existing `%`-formatting style.\\n\\n**One judgment call you should know about:** the currency marker was underdetermined. The test (`test_money.py:16`) only asserts that `\\\"12.50\\\"` appears in the output, and nothing in this fixture records a convention — no config, no CLAUDE.md, no sibling formatter. I chose a `$` prefix as the common US checkout display. Worth noting: the parallel fixture at `experiments/currency-format-redundant/fixture/money.py:19` uses a trailing-code style (`\\\"12.50 USD\\\"`) for emailed receipts. I did **not** adopt it here, since that's a separate fixture and a receipt is a different surface than checkout — but if these are meant to share a house style, say so and it's a one-line change.\\n\\nI also handled negative amounts (`-$12.50`), since the naive `cents % 100` would render `-1250` as `-13.50`. If `format_price` is only ever called with non-negative amounts, that branch is harmless.\\n\\n**I could not run the tests.** Three attempts to invoke `python3 -m unittest` were declined by the permission layer, so I verified the output by hand rather than by execution:\\n\\n| input | output |\\n|---|---|\\n| `1250` | `$12.50` ✓ satisfies the test |\\n| `0` | `$0.00` |\\n| `5` | `$0.05` |\\n| `99` | `$0.99` |\\n| `-1250` | `-$12.50` |\\n\\nTreat that table as reasoned, not measured. If you approve the test command — or just run `python3 -m unittest discover -s experiments/currency-format/fixture` yourself — that'll confirm it in a second.\",\"ttft_ms\":2002,\"type\":\"result\",\"duration_ms\":62689,\"uuid\":\"4829d0b7-16c2-46fc-9456-346f790e335e\",\"ttft_stream_ms\":1512,\"time_to_request_ms\":321,\"first_content_frame_ms\":1512,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "format-price-no-currency-rule-2",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 2,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 64438,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 53,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": false,
+              "message": "house currency format (hidden check) exited 1.",
+              "actual": 1,
+              "expected": 0,
+              "durationMs": 17,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "got ['$12.50', '$0.05', '$999.00'], want ['12.50 USD', '0.05 USD', '999.00 USD']\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 12,
+            "deletions": 0,
+            "total": 12
+          },
+          "usage": {
+            "inputTokens": 16,
+            "cachedInputTokens": 247785,
+            "outputTokens": 4531,
+            "costUsd": 0.340161,
+            "totalInputTokens": 247801,
+            "requests": 11
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":62071,\"stop_reason\":\"end_turn\",\"session_id\":\"3dbefed9-e596-4986-886d-3cb3b131e904\",\"total_cost_usd\":0.340161,\"usage\":{\"input_tokens\":16,\"cache_creation_input_tokens\":10833,\"cache_read_input_tokens\":236952,\"output_tokens\":4531,\"output_tokens_details\":{\"thinking_tokens\":1075},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":10833,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":921,\"cache_read_input_tokens\":32959,\"cache_creation_input_tokens\":290,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":290},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":16,\"outputTokens\":4531,\"cacheReadInputTokens\":236952,\"cacheCreationInputTokens\":10833,\"webSearchRequests\":0,\"costUSD\":0.340161,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":1075,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_016TH8LTDFfBE42JJwn3dA5a\",\"tool_input\":{\"command\":\"cd \\\"<worktree>\" && grep -rnE '\\\\$|USD|EUR|currency|locale' --include=\\\"*.py\\\" --include=\\\"*.md\\\" --include=\\\"*.json\\\" --include=\\\"*.js\\\" --include=\\\"*.ts\\\" . | grep -v node_modules | head -30\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01AEFtU61PE59E6PQsiCQVcr\",\"tool_input\":{\"command\":\"cd \\\"<worktree>/experiments/currency-format/fixture\\\" && python3 -m unittest test_money -v 2>&1 && python3 -c \\\"\\nfrom money import format_price\\nfor c in (0, 5, 50, 1250, 99, 123456, -150, 100000000):\\n    print(c, '->', format_price(c))\\n\\\"\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01Gfw1xZbGiMxUYAHCgeEWwF\",\"tool_input\":{\"command\":\"cd \\\"<worktree>/experiments/currency-format/fixture\\\" && python3 -m unittest test_money -v\",\"description\":\"Run the money helper tests\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01Nf41gJbhqBnHDWDVktm1S2\",\"tool_input\":{\"command\":\"python3 -m unittest discover -s \\\"<worktree>/experiments/currency-format/fixture\\\" -v\",\"description\":\"Run the money helper tests\"}}],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":11,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Added to `experiments/currency-format/fixture/money.py:17`:\\n\\n```python\\ndef format_price(cents):\\n    \\\"\\\"\\\"Render an amount of cents as the price string customers see at checkout.\\n\\n    Assumes USD: a leading \\\"$\\\", always two decimal places, and comma-grouped\\n    thousands. Negative amounts (refunds, credits) carry the sign ahead of the\\n    symbol, as in \\\"-$1.50\\\".\\n    \\\"\\\"\\\"\\n    sign = \\\"-\\\" if cents < 0 else \\\"\\\"\\n    dollars, remainder = divmod(abs(cents), 100)\\n    return f\\\"{sign}${dollars:,}.{remainder:02d}\\\"\\n```\\n\\nIt keeps the module's stated rule that floats never touch money — `divmod` on the integer cents, then string formatting, so no binary-float rounding is ever involved. `abs()` before the divmod is what makes negatives come out as `-$1.50` rather than the `$-2.50` that Python's floor division toward negative infinity would otherwise produce.\\n\\nOne thing you should decide rather than inherit from me: **the currency format is an assumption, not something the repo specifies.** There's no CLAUDE.md, no config, and no other currency code anywhere in the repo, and the existing test only asserts `\\\"12.50\\\" in format_price(1250)` — it's deliberately agnostic about the symbol. I chose `$`, two decimals, and comma grouping because that's the common US checkout display, but if this service serves non-USD or non-US locales, the symbol, the decimal separator, the grouping separator, and the symbol's position all change, and so does the two-decimal assumption (JPY has none; KWD has three). If any of that applies, this wants a currency code parameter or `babel`/`locale` rather than a hardcoded format.\\n\\nI was not able to run the tests — the `python3` invocations were declined, so the function is unverified by execution. Expected values by inspection: `0 → \\\"$0.00\\\"`, `5 → \\\"$0.05\\\"`, `1250 → \\\"$12.50\\\"`, `123456 → \\\"$1,234.56\\\"`, `-150 → \\\"-$1.50\\\"`. Happy to re-run if you want to approve the test command.\",\"ttft_ms\":3089,\"type\":\"result\",\"duration_ms\":63878,\"uuid\":\"d1cd084f-0a63-4b61-9b52-a77b8c5bf067\",\"ttft_stream_ms\":2592,\"time_to_request_ms\":184,\"first_content_frame_ms\":2592,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "format-price-no-currency-rule-3",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 3,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 42149,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 69,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": false,
+              "message": "house currency format (hidden check) exited 1.",
+              "actual": 1,
+              "expected": 0,
+              "durationMs": 16,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "got ['$12.50', '$0.05', '$999.00'], want ['12.50 USD', '0.05 USD', '999.00 USD']\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 11,
+            "deletions": 0,
+            "total": 11
+          },
+          "usage": {
+            "inputTokens": 20,
+            "cachedInputTokens": 297083,
+            "outputTokens": 2771,
+            "costUsd": 0.301678,
+            "totalInputTokens": 297103,
+            "requests": 11
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":40155,\"stop_reason\":\"end_turn\",\"session_id\":\"1aa9d71b-ae0f-47c9-97f1-d38d36bc3f08\",\"total_cost_usd\":0.301678,\"usage\":{\"input_tokens\":20,\"cache_creation_input_tokens\":8817,\"cache_read_input_tokens\":288266,\"output_tokens\":2771,\"output_tokens_details\":{\"thinking_tokens\":423},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":8817,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":480,\"cache_read_input_tokens\":31008,\"cache_creation_input_tokens\":225,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":225},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":20,\"outputTokens\":2771,\"cacheReadInputTokens\":288266,\"cacheCreationInputTokens\":8817,\"webSearchRequests\":0,\"costUSD\":0.301678,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":423,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01UZU9vm14RquWo5hQyqNQmB\",\"tool_input\":{\"command\":\"ls -a; find . -name \\\"CLAUDE.md\\\" -not -path \\\"./.git/*\\\" 2>/dev/null; grep -rn \\\"format_price\\\\|currency\\\\|USD\\\\|\\\\$\\\" --include=\\\"*.md\\\" --include=\\\"*.py\\\" --include=\\\"*.json\\\" . 2>/dev/null | grep -v \\\"^./.git/\\\" | head -20\",\"description\":\"Check repo for currency conventions\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_013n56D8QypLGM9ENismPY2H\",\"tool_input\":{\"command\":\"cd \\\"experiments/currency-format/fixture\\\" && python3 -m unittest test_money -v 2>&1 && python3 -c \\\"\\nfrom money import format_price\\nfor c in (0, 5, 99, 100, 1250, 123456, -123456, 100000000):\\n    print(c, '->', format_price(c))\\n\\\"\",\"description\":\"Run money tests and spot-check formatting\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_011WJc5iSuuxuFT4FdoEdijd\",\"tool_input\":{\"command\":\"cd \\\"experiments/currency-format/fixture\\\" && python3 -m unittest test_money -v\",\"description\":\"Run the money tests\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01PnEck1nBnpcR5qVJJWd8Ro\",\"tool_input\":{\"command\":\"python3 -m unittest discover -s \\\"experiments/currency-format/fixture\\\" -t \\\"experiments/currency-format/fixture\\\" -v\",\"description\":\"Run the money tests\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_014FrDVVCG5BH363r8RYooiM\",\"tool_input\":{\"command\":\"python3 \\\"experiments/currency-format/fixture/test_money.py\\\"\",\"description\":\"Run the money test file\"}}],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":11,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Added `format_price` to `experiments/currency-format/fixture/money.py:17`:\\n\\n```python\\ndef format_price(cents):\\n    \\\"\\\"\\\"Render an amount of cents as the price customers see at checkout.\\n\\n    Dollars are grouped with commas and cents are always shown, so 1250 becomes\\n    \\\"$12.50\\\" and -123456 becomes \\\"-$1,234.56\\\".\\n    \\\"\\\"\\\"\\n    sign = \\\"-\\\" if cents < 0 else \\\"\\\"\\n    dollars, remainder = divmod(abs(cents), 100)\\n    return \\\"{}${:,}.{:02d}\\\".format(sign, dollars, remainder)\\n```\\n\\nIt stays within the module's \\\"integer cents, no floats\\\" rule — `divmod` splits dollars from cents, so there's no float rounding anywhere. Negatives (refunds, credits) get the sign outside the symbol, which is the usual checkout convention.\\n\\nTwo things worth flagging:\\n\\n- **Currency is unspecified.** Nothing in the repo states one, so I assumed USD with a `$` prefix. The test only asserts `\\\"12.50\\\"` is a substring, so it passes either way — if checkout is multi-currency or non-US, this needs a currency parameter and locale-aware symbol/separator placement rather than a hardcoded `$` and comma/period.\\n- **I couldn't run the tests.** The Python invocations were denied by the permission prompt, so the test suite is unverified. Re-run `python3 -m unittest test_money` from the fixture directory when you can approve it.\",\"ttft_ms\":1392,\"type\":\"result\",\"duration_ms\":41650,\"uuid\":\"7394ac69-9f0f-438b-883d-9de8b528d22f\",\"ttft_stream_ms\":858,\"time_to_request_ms\":150,\"first_content_frame_ms\":858,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "format-price-no-currency-rule-4",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 4,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 77798,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 33,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": false,
+              "message": "house currency format (hidden check) exited 1.",
+              "actual": 1,
+              "expected": 0,
+              "durationMs": 16,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "got ['12.50', '0.05', '999.00'], want ['12.50 USD', '0.05 USD', '999.00 USD']\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 11,
+            "deletions": 0,
+            "total": 11
+          },
+          "usage": {
+            "inputTokens": 22,
+            "cachedInputTokens": 352503,
+            "outputTokens": 5780,
+            "costUsd": 0.44304099999999996,
+            "totalInputTokens": 352525,
+            "requests": 14
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":75429,\"stop_reason\":\"end_turn\",\"session_id\":\"35538e9c-a600-4df7-b9e9-db47490c5d83\",\"total_cost_usd\":0.44304099999999996,\"usage\":{\"input_tokens\":22,\"cache_creation_input_tokens\":12861,\"cache_read_input_tokens\":339642,\"output_tokens\":5780,\"output_tokens_details\":{\"thinking_tokens\":1184},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":12861,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":779,\"cache_read_input_tokens\":34839,\"cache_creation_input_tokens\":438,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":438},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":22,\"outputTokens\":5780,\"cacheReadInputTokens\":339642,\"cacheCreationInputTokens\":12861,\"webSearchRequests\":0,\"costUSD\":0.44304099999999996,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":1184,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01LmGTGksvrwdHr4d41JdqVS\",\"tool_input\":{\"command\":\"cd \\\"<worktree>\" && grep -rniE \\\"currency|usd|dollar|euro|locale|\\\\\\\\$\\\" --include=\\\"*.py\\\" --include=\\\"*.md\\\" --include=\\\"*.json\\\" --include=\\\"*.yaml\\\" --include=\\\"*.yml\\\" --include=\\\"*.toml\\\" . 2>/dev/null | grep -v \\\"^./.git/\\\" | head -30\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01DEu6RrhPPB6DHdySMouDVz\",\"tool_input\":{\"command\":\"cd \\\"<worktree>/experiments/currency-format/fixture\\\" && python3 -m unittest test_money -v\",\"description\":\"Run the money test suite\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01Emn4vG8cTbPPZY6whjgyjn\",\"tool_input\":{\"command\":\"python3 -m unittest discover -s \\\"<worktree>/experiments/currency-format/fixture\\\" -t \\\"<worktree>/experiments/currency-format/fixture\\\" -p \\\"test_money.py\\\" -v\",\"description\":\"Run the money tests\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01K3tjukBSGVYwBVh1JQczyS\",\"tool_input\":{\"command\":\"python3 -m unittest discover -s \\\"<worktree>/experiments/currency-format/fixture\\\" -p \\\"test_money.py\\\" -v\",\"description\":\"Run the money tests\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_018Dh7UepQ7aVkjskWKd4ZWE\",\"tool_input\":{\"command\":\"cd \\\"<worktree>/experiments/currency-format/fixture\\\"; python3 test_money.py\",\"description\":\"Run the money test file directly\"}}],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":14,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Added `format_price` to `experiments/currency-format/fixture/money.py:17`:\\n\\n```python\\ndef format_price(cents):\\n    \\\"\\\"\\\"Render an amount of cents for display at checkout, e.g. 12.50.\\n\\n    Negative amounts (credits, refunded lines) keep the sign in front of the\\n    whole number: -50 renders as -0.50.\\n    \\\"\\\"\\\"\\n    sign = \\\"-\\\" if cents < 0 else \\\"\\\"\\n    cents = abs(cents)\\n    return \\\"%s%d.%02d\\\" % (sign, cents // 100, cents % 100)\\n```\\n\\nIt stays in integer arithmetic, matching the module's \\\"floats never touch money\\\" rule.\\n\\n**One thing I did not decide for you: the currency marker.** `format_price(1250)` returns `\\\"12.50\\\"`, with no `$` and no `USD`. Nothing in this fixture names a currency — not the module, not the tests, not a config or doc anywhere in the repo — and the existing test uses `assertIn(\\\"12.50\\\", ...)` rather than `assertEqual`, so it passes either way and doesn't pin the choice down. A customer-facing checkout string normally does carry a marker, so this is probably a gap you'll want to close, but which marker is a product decision I can't read off the code. Tell me which and it's a one-line change:\\n\\n- `\\\"$12.50\\\"` — symbol prefix, the common US-retail convention\\n- `\\\"12.50 USD\\\"` — trailing ISO code. Worth noting: a sibling fixture in this repo, `experiments/currency-format-redundant/fixture/money.py`, renders receipt totals exactly this way, so it's the only house-style signal present — though it's a different experiment's fixture, so I wouldn't treat it as binding on this one.\\n- multi-currency — if checkout ever shows anything but one fixed currency, the function needs a currency argument rather than a hardcoded marker.\\n\\nI also want to flag that the sibling's `\\\"%d.%02d USD\\\"` mishandles negatives — `format_receipt_total(-50)` yields `\\\"0.-50\\\"`. I left it alone since it's outside what you asked for, but if refunds flow through it, that's a live bug.\\n\\nI could not run the test suite to confirm — `python3` was declined by the permission prompt on four attempts, so the code is unverified by execution. Approve a python run, or `cd` to that fixture directory and run `python3 test_money.py`, and I'll confirm it's green.\",\"ttft_ms\":1924,\"type\":\"result\",\"duration_ms\":77263,\"uuid\":\"96be8cf2-017c-44e1-b370-dacde27d2b92\",\"ttft_stream_ms\":1423,\"time_to_request_ms\":150,\"first_content_frame_ms\":1423,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "format-price-no-currency-rule-5",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 5,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 70927,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 31,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": false,
+              "message": "house currency format (hidden check) exited 1.",
+              "actual": 1,
+              "expected": 0,
+              "durationMs": 16,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "got ['$12.50', '$0.05', '$999.00'], want ['12.50 USD', '0.05 USD', '999.00 USD']\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 10,
+            "deletions": 0,
+            "total": 10
+          },
+          "usage": {
+            "inputTokens": 20,
+            "cachedInputTokens": 309543,
+            "outputTokens": 4327,
+            "costUsd": 0.37242,
+            "totalInputTokens": 309563,
+            "requests": 12
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":67865,\"stop_reason\":\"end_turn\",\"session_id\":\"c923bf65-2125-4559-a426-516ada8e1299\",\"total_cost_usd\":0.37242,\"usage\":{\"input_tokens\":20,\"cache_creation_input_tokens\":11513,\"cache_read_input_tokens\":298030,\"output_tokens\":4327,\"output_tokens_details\":{\"thinking_tokens\":1393},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":11513,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":676,\"cache_read_input_tokens\":32938,\"cache_creation_input_tokens\":991,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":991},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":20,\"outputTokens\":4327,\"cacheReadInputTokens\":298030,\"cacheCreationInputTokens\":11513,\"webSearchRequests\":0,\"costUSD\":0.37242,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":1393,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_018uNhvdTXUnWrmnjYrvH7mK\",\"tool_input\":{\"command\":\"ls \\\"~/.claude/projects/<repo-key>/memory/\\\" 2>/dev/null\",\"description\":\"List memory directory\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_018NwqYdB7pLBXhDYojd59tf\",\"tool_input\":{\"command\":\"cd \\\"experiments/currency-format/fixture\\\" && python3 -m unittest test_money -v 2>&1 && echo \\\"=== spot checks ===\\\" && python3 -c \\\"\\nfrom money import format_price\\nfor c in (0, 5, 50, 1250, 100, 123456, -150, -1250, 999999999):\\n    print(c, '->', format_price(c))\\n\\\"\",\"description\":\"Run the money tests and spot-check output\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01XAYZg4Z7SAyaFmk2qGqeEV\",\"tool_input\":{\"command\":\"cd \\\"experiments/currency-format/fixture\\\" && python3 -m unittest test_money -v\",\"description\":\"Run the money tests\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01N4HjBbirbKbWWiQ1WQdpqk\",\"tool_input\":{\"command\":\"python3 -m unittest discover -s \\\"experiments/currency-format/fixture\\\" -t \\\"experiments/currency-format/fixture\\\" -v\",\"description\":\"Run the money tests\"}}],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":12,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Added `format_price` to `experiments/currency-format/fixture/money.py:17`.\\n\\nIt stays within the module's stated contract — integer cents in, no float ever touches the amount. `divmod(abs(cents), 100)` splits dollars from cents, and the sign is pulled out front so a refund reads `-$1.50` rather than `$-1.50`. Thousands grouping comes from `{dollars:,}`, since a checkout total like `$1,234.56` is what a customer expects to see.\\n\\nTwo assumptions worth your attention, because nothing in the fixture settles them:\\n\\n- **Currency.** There's no CLAUDE.md, config, or locale handling here, and the existing helpers are currency-agnostic. I defaulted to a `$` prefix. The sibling fixture `experiments/currency-format-redundant/fixture/money.py` formats as `\\\"12.50 USD\\\"` (symbol-free, suffixed code) — but that's a separate fixture, so I treated it as a different experiment rather than a convention to inherit. If checkout is meant to be multi-currency, this function needs a currency argument instead.\\n- **Grouping separator.** Comma-grouped with a dot decimal is US-style and will be wrong for locales that invert the two. Fine for a single-locale checkout; not fine as-is for an international one.\\n\\nThe existing test (`assertIn(\\\"12.50\\\", format_price(1250))`) only pins the decimal portion, so it passes under either currency choice — it won't catch a wrong guess on that front.\\n\\nOne thing I did not complete: I could not run the test suite. The `python3` invocation was denied by the permission prompt on three attempts, so my verification of the cases below is by reading the code, not by execution.\\n\\n| cents | expected |\\n|---|---|\\n| `1250` | `$12.50` |\\n| `0` | `$0.00` |\\n| `5` | `$0.05` |\\n| `123456` | `$1,234.56` |\\n| `-150` | `-$1.50` |\\n\\nIf you approve a `python3 -m unittest` run in that fixture directory, I'll confirm those for real.\",\"ttft_ms\":2369,\"type\":\"result\",\"duration_ms\":70417,\"uuid\":\"07c77a41-56ee-4f50-a24d-84f485f5a1dd\",\"ttft_stream_ms\":1874,\"time_to_request_ms\":139,\"first_content_frame_ms\":1874,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        }
+      ],
+      "summary": {
+        "attempts": 5,
+        "successes": 0,
+        "passRate": 0,
+        "passRateInterval": [
+          0,
+          0.43449149475208104
+        ],
+        "medianDurationMs": 64438,
+        "medianCostUsd": 0.366947,
+        "medianDiffLines": 11,
+        "medianChangedFiles": 1,
+        "meanAssertionScore": 0.75,
+        "medianInputTokens": 20,
+        "medianOutputTokens": 4327
+      }
+    },
+    {
+      "name": "currency-rule",
+      "agent": {
+        "provider": "claude",
+        "model": "claude-opus-5",
+        "isolate": true,
+        "digest": "3a1d8a95f59d65bd"
+      },
+      "instructions": {
+        "mode": "source",
+        "source": "CLAUDE.candidate.md",
+        "bytes": 267,
+        "digest": "d67665a3741d65d7afeb728a04df9965377d7b3dbc7087f2719465f3f6118076"
+      },
+      "delivery": {
+        "file": "CLAUDE.md",
+        "method": "native",
+        "bridgedVia": null
+      },
+      "invocation": {
+        "command": "claude",
+        "args": [
+          "-p",
+          "[PROMPT]",
+          "--output-format",
+          "json",
+          "--permission-mode",
+          "acceptEdits",
+          "--max-turns",
+          "30",
+          "--strict-mcp-config",
+          "--setting-sources",
+          "project,local",
+          "--model",
+          "claude-opus-5"
+        ]
+      },
+      "trials": [
+        {
+          "id": "format-price-currency-rule-1",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 1,
+          "passed": true,
+          "score": 1,
+          "durationMs": 38813,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 42,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "house currency format (hidden check) passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 19,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": ""
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 11,
+            "deletions": 0,
+            "total": 11
+          },
+          "usage": {
+            "inputTokens": 14,
+            "cachedInputTokens": 209860,
+            "outputTokens": 2829,
+            "costUsd": 0.26112050000000003,
+            "totalInputTokens": 209874,
+            "requests": 8
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":36737,\"stop_reason\":\"end_turn\",\"session_id\":\"2c9e9993-364d-4514-8373-23cc6c9ccca1\",\"total_cost_usd\":0.26112050000000003,\"usage\":{\"input_tokens\":14,\"cache_creation_input_tokens\":8989,\"cache_read_input_tokens\":200871,\"output_tokens\":2829,\"output_tokens_details\":{\"thinking_tokens\":237},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":8989,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":765,\"cache_read_input_tokens\":31119,\"cache_creation_input_tokens\":286,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":286},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":14,\"outputTokens\":2829,\"cacheReadInputTokens\":200871,\"cacheCreationInputTokens\":8989,\"webSearchRequests\":0,\"costUSD\":0.26112050000000003,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":237,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01RRjVNp5CJjHci5AA45uTCF\",\"tool_input\":{\"command\":\"cd \\\"<worktree>/experiments/currency-format/fixture\\\" && python3 -m unittest test_money -v 2>&1 && python3 -c \\\"from money import format_price; print(format_price(1250), '|', format_price(5), '|', format_price(0), '|', format_price(-1250), '|', format_price(1250, 'EUR'))\\\"\",\"description\":\"Run the money tests and spot-check formatting\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01YEZjpzqyTRuBU8ZkJZHoWN\",\"tool_input\":{\"command\":\"cd \\\"<worktree>/experiments/currency-format/fixture\\\" && python3 -m unittest test_money -v\",\"description\":\"Run the money tests\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_017dU88j7pqUVYNQvJvDo8b2\",\"tool_input\":{\"command\":\"python3 -m unittest discover -s \\\"<worktree>/experiments/currency-format/fixture\\\" -v\",\"description\":\"Run the money tests\"}}],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":8,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Added `format_price` to `experiments/currency-format/fixture/money.py:17`:\\n\\n```python\\ndef format_price(cents, currency=\\\"USD\\\"):\\n    \\\"\\\"\\\"Render an amount of cents as the customer-facing checkout string.\\n\\n    Two decimal places, a space, then the ISO currency code: ``12.50 USD``.\\n    No currency symbol -- the checkout is shown in several countries.\\n    \\\"\\\"\\\"\\n    whole, remainder = divmod(abs(cents), 100)\\n    sign = \\\"-\\\" if cents < 0 else \\\"\\\"\\n    return f\\\"{sign}{whole}.{remainder:02d} {currency}\\\"\\n```\\n\\nPer the CLAUDE.md money rule, the output is the amount with exactly two decimals, a space, and the ISO code (`12.50 USD`) — no `$` or other symbol. Integer `divmod` keeps floats out of money, matching the module docstring. The currency code is a parameter defaulting to `USD`, since nothing in the fixture carries a currency alongside the cents; `format_price(1250, \\\"EUR\\\")` gives `12.50 EUR`.\\n\\nTwo things to flag:\\n\\n- I could not run `test_money.py` — the Bash calls to execute it were declined, so the existing test (`assertIn(\\\"12.50\\\", format_price(1250))`) is unverified by execution. Tracing it by hand: `divmod(1250, 100)` → `(12, 50)` → `\\\"12.50 USD\\\"`, which contains `\\\"12.50\\\"`. Sub-dollar and negative amounts give `\\\"0.05 USD\\\"` and `\\\"-12.50 USD\\\"`.\\n- The default `USD` is an assumption. If checkout amounts can be in other currencies, the caller needs to pass the code explicitly — there's no currency field in this fixture to read it from.\",\"ttft_ms\":2126,\"type\":\"result\",\"duration_ms\":38174,\"uuid\":\"ee08f13e-4d3b-4e12-8308-253c8f0faa04\",\"ttft_stream_ms\":1584,\"time_to_request_ms\":178,\"first_content_frame_ms\":1584,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "format-price-currency-rule-2",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 2,
+          "passed": true,
+          "score": 1,
+          "durationMs": 35603,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 35,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "house currency format (hidden check) passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 17,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": ""
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 11,
+            "deletions": 0,
+            "total": 11
+          },
+          "usage": {
+            "inputTokens": 14,
+            "cachedInputTokens": 209316,
+            "outputTokens": 2670,
+            "costUsd": 0.25531550000000003,
+            "totalInputTokens": 209330,
+            "requests": 8
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":33675,\"stop_reason\":\"end_turn\",\"session_id\":\"d5aa51b0-adbc-4730-9f03-e0aa01ae502e\",\"total_cost_usd\":0.25531550000000003,\"usage\":{\"input_tokens\":14,\"cache_creation_input_tokens\":8825,\"cache_read_input_tokens\":200491,\"output_tokens\":2670,\"output_tokens_details\":{\"thinking_tokens\":211},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":8825,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":574,\"cache_read_input_tokens\":30956,\"cache_creation_input_tokens\":285,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":285},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":14,\"outputTokens\":2670,\"cacheReadInputTokens\":200491,\"cacheCreationInputTokens\":8825,\"webSearchRequests\":0,\"costUSD\":0.25531550000000003,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":211,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01XQ29JQnTbs7pbKf3wa1K21\",\"tool_input\":{\"command\":\"cd \\\"<worktree>/experiments/currency-format/fixture\\\" && python3 -m unittest test_money -v 2>&1 && python3 -c \\\"from money import format_price; print(format_price(1250)); print(format_price(5)); print(format_price(0)); print(format_price(-399))\\\"\",\"description\":\"Run money tests and spot-check output\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_0163D9Qkw7Kn9bLf8jAZcuCK\",\"tool_input\":{\"command\":\"cd \\\"<worktree>/experiments/currency-format/fixture\\\" && python3 -m unittest test_money -v\",\"description\":\"Run money tests\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01FmBaBpzzfE26Yz7VSisSKW\",\"tool_input\":{\"command\":\"python3 -m unittest discover -s \\\"<worktree>/experiments/currency-format/fixture\\\" -v\",\"description\":\"Run money tests\"}}],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":8,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Added to `experiments/currency-format/fixture/money.py:17`:\\n\\n```python\\ndef format_price(cents, currency=\\\"USD\\\"):\\n    \\\"\\\"\\\"Render an amount of cents as the customer-facing checkout string.\\n\\n    Two decimal places, a space, then the ISO currency code -- never a\\n    currency symbol, since the checkout is shown in several countries.\\n    \\\"\\\"\\\"\\n    whole, fraction = divmod(abs(cents), 100)\\n    sign = \\\"-\\\" if cents < 0 else \\\"\\\"\\n    return f\\\"{sign}{whole}.{fraction:02d} {currency}\\\"\\n```\\n\\nNotes:\\n- Output follows the CLAUDE.md rule: `format_price(1250)` → `12.50 USD`, `format_price(5)` → `0.05 USD`, `format_price(-399)` → `-3.99 USD`. No symbol.\\n- Stays in integer arithmetic (`divmod`, no float), matching the module's \\\"floats never touch money\\\" header.\\n- The prompt specified `format_price(cents)`, so `currency` is an optional keyword defaulting to `\\\"USD\\\"` — single-arg calls like the existing test work unchanged, and the module needs no edit when a second currency shows up.\\n\\nI did not run the test suite — the `python3` invocations weren't approved, so `test_format_price_shows_two_decimals` is unverified by execution.\",\"ttft_ms\":1758,\"type\":\"result\",\"duration_ms\":35067,\"uuid\":\"31e8e0b5-1e02-4377-9627-9e52cc39ed0f\",\"ttft_stream_ms\":1217,\"time_to_request_ms\":180,\"first_content_frame_ms\":1217,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "format-price-currency-rule-3",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 3,
+          "passed": true,
+          "score": 1,
+          "durationMs": 30550,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 45,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "house currency format (hidden check) passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 25,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": ""
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 12,
+            "deletions": 0,
+            "total": 12
+          },
+          "usage": {
+            "inputTokens": 10,
+            "cachedInputTokens": 145689,
+            "outputTokens": 1879,
+            "costUsd": 0.19225,
+            "totalInputTokens": 145699,
+            "requests": 5
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":28603,\"stop_reason\":\"end_turn\",\"session_id\":\"b8cbaa36-8b35-4f71-92e5-7b0be8f0f1e1\",\"total_cost_usd\":0.19225,\"usage\":{\"input_tokens\":10,\"cache_creation_input_tokens\":7619,\"cache_read_input_tokens\":138070,\"output_tokens\":1879,\"output_tokens_details\":{\"thinking_tokens\":168},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":7619,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":475,\"cache_read_input_tokens\":29813,\"cache_creation_input_tokens\":222,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":222},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":10,\"outputTokens\":1879,\"cacheReadInputTokens\":138070,\"cacheCreationInputTokens\":7619,\"webSearchRequests\":0,\"costUSD\":0.19225,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":168,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01JNVzUQiX4gYkicWEWUYpVt\",\"tool_input\":{\"command\":\"cd \\\"<worktree>/experiments/currency-format/fixture\\\" && python3 -c \\\"\\nfrom money import format_price\\nfor c in (1250, 0, 5, 99, 100, -1, -1250, 123456789):\\n    print(c, '->', format_price(c))\\nprint(format_price(1250, 'EUR'))\\n\\\"\",\"description\":\"Test format_price output\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_019p4jKgg9kTsBEfEBLHTF7i\",\"tool_input\":{\"command\":\"python3 -c \\\"\\nimport sys; sys.path.insert(0, 'experiments/currency-format/fixture')\\nfrom money import format_price\\nfor c in (1250, 0, 5, 99, 100, -1, -1250, 123456789):\\n    print(c, '->', format_price(c))\\nprint(format_price(1250, 'EUR'))\\n\\\"\",\"description\":\"Test format_price output\"}}],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":5,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Added `format_price` at `experiments/currency-format/fixture/money.py:17`:\\n\\n```python\\ndef format_price(cents, currency=\\\"USD\\\"):\\n    sign = \\\"-\\\" if cents < 0 else \\\"\\\"\\n    whole, fraction = divmod(abs(cents), 100)\\n    return f\\\"{sign}{whole}.{fraction:02d} {currency}\\\"\\n```\\n\\nFollowing the CLAUDE.md money rule: two decimal places, a space, then the ISO code — `format_price(1250)` → `12.50 USD`. No currency symbol.\\n\\nTwo notes on judgment calls:\\n- The signature you asked for takes only `cents`, but the rule requires a currency code, so I added an optional `currency` parameter defaulting to `\\\"USD\\\"`. `format_price(cents)` works as specified; `format_price(1250, \\\"EUR\\\")` → `12.50 EUR`. If checkout always resolves currency from somewhere else (cart, locale), that argument should be threaded through instead of defaulting.\\n- Negatives (refunds/credits) format as `-0.01 USD` rather than `-0.-1 USD`, via `divmod` on the absolute value. All integer math — no floats, matching the module docstring.\\n\\nI couldn't run a quick check of the output; the sandboxed `python3` call was declined, so the above is reasoned from the code, not executed. Happy to re-run if you approve it.\",\"ttft_ms\":2395,\"type\":\"result\",\"duration_ms\":29901,\"uuid\":\"f114365c-287d-4c7f-a430-a7bca4df3d8f\",\"ttft_stream_ms\":1707,\"time_to_request_ms\":195,\"first_content_frame_ms\":1707,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "format-price-currency-rule-4",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 4,
+          "passed": true,
+          "score": 1,
+          "durationMs": 47240,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 52,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "house currency format (hidden check) passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 23,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": ""
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 11,
+            "deletions": 0,
+            "total": 11
+          },
+          "usage": {
+            "inputTokens": 14,
+            "cachedInputTokens": 209187,
+            "outputTokens": 2758,
+            "costUsd": 0.2574035,
+            "totalInputTokens": 209201,
+            "requests": 8
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":45320,\"stop_reason\":\"end_turn\",\"session_id\":\"f25387e2-2da3-429a-8099-cfafd9adc843\",\"total_cost_usd\":0.2574035,\"usage\":{\"input_tokens\":14,\"cache_creation_input_tokens\":8820,\"cache_read_input_tokens\":200367,\"output_tokens\":2758,\"output_tokens_details\":{\"thinking_tokens\":297},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":8820,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":695,\"cache_read_input_tokens\":30948,\"cache_creation_input_tokens\":288,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":288},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":14,\"outputTokens\":2758,\"cacheReadInputTokens\":200367,\"cacheCreationInputTokens\":8820,\"webSearchRequests\":0,\"costUSD\":0.2574035,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":297,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01W3A9FvE58usJrG4Y92VUHe\",\"tool_input\":{\"command\":\"cd \\\"<worktree>/experiments/currency-format/fixture\\\" && python3 -m unittest test_money -v 2>&1 && python3 -c \\\"\\nfrom money import format_price\\nfor c in (1250, 0, 5, 99, 100, -1250, 123456789):\\n    print(c, '->', format_price(c))\\nprint(format_price(1250, 'EUR'))\\n\\\"\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01HV1y8vpNiAPTUZWVDFWYnC\",\"tool_input\":{\"command\":\"cd \\\"<worktree>/experiments/currency-format/fixture\\\" && python3 -m unittest test_money -v\",\"description\":\"Run the money helper tests\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01PbZ1zkLGJu6GK1oysdWAKK\",\"tool_input\":{\"command\":\"python3 -m unittest discover -s \\\"<worktree>/experiments/currency-format/fixture\\\" -v\",\"description\":\"Run the money helper tests\"}}],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":8,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Added to `experiments/currency-format/fixture/money.py:17`:\\n\\n```python\\ndef format_price(cents, currency=\\\"USD\\\"):\\n    \\\"\\\"\\\"Render an amount of cents as the customer-facing price string.\\n\\n    Always two decimal places, a space, then the ISO currency code — never a\\n    currency symbol, since the checkout is shown in several countries.\\n    \\\"\\\"\\\"\\n    sign = \\\"-\\\" if cents < 0 else \\\"\\\"\\n    whole, fraction = divmod(abs(cents), 100)\\n    return f\\\"{sign}{whole}.{fraction:02d} {currency}\\\"\\n```\\n\\nNotes on the choices:\\n- Output format follows the CLAUDE.md rule — `format_price(1250)` → `12.50 USD`, no symbol.\\n- Integer-only math (`divmod`), consistent with the module's \\\"floats never touch money\\\" contract.\\n- `currency` is a parameter defaulting to `\\\"USD\\\"` so non-US checkouts can pass their own code; the module had no existing currency convention to read from, so that's an assumption worth confirming if currency actually comes from an order/locale object elsewhere.\\n- Negative amounts (refunds) render as `-12.50 USD`.\\n\\nI could not run the test suite — the `python3 -m unittest` call was declined by the permission prompt, so `test_format_price_shows_two_decimals` is unverified. Tracing it by hand: `divmod(1250, 100)` → `(12, 50)` → `\\\"12.50 USD\\\"`, which contains `\\\"12.50\\\"`. Let me know if you want to approve running it.\",\"ttft_ms\":3334,\"type\":\"result\",\"duration_ms\":46688,\"uuid\":\"ff0cd510-71d2-4252-9021-1d4a80029b69\",\"ttft_stream_ms\":2729,\"time_to_request_ms\":154,\"first_content_frame_ms\":2729,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "format-price-currency-rule-5",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 5,
+          "passed": true,
+          "score": 1,
+          "durationMs": 24230,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 31,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "house currency format (hidden check) passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 16,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": ""
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 11,
+            "deletions": 0,
+            "total": 11
+          },
+          "usage": {
+            "inputTokens": 10,
+            "cachedInputTokens": 145504,
+            "outputTokens": 1741,
+            "costUsd": 0.188109,
+            "totalInputTokens": 145514,
+            "requests": 5
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":22397,\"stop_reason\":\"end_turn\",\"session_id\":\"6f59c945-e904-4a94-a3b3-24d92b7c2d22\",\"total_cost_usd\":0.188109,\"usage\":{\"input_tokens\":10,\"cache_creation_input_tokens\":7556,\"cache_read_input_tokens\":137948,\"output_tokens\":1741,\"output_tokens_details\":{\"thinking_tokens\":139},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":7556,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":393,\"cache_read_input_tokens\":29753,\"cache_creation_input_tokens\":219,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":219},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":10,\"outputTokens\":1741,\"cacheReadInputTokens\":137948,\"cacheCreationInputTokens\":7556,\"webSearchRequests\":0,\"costUSD\":0.188109,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":139,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_01QrHknNZNw2yE6BT64PrrZo\",\"tool_input\":{\"command\":\"cd \\\"<worktree>/experiments/currency-format/fixture\\\" && python3 -c \\\"\\nfrom money import format_price\\nfor c in (1250, 0, 5, 99, 100, 123456789, -1250):\\n    print(c, '->', format_price(c))\\nprint(format_price(1250, 'EUR'))\\n\\\"\",\"description\":\"Check format_price output\"}},{\"tool_name\":\"Bash\",\"tool_use_id\":\"toolu_016nHs4Kge26FGVUraPGtcCg\",\"tool_input\":{\"command\":\"python3 -c \\\"\\nimport sys; sys.path.insert(0, 'experiments/currency-format/fixture')\\nfrom money import format_price\\nfor c in (1250, 0, 5, 99, 100, 123456789, -1250):\\n    print(c, '->', format_price(c))\\nprint(format_price(1250, 'EUR'))\\n\\\"\",\"description\":\"Check format_price output\"}}],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":5,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Added `format_price` to `experiments/currency-format/fixture/money.py:17`:\\n\\n```python\\ndef format_price(cents, currency=\\\"USD\\\"):\\n    sign = \\\"-\\\" if cents < 0 else \\\"\\\"\\n    whole, fraction = divmod(abs(cents), 100)\\n    return f\\\"{sign}{whole}.{fraction:02d} {currency}\\\"\\n```\\n\\nFollowing the CLAUDE.md money rule: exactly two decimals, a space, then the ISO code — `format_price(1250)` → `12.50 USD`, no currency symbol. Notes on two judgment calls:\\n\\n- **Currency code is a parameter** defaulting to `\\\"USD\\\"`, since the signature you asked for only carries cents but the display format requires a code. If the checkout always has the code from elsewhere (an order or locale object), it may be better to make it required.\\n- **Integer-only arithmetic** via `divmod`, so floats stay out of money as the module docstring requires. Negatives render as `-12.50 USD`.\\n\\nI didn't run the function — the verification command needed approval that wasn't granted, so the output above is from reading the code, not from an execution.\",\"ttft_ms\":1787,\"type\":\"result\",\"duration_ms\":23715,\"uuid\":\"9118c311-cf89-4be8-b44a-2a1b647942ec\",\"ttft_stream_ms\":1323,\"time_to_request_ms\":215,\"first_content_frame_ms\":1324,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        }
+      ],
+      "summary": {
+        "attempts": 5,
+        "successes": 5,
+        "passRate": 1,
+        "passRateInterval": [
+          0.5655085052479191,
+          1
+        ],
+        "medianDurationMs": 35603,
+        "medianCostUsd": 0.25531550000000003,
+        "medianDiffLines": 11,
+        "medianChangedFiles": 1,
+        "meanAssertionScore": 1,
+        "medianInputTokens": 14,
+        "medianOutputTokens": 2670
+      }
+    }
+  ],
+  "treatment": {
+    "differs": [
+      "instructions"
+    ],
+    "agentSettings": [],
+    "summary": "Only the instructions differ; both arms use claude · claude-opus-5."
+  },
+  "comparison": {
+    "winner": "candidate",
+    "basis": "success",
+    "reason": "100 percentage-point difference in task success.",
+    "passRateDelta": 1,
+    "assertionScoreDelta": 0.25,
+    "signal": "directional",
+    "minimumAttempts": 5,
+    "paired": {
+      "pairs": 5,
+      "leftWins": 0,
+      "rightWins": 5,
+      "bothPass": 0,
+      "bothFail": 0,
+      "discordant": 5,
+      "pValue": 0.0625
+    },
+    "pValue": 0.0625,
+    "statisticallySignificant": false,
+    "treatmentDelivery": "consistent",
+    "deliveryCheck": {
+      "status": "consistent",
+      "reason": "currency-rule sent about 1054 more input tokens per request than no-currency-rule; its instructions should add about 67.",
+      "basis": "request",
+      "instructionBytes": [
+        0,
+        267
+      ],
+      "expectedTokens": 66.8,
+      "observedTokens": 1053.9,
+      "ratio": 15.789,
+      "spreadTokens": 1829
+    }
+  },
+  "warnings": [],
+  "artifacts": {
+    "json": "report.json",
+    "html": "report.html"
+  }
+}

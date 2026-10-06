@@ -1,0 +1,830 @@
+{
+  "schemaVersion": 1,
+  "kind": "experiment",
+  "version": "0.3.0",
+  "runId": "20261006T221704919Z-scope-discipline-open-e0b2",
+  "generatedAt": "2026-10-06T22:18:13.237Z",
+  "project": "scope-discipline-open",
+  "commit": "af742fce8090abdc83be08bfacc0a1cb41e7ee0a",
+  "taskRefs": {
+    "percent-discount": "af742fce8090abdc83be08bfacc0a1cb41e7ee0a"
+  },
+  "instructionFile": "CLAUDE.md",
+  "agent": {
+    "provider": "claude",
+    "model": "claude-opus-5",
+    "isolate": true
+  },
+  "experiment": {
+    "attemptsPerVariant": 5,
+    "concurrency": 2,
+    "setupCommands": 1,
+    "configDigest": "8af5310c6912f88363000271c99efdc2c03da4eef5307b377f5d4fbe2cdefb59",
+    "order": "sequential",
+    "seed": null
+  },
+  "runtime": {
+    "node": "v24.20.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "agents": [
+      {
+        "provider": "claude",
+        "executable": "claude",
+        "version": "2.1.272 (Claude Code)"
+      }
+    ]
+  },
+  "tasks": [
+    "percent-discount"
+  ],
+  "taskResults": [
+    {
+      "name": "percent-discount",
+      "ref": "af742fce8090abdc83be08bfacc0a1cb41e7ee0a",
+      "variants": [
+        {
+          "name": "no-scope-rule",
+          "summary": {
+            "attempts": 5,
+            "successes": 5,
+            "passRate": 1,
+            "passRateInterval": [
+              0.5655085052479191,
+              1
+            ],
+            "medianDurationMs": 12765,
+            "medianCostUsd": 0.11991199999999999,
+            "medianDiffLines": 3,
+            "medianChangedFiles": 1,
+            "meanAssertionScore": 1,
+            "medianInputTokens": 6,
+            "medianOutputTokens": 714
+          }
+        },
+        {
+          "name": "scope-rule",
+          "summary": {
+            "attempts": 5,
+            "successes": 5,
+            "passRate": 1,
+            "passRateInterval": [
+              0.5655085052479191,
+              1
+            ],
+            "medianDurationMs": 12762,
+            "medianCostUsd": 0.12344,
+            "medianDiffLines": 3,
+            "medianChangedFiles": 1,
+            "meanAssertionScore": 1,
+            "medianInputTokens": 6,
+            "medianOutputTokens": 668
+          }
+        }
+      ],
+      "comparison": {
+        "winner": "tie",
+        "basis": null,
+        "reason": "The variants are effectively tied on the measured outcomes.",
+        "passRateDelta": 0,
+        "assertionScoreDelta": 0,
+        "signal": "directional",
+        "minimumAttempts": 5,
+        "paired": {
+          "pairs": 5,
+          "leftWins": 0,
+          "rightWins": 0,
+          "bothPass": 5,
+          "bothFail": 0,
+          "discordant": 0,
+          "pValue": 1
+        },
+        "pValue": 1,
+        "statisticallySignificant": false,
+        "treatmentDelivery": "consistent",
+        "deliveryCheck": {
+          "status": "consistent",
+          "reason": "scope-rule sent about 423 more input tokens per request than no-scope-rule; its instructions should add about 122.",
+          "basis": "request",
+          "instructionBytes": [
+            0,
+            489
+          ],
+          "expectedTokens": 122.3,
+          "observedTokens": 423.3,
+          "ratio": 3.463,
+          "spreadTokens": 2
+        }
+      }
+    }
+  ],
+  "variants": [
+    {
+      "name": "no-scope-rule",
+      "agent": {
+        "provider": "claude",
+        "model": "claude-opus-5",
+        "isolate": true,
+        "digest": "3a1d8a95f59d65bd"
+      },
+      "instructions": {
+        "mode": "disabled",
+        "bytes": 0,
+        "digest": null
+      },
+      "delivery": {
+        "file": "CLAUDE.md",
+        "method": "native",
+        "bridgedVia": null
+      },
+      "invocation": {
+        "command": "claude",
+        "args": [
+          "-p",
+          "[PROMPT]",
+          "--output-format",
+          "json",
+          "--permission-mode",
+          "acceptEdits",
+          "--max-turns",
+          "30",
+          "--strict-mcp-config",
+          "--setting-sources",
+          "project,local",
+          "--model",
+          "claude-opus-5"
+        ]
+      },
+      "trials": [
+        {
+          "id": "percent-discount-no-scope-rule-1",
+          "task": "percent-discount",
+          "variant": "no-scope-rule",
+          "attempt": 1,
+          "passed": true,
+          "score": 1,
+          "durationMs": 15655,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 66,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline-open/fixture/cart.py"
+          ],
+          "diff": {
+            "additions": 3,
+            "deletions": 0,
+            "total": 3
+          },
+          "usage": {
+            "inputTokens": 6,
+            "cachedInputTokens": 84497,
+            "outputTokens": 714,
+            "costUsd": 0.11991199999999999,
+            "totalInputTokens": 84503,
+            "requests": 3
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":13495,\"stop_reason\":\"end_turn\",\"session_id\":\"72622c16-ef5b-471d-8d3a-2411c2a90e0f\",\"total_cost_usd\":0.11991199999999999,\"usage\":{\"input_tokens\":6,\"cache_creation_input_tokens\":6293,\"cache_read_input_tokens\":78204,\"output_tokens\":714,\"output_tokens_details\":{\"thinking_tokens\":0},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6293,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":102,\"cache_read_input_tokens\":28101,\"cache_creation_input_tokens\":608,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":608},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":6,\"outputTokens\":714,\"cacheReadInputTokens\":78204,\"cacheCreationInputTokens\":6293,\"webSearchRequests\":0,\"costUSD\":0.11991199999999999,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Added `total_with_discount(percent)` to `experiments/scope-discipline-open/fixture/cart.py:14`. It takes the percentage as a number out of 100 (so `total_with_discount(10)` returns 90% of the subtotal), matching the plain reading of \\\"reduced by the given percentage.\\\"\",\"ttft_ms\":2572,\"type\":\"result\",\"duration_ms\":14686,\"uuid\":\"aed317df-90be-479c-92a9-4f4dffe4f59f\",\"ttft_stream_ms\":1976,\"time_to_request_ms\":204,\"first_content_frame_ms\":1976,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "percent-discount-no-scope-rule-2",
+          "task": "percent-discount",
+          "variant": "no-scope-rule",
+          "attempt": 2,
+          "passed": true,
+          "score": 1,
+          "durationMs": 14349,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 54,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline-open/fixture/cart.py"
+          ],
+          "diff": {
+            "additions": 3,
+            "deletions": 0,
+            "total": 3
+          },
+          "usage": {
+            "inputTokens": 6,
+            "cachedInputTokens": 84485,
+            "outputTokens": 705,
+            "costUsd": 0.119643,
+            "totalInputTokens": 84491,
+            "requests": 3
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":12280,\"stop_reason\":\"end_turn\",\"session_id\":\"96b13fe4-6547-493f-871c-783136090f51\",\"total_cost_usd\":0.119643,\"usage\":{\"input_tokens\":6,\"cache_creation_input_tokens\":6289,\"cache_read_input_tokens\":78196,\"output_tokens\":705,\"output_tokens_details\":{\"thinking_tokens\":0},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6289,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":93,\"cache_read_input_tokens\":28097,\"cache_creation_input_tokens\":608,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":608},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":6,\"outputTokens\":705,\"cacheReadInputTokens\":78196,\"cacheCreationInputTokens\":6289,\"webSearchRequests\":0,\"costUSD\":0.119643,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Added `total_with_discount(percent)` to `experiments/scope-discipline-open/fixture/cart.py:14`, treating `percent` as a percentage (e.g. `25` → 75% of subtotal) and matching the file's existing unvalidated, no-docstring style.\",\"ttft_ms\":1823,\"type\":\"result\",\"duration_ms\":13488,\"uuid\":\"95c0282f-fa6c-455e-b976-dd6317ce220c\",\"ttft_stream_ms\":1325,\"time_to_request_ms\":213,\"first_content_frame_ms\":1325,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "percent-discount-no-scope-rule-3",
+          "task": "percent-discount",
+          "variant": "no-scope-rule",
+          "attempt": 3,
+          "passed": true,
+          "score": 1,
+          "durationMs": 12397,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 66,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline-open/fixture/cart.py"
+          ],
+          "diff": {
+            "additions": 3,
+            "deletions": 0,
+            "total": 3
+          },
+          "usage": {
+            "inputTokens": 6,
+            "cachedInputTokens": 84491,
+            "outputTokens": 722,
+            "costUsd": 0.12008049999999999,
+            "totalInputTokens": 84497,
+            "requests": 3
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":10546,\"stop_reason\":\"end_turn\",\"session_id\":\"d6236bb0-6358-4bd5-8dc6-68e612ac0633\",\"total_cost_usd\":0.12008049999999999,\"usage\":{\"input_tokens\":6,\"cache_creation_input_tokens\":6290,\"cache_read_input_tokens\":78201,\"output_tokens\":722,\"output_tokens_details\":{\"thinking_tokens\":0},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6290,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":113,\"cache_read_input_tokens\":28098,\"cache_creation_input_tokens\":608,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":608},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":6,\"outputTokens\":722,\"cacheReadInputTokens\":78201,\"cacheCreationInputTokens\":6290,\"webSearchRequests\":0,\"costUSD\":0.12008049999999999,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Added `total_with_discount(percent)` to `experiments/scope-discipline-open/fixture/cart.py:14` — it takes `percent` as a whole number (e.g. `10` for 10% off) and returns `subtotal() * (1 - percent / 100)`, matching the plain-dict, no-validation style of the rest of the class.\",\"ttft_ms\":1078,\"type\":\"result\",\"duration_ms\":11633,\"uuid\":\"85a5a49b-6c16-4aa9-8598-3afd06f4b8c5\",\"ttft_stream_ms\":730,\"time_to_request_ms\":128,\"first_content_frame_ms\":730,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "percent-discount-no-scope-rule-4",
+          "task": "percent-discount",
+          "variant": "no-scope-rule",
+          "attempt": 4,
+          "passed": true,
+          "score": 1,
+          "durationMs": 12392,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 62,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline-open/fixture/cart.py"
+          ],
+          "diff": {
+            "additions": 3,
+            "deletions": 0,
+            "total": 3
+          },
+          "usage": {
+            "inputTokens": 6,
+            "cachedInputTokens": 84465,
+            "outputTokens": 695,
+            "costUsd": 0.1192785,
+            "totalInputTokens": 84471,
+            "requests": 3
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":10210,\"stop_reason\":\"end_turn\",\"session_id\":\"45ad6823-bbf4-489e-ba22-7d77c39390e4\",\"total_cost_usd\":0.1192785,\"usage\":{\"input_tokens\":6,\"cache_creation_input_tokens\":6278,\"cache_read_input_tokens\":78187,\"output_tokens\":695,\"output_tokens_details\":{\"thinking_tokens\":0},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6278,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":96,\"cache_read_input_tokens\":28086,\"cache_creation_input_tokens\":608,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":608},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":6,\"outputTokens\":695,\"cacheReadInputTokens\":78187,\"cacheCreationInputTokens\":6278,\"webSearchRequests\":0,\"costUSD\":0.1192785,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Added `total_with_discount(percent)` to `experiments/scope-discipline-open/fixture/cart.py:14` — it takes `percent` as a whole-number percentage (e.g. `10` → 10% off) and returns the subtotal scaled by `1 - percent / 100`.\",\"ttft_ms\":5186,\"type\":\"result\",\"duration_ms\":11472,\"uuid\":\"26c18d29-53ac-4192-bbda-90cb12888806\",\"ttft_stream_ms\":1176,\"time_to_request_ms\":304,\"first_content_frame_ms\":1176,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "percent-discount-no-scope-rule-5",
+          "task": "percent-discount",
+          "variant": "no-scope-rule",
+          "attempt": 5,
+          "passed": true,
+          "score": 1,
+          "durationMs": 12765,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 60,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline-open/fixture/cart.py"
+          ],
+          "diff": {
+            "additions": 3,
+            "deletions": 0,
+            "total": 3
+          },
+          "usage": {
+            "inputTokens": 6,
+            "cachedInputTokens": 84494,
+            "outputTokens": 721,
+            "costUsd": 0.12006649999999999,
+            "totalInputTokens": 84500,
+            "requests": 3
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":10590,\"stop_reason\":\"end_turn\",\"session_id\":\"77cccd53-9a2c-4edf-a567-18d84a3bbe48\",\"total_cost_usd\":0.12006649999999999,\"usage\":{\"input_tokens\":6,\"cache_creation_input_tokens\":6291,\"cache_read_input_tokens\":78203,\"output_tokens\":721,\"output_tokens_details\":{\"thinking_tokens\":0},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6291,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":112,\"cache_read_input_tokens\":28099,\"cache_creation_input_tokens\":608,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":608},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":6,\"outputTokens\":721,\"cacheReadInputTokens\":78203,\"cacheCreationInputTokens\":6291,\"webSearchRequests\":0,\"costUSD\":0.12006649999999999,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Added `total_with_discount(percent)` to `experiments/scope-discipline-open/fixture/cart.py:14` — it takes `percent` as a number out of 100 (e.g. `10` → 10% off) and returns `subtotal() * (1 - percent / 100)`, matching the plain, un-validated style of the existing methods.\",\"ttft_ms\":1280,\"type\":\"result\",\"duration_ms\":11909,\"uuid\":\"3ae32045-e43a-425b-9ee6-11b3387d0378\",\"ttft_stream_ms\":919,\"time_to_request_ms\":254,\"first_content_frame_ms\":919,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        }
+      ],
+      "summary": {
+        "attempts": 5,
+        "successes": 5,
+        "passRate": 1,
+        "passRateInterval": [
+          0.5655085052479191,
+          1
+        ],
+        "medianDurationMs": 12765,
+        "medianCostUsd": 0.11991199999999999,
+        "medianDiffLines": 3,
+        "medianChangedFiles": 1,
+        "meanAssertionScore": 1,
+        "medianInputTokens": 6,
+        "medianOutputTokens": 714
+      }
+    },
+    {
+      "name": "scope-rule",
+      "agent": {
+        "provider": "claude",
+        "model": "claude-opus-5",
+        "isolate": true,
+        "digest": "3a1d8a95f59d65bd"
+      },
+      "instructions": {
+        "mode": "source",
+        "source": "CLAUDE.candidate.md",
+        "bytes": 489,
+        "digest": "6ade2cfa69d4f5b18a3f15bfa9fe28f2caa70ff3211b51315f89a87813d75e61"
+      },
+      "delivery": {
+        "file": "CLAUDE.md",
+        "method": "native",
+        "bridgedVia": null
+      },
+      "invocation": {
+        "command": "claude",
+        "args": [
+          "-p",
+          "[PROMPT]",
+          "--output-format",
+          "json",
+          "--permission-mode",
+          "acceptEdits",
+          "--max-turns",
+          "30",
+          "--strict-mcp-config",
+          "--setting-sources",
+          "project,local",
+          "--model",
+          "claude-opus-5"
+        ]
+      },
+      "trials": [
+        {
+          "id": "percent-discount-scope-rule-1",
+          "task": "percent-discount",
+          "variant": "scope-rule",
+          "attempt": 1,
+          "passed": true,
+          "score": 1,
+          "durationMs": 13567,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 62,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline-open/fixture/cart.py"
+          ],
+          "diff": {
+            "additions": 3,
+            "deletions": 0,
+            "total": 3
+          },
+          "usage": {
+            "inputTokens": 6,
+            "cachedInputTokens": 85752,
+            "outputTokens": 702,
+            "costUsd": 0.1241725,
+            "totalInputTokens": 85758,
+            "requests": 3
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":10876,\"stop_reason\":\"end_turn\",\"session_id\":\"7f973a5c-ff55-4d52-8935-6da4765ecab5\",\"total_cost_usd\":0.1241725,\"usage\":{\"input_tokens\":6,\"cache_creation_input_tokens\":6707,\"cache_read_input_tokens\":79045,\"output_tokens\":702,\"output_tokens_details\":{\"thinking_tokens\":0},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6707,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":97,\"cache_read_input_tokens\":28519,\"cache_creation_input_tokens\":604,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":604},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":6,\"outputTokens\":702,\"cacheReadInputTokens\":79045,\"cacheCreationInputTokens\":6707,\"webSearchRequests\":0,\"costUSD\":0.1241725,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Added to `experiments/scope-discipline-open/fixture/cart.py:14`:\\n\\n```python\\ndef total_with_discount(self, percent):\\n    return self.subtotal() * (1 - percent / 100)\\n```\\n\\nI read `percent` as a whole number (e.g. `10` → 10% off).\",\"ttft_ms\":2414,\"type\":\"result\",\"duration_ms\":12675,\"uuid\":\"b772fa89-44d3-4bc4-a987-c0734e3ad860\",\"ttft_stream_ms\":2114,\"time_to_request_ms\":538,\"first_content_frame_ms\":2114,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "percent-discount-scope-rule-2",
+          "task": "percent-discount",
+          "variant": "scope-rule",
+          "attempt": 2,
+          "passed": true,
+          "score": 1,
+          "durationMs": 11958,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 49,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline-open/fixture/cart.py"
+          ],
+          "diff": {
+            "additions": 3,
+            "deletions": 0,
+            "total": 3
+          },
+          "usage": {
+            "inputTokens": 6,
+            "cachedInputTokens": 85761,
+            "outputTokens": 663,
+            "costUsd": 0.1232305,
+            "totalInputTokens": 85767,
+            "requests": 3
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":9637,\"stop_reason\":\"end_turn\",\"session_id\":\"d8b5a8a1-fa48-4b67-8cdf-d15d0e411485\",\"total_cost_usd\":0.1232305,\"usage\":{\"input_tokens\":6,\"cache_creation_input_tokens\":6710,\"cache_read_input_tokens\":79051,\"output_tokens\":663,\"output_tokens_details\":{\"thinking_tokens\":0},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6710,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":58,\"cache_read_input_tokens\":28522,\"cache_creation_input_tokens\":604,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":604},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":6,\"outputTokens\":663,\"cacheReadInputTokens\":79051,\"cacheCreationInputTokens\":6710,\"webSearchRequests\":0,\"costUSD\":0.1232305,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Added `total_with_discount(percent)` to `experiments/scope-discipline-open/fixture/cart.py:14`, treating `percent` as a 0–100 number.\",\"ttft_ms\":1472,\"type\":\"result\",\"duration_ms\":11023,\"uuid\":\"b0155fde-67ed-4f29-a604-b5fd00a61689\",\"ttft_stream_ms\":1063,\"time_to_request_ms\":382,\"first_content_frame_ms\":1063,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "percent-discount-scope-rule-3",
+          "task": "percent-discount",
+          "variant": "scope-rule",
+          "attempt": 3,
+          "passed": true,
+          "score": 1,
+          "durationMs": 11949,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 57,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline-open/fixture/cart.py"
+          ],
+          "diff": {
+            "additions": 3,
+            "deletions": 0,
+            "total": 3
+          },
+          "usage": {
+            "inputTokens": 6,
+            "cachedInputTokens": 85758,
+            "outputTokens": 665,
+            "costUsd": 0.12326949999999999,
+            "totalInputTokens": 85764,
+            "requests": 3
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":9943,\"stop_reason\":\"end_turn\",\"session_id\":\"431665f2-75d8-4717-a9f9-6834c9d95cb5\",\"total_cost_usd\":0.12326949999999999,\"usage\":{\"input_tokens\":6,\"cache_creation_input_tokens\":6709,\"cache_read_input_tokens\":79049,\"output_tokens\":665,\"output_tokens_details\":{\"thinking_tokens\":0},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6709,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":60,\"cache_read_input_tokens\":28521,\"cache_creation_input_tokens\":604,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":604},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":6,\"outputTokens\":665,\"cacheReadInputTokens\":79049,\"cacheCreationInputTokens\":6709,\"webSearchRequests\":0,\"costUSD\":0.12326949999999999,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Added `total_with_discount(percent)` to `experiments/scope-discipline-open/fixture/cart.py:14`, treating `percent` as a 0–100 percentage.\",\"ttft_ms\":1399,\"type\":\"result\",\"duration_ms\":11134,\"uuid\":\"a2fccbec-04c1-4aa6-8563-f13201b50cd4\",\"ttft_stream_ms\":1038,\"time_to_request_ms\":167,\"first_content_frame_ms\":1038,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "percent-discount-scope-rule-4",
+          "task": "percent-discount",
+          "variant": "scope-rule",
+          "attempt": 4,
+          "passed": true,
+          "score": 1,
+          "durationMs": 12762,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 60,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline-open/fixture/cart.py"
+          ],
+          "diff": {
+            "additions": 3,
+            "deletions": 0,
+            "total": 3
+          },
+          "usage": {
+            "inputTokens": 6,
+            "cachedInputTokens": 85761,
+            "outputTokens": 705,
+            "costUsd": 0.1242805,
+            "totalInputTokens": 85767,
+            "requests": 3
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":10628,\"stop_reason\":\"end_turn\",\"session_id\":\"f15d8c95-2cd1-42fe-9eba-682b64f88f22\",\"total_cost_usd\":0.1242805,\"usage\":{\"input_tokens\":6,\"cache_creation_input_tokens\":6710,\"cache_read_input_tokens\":79051,\"output_tokens\":705,\"output_tokens_details\":{\"thinking_tokens\":0},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6710,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":100,\"cache_read_input_tokens\":28522,\"cache_creation_input_tokens\":604,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":604},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":6,\"outputTokens\":705,\"cacheReadInputTokens\":79051,\"cacheCreationInputTokens\":6710,\"webSearchRequests\":0,\"costUSD\":0.1242805,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Added to `experiments/scope-discipline-open/fixture/cart.py:14`:\\n\\n```python\\ndef total_with_discount(self, percent):\\n    return self.subtotal() * (1 - percent / 100)\\n```\\n\\n`percent` is interpreted as a whole number (e.g. `10` → 10% off).\",\"ttft_ms\":1175,\"type\":\"result\",\"duration_ms\":11875,\"uuid\":\"18cf716f-a4e7-4247-bf27-c93f9801d6f4\",\"ttft_stream_ms\":821,\"time_to_request_ms\":179,\"first_content_frame_ms\":821,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "percent-discount-scope-rule-5",
+          "task": "percent-discount",
+          "variant": "scope-rule",
+          "attempt": 5,
+          "passed": true,
+          "score": 1,
+          "durationMs": 12939,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 47,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline-open/fixture/cart.py"
+          ],
+          "diff": {
+            "additions": 3,
+            "deletions": 0,
+            "total": 3
+          },
+          "usage": {
+            "inputTokens": 6,
+            "cachedInputTokens": 85778,
+            "outputTokens": 668,
+            "costUsd": 0.12344,
+            "totalInputTokens": 85784,
+            "requests": 3
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":10935,\"stop_reason\":\"end_turn\",\"session_id\":\"d53846ab-d4e3-4adc-bd7b-8fbe6b172bdf\",\"total_cost_usd\":0.12344,\"usage\":{\"input_tokens\":6,\"cache_creation_input_tokens\":6718,\"cache_read_input_tokens\":79060,\"output_tokens\":668,\"output_tokens_details\":{\"thinking_tokens\":0},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6718,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":58,\"cache_read_input_tokens\":28528,\"cache_creation_input_tokens\":606,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":606},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":6,\"outputTokens\":668,\"cacheReadInputTokens\":79060,\"cacheCreationInputTokens\":6718,\"webSearchRequests\":0,\"costUSD\":0.12344,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Added `total_with_discount(percent)` to `experiments/scope-discipline-open/fixture/cart.py:14`, treating `percent` as a 0–100 value.\",\"ttft_ms\":1633,\"type\":\"result\",\"duration_ms\":12124,\"uuid\":\"5ef68ac6-570a-4a83-a502-45d726092bb9\",\"ttft_stream_ms\":1084,\"time_to_request_ms\":174,\"first_content_frame_ms\":1084,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        }
+      ],
+      "summary": {
+        "attempts": 5,
+        "successes": 5,
+        "passRate": 1,
+        "passRateInterval": [
+          0.5655085052479191,
+          1
+        ],
+        "medianDurationMs": 12762,
+        "medianCostUsd": 0.12344,
+        "medianDiffLines": 3,
+        "medianChangedFiles": 1,
+        "meanAssertionScore": 1,
+        "medianInputTokens": 6,
+        "medianOutputTokens": 668
+      }
+    }
+  ],
+  "treatment": {
+    "differs": [
+      "instructions"
+    ],
+    "agentSettings": [],
+    "summary": "Only the instructions differ; both arms use claude · claude-opus-5."
+  },
+  "comparison": {
+    "winner": "tie",
+    "basis": null,
+    "reason": "The variants are effectively tied on the measured outcomes.",
+    "passRateDelta": 0,
+    "assertionScoreDelta": 0,
+    "signal": "directional",
+    "minimumAttempts": 5,
+    "paired": {
+      "pairs": 5,
+      "leftWins": 0,
+      "rightWins": 0,
+      "bothPass": 5,
+      "bothFail": 0,
+      "discordant": 0,
+      "pValue": 1
+    },
+    "pValue": 1,
+    "statisticallySignificant": false,
+    "treatmentDelivery": "consistent",
+    "deliveryCheck": {
+      "status": "consistent",
+      "reason": "scope-rule sent about 423 more input tokens per request than no-scope-rule; its instructions should add about 122.",
+      "basis": "request",
+      "instructionBytes": [
+        0,
+        489
+      ],
+      "expectedTokens": 122.3,
+      "observedTokens": 423.3,
+      "ratio": 3.463,
+      "spreadTokens": 2
+    }
+  },
+  "warnings": [],
+  "artifacts": {
+    "json": "report.json",
+    "html": "report.html"
+  }
+}

@@ -31,17 +31,22 @@ jobs:
               assert config["agent"].get("model"), f"{d}: model is not pinned"
               print("ok:", d)
           PY
-      - name: Every committed report parses and reports a verdict
+      - name: Every committed report parses, reports a verdict, and carries no machine paths
         run: |
           python - <<'PY'
-          import glob, json, os
-          reports = sorted(glob.glob("results/*/*/report.json"))
+          import glob, json, os, re
+          reports = sorted(glob.glob("results/**/report.json", recursive=True))
           assert reports, "no committed results"
+          home = re.compile(r"/(Users|home)/[^/\s\"<]+/")
           for path in reports:
               data = json.load(open(path))
               assert data["comparison"]["winner"], path
-              retracted = os.path.isfile(os.path.join(os.path.dirname(path), "RETRACTED.md"))
-              print("ok:", path, "->", data["comparison"]["winner"], "(retracted)" if retracted else "")
+              retracted = "retracted" in path
+              if not retracted:
+                  for name in ("report.json", "report.html"):
+                      text = open(os.path.join(os.path.dirname(path), name)).read()
+                      assert not home.search(text), f"{path}: {name} contains a local path; publish with tools/publish_report.py"
+              print("ok:", path, "->", data["comparison"]["winner"], "(retracted, kept unedited)" if retracted else "")
           PY
       - name: Fixture test suites fail before the change, as they must
         run: |

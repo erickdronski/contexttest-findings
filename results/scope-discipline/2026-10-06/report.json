@@ -1,0 +1,970 @@
+{
+  "schemaVersion": 1,
+  "kind": "experiment",
+  "version": "0.3.0",
+  "runId": "20261006T221545905Z-scope-discipline-1466",
+  "generatedAt": "2026-10-06T22:17:04.816Z",
+  "project": "scope-discipline",
+  "commit": "af742fce8090abdc83be08bfacc0a1cb41e7ee0a",
+  "taskRefs": {
+    "guard-remove": "af742fce8090abdc83be08bfacc0a1cb41e7ee0a"
+  },
+  "instructionFile": "CLAUDE.md",
+  "agent": {
+    "provider": "claude",
+    "model": "claude-opus-5",
+    "isolate": true
+  },
+  "experiment": {
+    "attemptsPerVariant": 5,
+    "concurrency": 2,
+    "setupCommands": 1,
+    "configDigest": "8c5a4ca4eac9e1036fcc8c1f97a8f01cc29e67ea11ada1ea2806fed32fc762c5",
+    "order": "sequential",
+    "seed": null
+  },
+  "runtime": {
+    "node": "v24.20.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "agents": [
+      {
+        "provider": "claude",
+        "executable": "claude",
+        "version": "2.1.272 (Claude Code)"
+      }
+    ]
+  },
+  "tasks": [
+    "guard-remove"
+  ],
+  "taskResults": [
+    {
+      "name": "guard-remove",
+      "ref": "af742fce8090abdc83be08bfacc0a1cb41e7ee0a",
+      "variants": [
+        {
+          "name": "no-scope-rule",
+          "summary": {
+            "attempts": 5,
+            "successes": 5,
+            "passRate": 1,
+            "passRateInterval": [
+              0.5655085052479191,
+              1
+            ],
+            "medianDurationMs": 14943,
+            "medianCostUsd": 0.12113649999999998,
+            "medianDiffLines": 7,
+            "medianChangedFiles": 1,
+            "meanAssertionScore": 1,
+            "medianInputTokens": 6,
+            "medianOutputTokens": 743
+          }
+        },
+        {
+          "name": "scope-rule",
+          "summary": {
+            "attempts": 5,
+            "successes": 5,
+            "passRate": 1,
+            "passRateInterval": [
+              0.5655085052479191,
+              1
+            ],
+            "medianDurationMs": 13955,
+            "medianCostUsd": 0.12322749999999999,
+            "medianDiffLines": 5,
+            "medianChangedFiles": 1,
+            "meanAssertionScore": 1,
+            "medianInputTokens": 6,
+            "medianOutputTokens": 654
+          }
+        }
+      ],
+      "comparison": {
+        "winner": "tie",
+        "basis": null,
+        "reason": "The variants are effectively tied on the measured outcomes.",
+        "passRateDelta": 0,
+        "assertionScoreDelta": 0,
+        "signal": "directional",
+        "minimumAttempts": 5,
+        "paired": {
+          "pairs": 5,
+          "leftWins": 0,
+          "rightWins": 0,
+          "bothPass": 5,
+          "bothFail": 0,
+          "discordant": 0,
+          "pValue": 1
+        },
+        "pValue": 1,
+        "statisticallySignificant": false,
+        "treatmentDelivery": "consistent",
+        "deliveryCheck": {
+          "status": "consistent",
+          "reason": "scope-rule sent about 415 more input tokens per request than no-scope-rule; its instructions should add about 122.",
+          "basis": "request",
+          "instructionBytes": [
+            0,
+            489
+          ],
+          "expectedTokens": 122.3,
+          "observedTokens": 415,
+          "ratio": 3.395,
+          "spreadTokens": 2.7
+        }
+      }
+    }
+  ],
+  "variants": [
+    {
+      "name": "no-scope-rule",
+      "agent": {
+        "provider": "claude",
+        "model": "claude-opus-5",
+        "isolate": true,
+        "digest": "3a1d8a95f59d65bd"
+      },
+      "instructions": {
+        "mode": "disabled",
+        "bytes": 0,
+        "digest": null
+      },
+      "delivery": {
+        "file": "CLAUDE.md",
+        "method": "native",
+        "bridgedVia": null
+      },
+      "invocation": {
+        "command": "claude",
+        "args": [
+          "-p",
+          "[PROMPT]",
+          "--output-format",
+          "json",
+          "--permission-mode",
+          "acceptEdits",
+          "--max-turns",
+          "30",
+          "--strict-mcp-config",
+          "--setting-sources",
+          "project,local",
+          "--model",
+          "claude-opus-5"
+        ]
+      },
+      "trials": [
+        {
+          "id": "guard-remove-no-scope-rule-1",
+          "task": "guard-remove",
+          "variant": "no-scope-rule",
+          "attempt": 1,
+          "passed": true,
+          "score": 1,
+          "durationMs": 17716,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 75,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            },
+            {
+              "type": "maxChangedFiles",
+              "pass": true,
+              "message": "1 changed file; limit 2.",
+              "actual": 1,
+              "expected": 2
+            },
+            {
+              "type": "maxDiffLines",
+              "pass": true,
+              "message": "5 changed lines; limit 40.",
+              "actual": 5,
+              "expected": 40
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline/fixture/inventory.py"
+          ],
+          "diff": {
+            "additions": 4,
+            "deletions": 1,
+            "total": 5
+          },
+          "usage": {
+            "inputTokens": 6,
+            "cachedInputTokens": 84579,
+            "outputTokens": 746,
+            "costUsd": 0.1211615,
+            "totalInputTokens": 84585,
+            "requests": 3
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":15495,\"stop_reason\":\"end_turn\",\"session_id\":\"d7eb21ed-b3f8-4849-a2d9-60865b76243c\",\"total_cost_usd\":0.1211615,\"usage\":{\"input_tokens\":6,\"cache_creation_input_tokens\":6336,\"cache_read_input_tokens\":78243,\"output_tokens\":746,\"output_tokens_details\":{\"thinking_tokens\":0},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6336,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":124,\"cache_read_input_tokens\":28135,\"cache_creation_input_tokens\":617,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":617},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":6,\"outputTokens\":746,\"cacheReadInputTokens\":78243,\"cacheCreationInputTokens\":6336,\"webSearchRequests\":0,\"costUSD\":0.1211615,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"`Inventory.remove` now raises `ValueError` when `quantity` exceeds what's held (`experiments/scope-discipline/fixture/inventory.py:11`). Nothing else changed — the valid path still subtracts as before, including the existing behavior of treating an unknown SKU as 0 (so removing 0 from an unknown SKU still records a 0 entry).\",\"ttft_ms\":3005,\"type\":\"result\",\"duration_ms\":16817,\"uuid\":\"f3f00511-6318-48ca-9edd-0a40a3fb38e8\",\"ttft_stream_ms\":2461,\"time_to_request_ms\":353,\"first_content_frame_ms\":2461,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "guard-remove-no-scope-rule-2",
+          "task": "guard-remove",
+          "variant": "no-scope-rule",
+          "attempt": 2,
+          "passed": true,
+          "score": 1,
+          "durationMs": 18260,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 61,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            },
+            {
+              "type": "maxChangedFiles",
+              "pass": true,
+              "message": "1 changed file; limit 2.",
+              "actual": 1,
+              "expected": 2
+            },
+            {
+              "type": "maxDiffLines",
+              "pass": true,
+              "message": "7 changed lines; limit 40.",
+              "actual": 7,
+              "expected": 40
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline/fixture/inventory.py"
+          ],
+          "diff": {
+            "additions": 6,
+            "deletions": 1,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 6,
+            "cachedInputTokens": 84566,
+            "outputTokens": 714,
+            "costUsd": 0.1203455,
+            "totalInputTokens": 84572,
+            "requests": 3
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":15777,\"stop_reason\":\"end_turn\",\"session_id\":\"e0075370-1c1b-40ab-b38c-02ca41d47834\",\"total_cost_usd\":0.1203455,\"usage\":{\"input_tokens\":6,\"cache_creation_input_tokens\":6335,\"cache_read_input_tokens\":78231,\"output_tokens\":714,\"output_tokens_details\":{\"thinking_tokens\":0},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6335,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":89,\"cache_read_input_tokens\":28127,\"cache_creation_input_tokens\":624,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":624},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":6,\"outputTokens\":714,\"cacheReadInputTokens\":78231,\"cacheCreationInputTokens\":6335,\"webSearchRequests\":0,\"costUSD\":0.1203455,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"`Inventory.remove` now raises `ValueError` when `quantity` exceeds the held count, leaving the ledger untouched in that case. Everything else — `add`, `count`, negative-quantity handling, and removals at or below the held count — behaves exactly as before.\",\"ttft_ms\":6223,\"type\":\"result\",\"duration_ms\":17313,\"uuid\":\"318927da-5596-4547-a645-f53a25f01e09\",\"ttft_stream_ms\":5696,\"time_to_request_ms\":643,\"first_content_frame_ms\":5696,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "guard-remove-no-scope-rule-3",
+          "task": "guard-remove",
+          "variant": "no-scope-rule",
+          "attempt": 3,
+          "passed": true,
+          "score": 1,
+          "durationMs": 12501,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 67,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            },
+            {
+              "type": "maxChangedFiles",
+              "pass": true,
+              "message": "1 changed file; limit 2.",
+              "actual": 1,
+              "expected": 2
+            },
+            {
+              "type": "maxDiffLines",
+              "pass": true,
+              "message": "5 changed lines; limit 40.",
+              "actual": 5,
+              "expected": 40
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline/fixture/inventory.py"
+          ],
+          "diff": {
+            "additions": 4,
+            "deletions": 1,
+            "total": 5
+          },
+          "usage": {
+            "inputTokens": 6,
+            "cachedInputTokens": 84559,
+            "outputTokens": 697,
+            "costUsd": 0.11986949999999999,
+            "totalInputTokens": 84565,
+            "requests": 3
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":10303,\"stop_reason\":\"end_turn\",\"session_id\":\"72172960-05a5-4b3d-97a8-47829530ddec\",\"total_cost_usd\":0.11986949999999999,\"usage\":{\"input_tokens\":6,\"cache_creation_input_tokens\":6330,\"cache_read_input_tokens\":78229,\"output_tokens\":697,\"output_tokens_details\":{\"thinking_tokens\":0},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6330,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":76,\"cache_read_input_tokens\":28126,\"cache_creation_input_tokens\":620,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":620},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":6,\"outputTokens\":697,\"cacheReadInputTokens\":78229,\"cacheCreationInputTokens\":6330,\"webSearchRequests\":0,\"costUSD\":0.11986949999999999,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"`Inventory.remove` now raises `ValueError` when `quantity` exceeds the currently held amount (including the implicit 0 for an unknown SKU), and otherwise behaves exactly as before. Nothing else changed.\",\"ttft_ms\":1244,\"type\":\"result\",\"duration_ms\":11545,\"uuid\":\"aac12c2a-ff70-48ca-b0ef-97052df6def8\",\"ttft_stream_ms\":947,\"time_to_request_ms\":284,\"first_content_frame_ms\":947,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "guard-remove-no-scope-rule-4",
+          "task": "guard-remove",
+          "variant": "no-scope-rule",
+          "attempt": 4,
+          "passed": true,
+          "score": 1,
+          "durationMs": 14846,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 61,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            },
+            {
+              "type": "maxChangedFiles",
+              "pass": true,
+              "message": "1 changed file; limit 2.",
+              "actual": 1,
+              "expected": 2
+            },
+            {
+              "type": "maxDiffLines",
+              "pass": true,
+              "message": "7 changed lines; limit 40.",
+              "actual": 7,
+              "expected": 40
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline/fixture/inventory.py"
+          ],
+          "diff": {
+            "additions": 6,
+            "deletions": 1,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 6,
+            "cachedInputTokens": 84584,
+            "outputTokens": 743,
+            "costUsd": 0.12113649999999998,
+            "totalInputTokens": 84590,
+            "requests": 3
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":12670,\"stop_reason\":\"end_turn\",\"session_id\":\"fbefe728-fc3a-407e-affc-ae3b7f0e7f1a\",\"total_cost_usd\":0.12113649999999998,\"usage\":{\"input_tokens\":6,\"cache_creation_input_tokens\":6341,\"cache_read_input_tokens\":78243,\"output_tokens\":743,\"output_tokens_details\":{\"thinking_tokens\":0},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6341,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":118,\"cache_read_input_tokens\":28133,\"cache_creation_input_tokens\":624,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":624},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":6,\"outputTokens\":743,\"cacheReadInputTokens\":78243,\"cacheCreationInputTokens\":6341,\"webSearchRequests\":0,\"costUSD\":0.12113649999999998,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"`Inventory.remove` now raises `ValueError` when `quantity` exceeds what's held (including the implicit 0 for an unknown SKU), and the ledger is left untouched when it raises. Everything else — `add`, `count`, negative-quantity handling, and the fact that removing exactly the held amount leaves a 0 entry — is unchanged.\",\"ttft_ms\":1900,\"type\":\"result\",\"duration_ms\":13987,\"uuid\":\"ab32fd68-e1a9-4fd6-b60c-c3695ac67e34\",\"ttft_stream_ms\":1353,\"time_to_request_ms\":326,\"first_content_frame_ms\":1353,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "guard-remove-no-scope-rule-5",
+          "task": "guard-remove",
+          "variant": "no-scope-rule",
+          "attempt": 5,
+          "passed": true,
+          "score": 1,
+          "durationMs": 14943,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 51,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            },
+            {
+              "type": "maxChangedFiles",
+              "pass": true,
+              "message": "1 changed file; limit 2.",
+              "actual": 1,
+              "expected": 2
+            },
+            {
+              "type": "maxDiffLines",
+              "pass": true,
+              "message": "7 changed lines; limit 40.",
+              "actual": 7,
+              "expected": 40
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline/fixture/inventory.py"
+          ],
+          "diff": {
+            "additions": 6,
+            "deletions": 1,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 6,
+            "cachedInputTokens": 84587,
+            "outputTokens": 752,
+            "costUsd": 0.12138199999999999,
+            "totalInputTokens": 84593,
+            "requests": 3
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":12809,\"stop_reason\":\"end_turn\",\"session_id\":\"af6eebea-1d75-40c0-935b-19d2aec7f5b1\",\"total_cost_usd\":0.12138199999999999,\"usage\":{\"input_tokens\":6,\"cache_creation_input_tokens\":6343,\"cache_read_input_tokens\":78244,\"output_tokens\":752,\"output_tokens_details\":{\"thinking_tokens\":0},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6343,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":124,\"cache_read_input_tokens\":28135,\"cache_creation_input_tokens\":624,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":624},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":6,\"outputTokens\":752,\"cacheReadInputTokens\":78244,\"cacheCreationInputTokens\":6343,\"webSearchRequests\":0,\"costUSD\":0.12138199999999999,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"`Inventory.remove` now raises `ValueError` when `quantity` exceeds the quantity currently held (treating an unknown SKU as 0 held, matching the existing `.get(sku, 0)` convention). Otherwise it decrements exactly as before — including the previously-allowed case of removing down to exactly zero, and negative quantities, which still pass through unchanged.\",\"ttft_ms\":2140,\"type\":\"result\",\"duration_ms\":14060,\"uuid\":\"b84629ba-fea0-4d73-b3ab-8f1dddf4a509\",\"ttft_stream_ms\":1545,\"time_to_request_ms\":307,\"first_content_frame_ms\":1545,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        }
+      ],
+      "summary": {
+        "attempts": 5,
+        "successes": 5,
+        "passRate": 1,
+        "passRateInterval": [
+          0.5655085052479191,
+          1
+        ],
+        "medianDurationMs": 14943,
+        "medianCostUsd": 0.12113649999999998,
+        "medianDiffLines": 7,
+        "medianChangedFiles": 1,
+        "meanAssertionScore": 1,
+        "medianInputTokens": 6,
+        "medianOutputTokens": 743
+      }
+    },
+    {
+      "name": "scope-rule",
+      "agent": {
+        "provider": "claude",
+        "model": "claude-opus-5",
+        "isolate": true,
+        "digest": "3a1d8a95f59d65bd"
+      },
+      "instructions": {
+        "mode": "source",
+        "source": "CLAUDE.candidate.md",
+        "bytes": 489,
+        "digest": "6ade2cfa69d4f5b18a3f15bfa9fe28f2caa70ff3211b51315f89a87813d75e61"
+      },
+      "delivery": {
+        "file": "CLAUDE.md",
+        "method": "native",
+        "bridgedVia": null
+      },
+      "invocation": {
+        "command": "claude",
+        "args": [
+          "-p",
+          "[PROMPT]",
+          "--output-format",
+          "json",
+          "--permission-mode",
+          "acceptEdits",
+          "--max-turns",
+          "30",
+          "--strict-mcp-config",
+          "--setting-sources",
+          "project,local",
+          "--model",
+          "claude-opus-5"
+        ]
+      },
+      "trials": [
+        {
+          "id": "guard-remove-scope-rule-1",
+          "task": "guard-remove",
+          "variant": "scope-rule",
+          "attempt": 1,
+          "passed": true,
+          "score": 1,
+          "durationMs": 13955,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 79,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            },
+            {
+              "type": "maxChangedFiles",
+              "pass": true,
+              "message": "1 changed file; limit 2.",
+              "actual": 1,
+              "expected": 2
+            },
+            {
+              "type": "maxDiffLines",
+              "pass": true,
+              "message": "5 changed lines; limit 40.",
+              "actual": 5,
+              "expected": 40
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline/fixture/inventory.py"
+          ],
+          "diff": {
+            "additions": 4,
+            "deletions": 1,
+            "total": 5
+          },
+          "usage": {
+            "inputTokens": 6,
+            "cachedInputTokens": 85826,
+            "outputTokens": 668,
+            "costUsd": 0.1237395,
+            "totalInputTokens": 85832,
+            "requests": 3
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":11648,\"stop_reason\":\"end_turn\",\"session_id\":\"787094ec-f77d-4e05-8399-c84d32b524b2\",\"total_cost_usd\":0.1237395,\"usage\":{\"input_tokens\":6,\"cache_creation_input_tokens\":6747,\"cache_read_input_tokens\":79079,\"output_tokens\":668,\"output_tokens_details\":{\"thinking_tokens\":0},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6747,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":54,\"cache_read_input_tokens\":28550,\"cache_creation_input_tokens\":613,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":613},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":6,\"outputTokens\":668,\"cacheReadInputTokens\":79079,\"cacheCreationInputTokens\":6747,\"webSearchRequests\":0,\"costUSD\":0.1237395,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"`Inventory.remove` now raises `ValueError` when `quantity` exceeds the quantity held (`inventory.py:11`). Nothing else changed.\",\"ttft_ms\":2221,\"type\":\"result\",\"duration_ms\":12874,\"uuid\":\"bfbe86a1-1f14-4d04-b66d-e2545efe15aa\",\"ttft_stream_ms\":1678,\"time_to_request_ms\":371,\"first_content_frame_ms\":1678,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "guard-remove-scope-rule-2",
+          "task": "guard-remove",
+          "variant": "scope-rule",
+          "attempt": 2,
+          "passed": true,
+          "score": 1,
+          "durationMs": 20033,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 86,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            },
+            {
+              "type": "maxChangedFiles",
+              "pass": true,
+              "message": "1 changed file; limit 2.",
+              "actual": 1,
+              "expected": 2
+            },
+            {
+              "type": "maxDiffLines",
+              "pass": true,
+              "message": "5 changed lines; limit 40.",
+              "actual": 5,
+              "expected": 40
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline/fixture/inventory.py"
+          ],
+          "diff": {
+            "additions": 4,
+            "deletions": 1,
+            "total": 5
+          },
+          "usage": {
+            "inputTokens": 6,
+            "cachedInputTokens": 85806,
+            "outputTokens": 654,
+            "costUsd": 0.12322749999999999,
+            "totalInputTokens": 85812,
+            "requests": 3
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":18063,\"stop_reason\":\"end_turn\",\"session_id\":\"440f5400-a121-4d1b-a750-b034b910066c\",\"total_cost_usd\":0.12322749999999999,\"usage\":{\"input_tokens\":6,\"cache_creation_input_tokens\":6731,\"cache_read_input_tokens\":79075,\"output_tokens\":654,\"output_tokens_details\":{\"thinking_tokens\":0},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6731,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":54,\"cache_read_input_tokens\":28548,\"cache_creation_input_tokens\":599,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":599},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":6,\"outputTokens\":654,\"cacheReadInputTokens\":79075,\"cacheCreationInputTokens\":6731,\"webSearchRequests\":0,\"costUSD\":0.12322749999999999,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"`Inventory.remove` now raises `ValueError` when `quantity` exceeds the quantity held (`inventory.py:11`). Nothing else changed.\",\"ttft_ms\":5582,\"type\":\"result\",\"duration_ms\":19254,\"uuid\":\"07aebf1f-973d-45ad-b4ee-3b0159e95077\",\"ttft_stream_ms\":4962,\"time_to_request_ms\":307,\"first_content_frame_ms\":4962,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "guard-remove-scope-rule-3",
+          "task": "guard-remove",
+          "variant": "scope-rule",
+          "attempt": 3,
+          "passed": true,
+          "score": 1,
+          "durationMs": 12039,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 62,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            },
+            {
+              "type": "maxChangedFiles",
+              "pass": true,
+              "message": "1 changed file; limit 2.",
+              "actual": 1,
+              "expected": 2
+            },
+            {
+              "type": "maxDiffLines",
+              "pass": true,
+              "message": "5 changed lines; limit 40.",
+              "actual": 5,
+              "expected": 40
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline/fixture/inventory.py"
+          ],
+          "diff": {
+            "additions": 4,
+            "deletions": 1,
+            "total": 5
+          },
+          "usage": {
+            "inputTokens": 6,
+            "cachedInputTokens": 85830,
+            "outputTokens": 648,
+            "costUsd": 0.12316549999999998,
+            "totalInputTokens": 85836,
+            "requests": 3
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":9874,\"stop_reason\":\"end_turn\",\"session_id\":\"4ed6dced-18d3-4d4d-989a-e6bcdb7bd9e0\",\"total_cost_usd\":0.12316549999999998,\"usage\":{\"input_tokens\":6,\"cache_creation_input_tokens\":6739,\"cache_read_input_tokens\":79091,\"output_tokens\":648,\"output_tokens_details\":{\"thinking_tokens\":0},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6739,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":48,\"cache_read_input_tokens\":28556,\"cache_creation_input_tokens\":599,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":599},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":6,\"outputTokens\":648,\"cacheReadInputTokens\":79091,\"cacheCreationInputTokens\":6739,\"webSearchRequests\":0,\"costUSD\":0.12316549999999998,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"`Inventory.remove` now raises `ValueError` when `quantity` exceeds the currently held amount; otherwise it decrements as before.\",\"ttft_ms\":1389,\"type\":\"result\",\"duration_ms\":11118,\"uuid\":\"df74ee1a-43ba-4a9b-8fd2-b6c2155942e5\",\"ttft_stream_ms\":1026,\"time_to_request_ms\":334,\"first_content_frame_ms\":1026,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "guard-remove-scope-rule-4",
+          "task": "guard-remove",
+          "variant": "scope-rule",
+          "attempt": 4,
+          "passed": true,
+          "score": 1,
+          "durationMs": 16563,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 57,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            },
+            {
+              "type": "maxChangedFiles",
+              "pass": true,
+              "message": "1 changed file; limit 2.",
+              "actual": 1,
+              "expected": 2
+            },
+            {
+              "type": "maxDiffLines",
+              "pass": true,
+              "message": "5 changed lines; limit 40.",
+              "actual": 5,
+              "expected": 40
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline/fixture/inventory.py"
+          ],
+          "diff": {
+            "additions": 4,
+            "deletions": 1,
+            "total": 5
+          },
+          "usage": {
+            "inputTokens": 6,
+            "cachedInputTokens": 85824,
+            "outputTokens": 654,
+            "costUsd": 0.1232935,
+            "totalInputTokens": 85830,
+            "requests": 3
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":14670,\"stop_reason\":\"end_turn\",\"session_id\":\"f5fb4264-e84b-4d71-9127-5bbf2fc43012\",\"total_cost_usd\":0.1232935,\"usage\":{\"input_tokens\":6,\"cache_creation_input_tokens\":6737,\"cache_read_input_tokens\":79087,\"output_tokens\":654,\"output_tokens_details\":{\"thinking_tokens\":0},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6737,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":54,\"cache_read_input_tokens\":28554,\"cache_creation_input_tokens\":599,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":599},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":6,\"outputTokens\":654,\"cacheReadInputTokens\":79087,\"cacheCreationInputTokens\":6737,\"webSearchRequests\":0,\"costUSD\":0.1232935,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"`Inventory.remove` now raises `ValueError` when `quantity` exceeds the held amount (`inventory.py:11`); everything else is unchanged.\",\"ttft_ms\":3574,\"type\":\"result\",\"duration_ms\":15900,\"uuid\":\"d49ae1ec-b4d7-4b88-b764-22cd2691a992\",\"ttft_stream_ms\":2984,\"time_to_request_ms\":315,\"first_content_frame_ms\":2984,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        },
+        {
+          "id": "guard-remove-scope-rule-5",
+          "task": "guard-remove",
+          "variant": "scope-rule",
+          "attempt": 5,
+          "passed": true,
+          "score": 1,
+          "durationMs": 13457,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 95,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            },
+            {
+              "type": "maxChangedFiles",
+              "pass": true,
+              "message": "1 changed file; limit 2.",
+              "actual": 1,
+              "expected": 2
+            },
+            {
+              "type": "maxDiffLines",
+              "pass": true,
+              "message": "5 changed lines; limit 40.",
+              "actual": 5,
+              "expected": 40
+            }
+          ],
+          "files": [
+            "experiments/scope-discipline/fixture/inventory.py"
+          ],
+          "diff": {
+            "additions": 4,
+            "deletions": 1,
+            "total": 5
+          },
+          "usage": {
+            "inputTokens": 6,
+            "cachedInputTokens": 85817,
+            "outputTokens": 645,
+            "costUsd": 0.1230365,
+            "totalInputTokens": 85823,
+            "requests": 3
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"duration_api_ms\":11351,\"stop_reason\":\"end_turn\",\"session_id\":\"3dd1552b-ed93-4990-9415-d0e30df754e5\",\"total_cost_usd\":0.1230365,\"usage\":{\"input_tokens\":6,\"cache_creation_input_tokens\":6734,\"cache_read_input_tokens\":79083,\"output_tokens\":645,\"output_tokens_details\":{\"thinking_tokens\":0},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":6734,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":46,\"cache_read_input_tokens\":28552,\"cache_creation_input_tokens\":598,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":598},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-opus-5\":{\"inputTokens\":6,\"outputTokens\":645,\"cacheReadInputTokens\":79083,\"cacheCreationInputTokens\":6734,\"webSearchRequests\":0,\"costUSD\":0.1230365,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"`Inventory.remove` now raises `ValueError` when the requested quantity exceeds the quantity held; everything else is unchanged.\",\"ttft_ms\":2058,\"type\":\"result\",\"duration_ms\":12578,\"uuid\":\"33226e74-2471-412d-89e5-cfcd28b8725f\",\"ttft_stream_ms\":1566,\"time_to_request_ms\":332,\"first_content_frame_ms\":1566,\"queued_turn_count\":0,\"result_index\":0}\n",
+          "stderr": ""
+        }
+      ],
+      "summary": {
+        "attempts": 5,
+        "successes": 5,
+        "passRate": 1,
+        "passRateInterval": [
+          0.5655085052479191,
+          1
+        ],
+        "medianDurationMs": 13955,
+        "medianCostUsd": 0.12322749999999999,
+        "medianDiffLines": 5,
+        "medianChangedFiles": 1,
+        "meanAssertionScore": 1,
+        "medianInputTokens": 6,
+        "medianOutputTokens": 654
+      }
+    }
+  ],
+  "treatment": {
+    "differs": [
+      "instructions"
+    ],
+    "agentSettings": [],
+    "summary": "Only the instructions differ; both arms use claude · claude-opus-5."
+  },
+  "comparison": {
+    "winner": "tie",
+    "basis": null,
+    "reason": "The variants are effectively tied on the measured outcomes.",
+    "passRateDelta": 0,
+    "assertionScoreDelta": 0,
+    "signal": "directional",
+    "minimumAttempts": 5,
+    "paired": {
+      "pairs": 5,
+      "leftWins": 0,
+      "rightWins": 0,
+      "bothPass": 5,
+      "bothFail": 0,
+      "discordant": 0,
+      "pValue": 1
+    },
+    "pValue": 1,
+    "statisticallySignificant": false,
+    "treatmentDelivery": "consistent",
+    "deliveryCheck": {
+      "status": "consistent",
+      "reason": "scope-rule sent about 415 more input tokens per request than no-scope-rule; its instructions should add about 122.",
+      "basis": "request",
+      "instructionBytes": [
+        0,
+        489
+      ],
+      "expectedTokens": 122.3,
+      "observedTokens": 415,
+      "ratio": 3.395,
+      "spreadTokens": 2.7
+    }
+  },
+  "warnings": [],
+  "artifacts": {
+    "json": "report.json",
+    "html": "report.html"
+  }
+}

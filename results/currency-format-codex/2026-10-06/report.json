@@ -1,0 +1,940 @@
+{
+  "schemaVersion": 1,
+  "kind": "experiment",
+  "version": "0.3.0",
+  "runId": "20261006T223020306Z-currency-format-codex-b1db",
+  "generatedAt": "2026-10-06T22:32:30.412Z",
+  "project": "currency-format-codex",
+  "commit": "af742fce8090abdc83be08bfacc0a1cb41e7ee0a",
+  "taskRefs": {
+    "format-price": "af742fce8090abdc83be08bfacc0a1cb41e7ee0a"
+  },
+  "instructionFile": "AGENTS.md",
+  "agent": {
+    "provider": "codex",
+    "model": "gpt-6-astra",
+    "isolate": true
+  },
+  "experiment": {
+    "attemptsPerVariant": 5,
+    "concurrency": 2,
+    "setupCommands": 1,
+    "configDigest": "5bc3284b98690cf3cb8bd31a23c8d46ef0740bde661732c2ac062d0e894ab03c",
+    "order": "sequential",
+    "seed": null
+  },
+  "runtime": {
+    "node": "v24.20.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "agents": [
+      {
+        "provider": "codex",
+        "executable": "codex",
+        "version": "codex-cli 0.156.1"
+      }
+    ]
+  },
+  "tasks": [
+    "format-price"
+  ],
+  "taskResults": [
+    {
+      "name": "format-price",
+      "ref": "af742fce8090abdc83be08bfacc0a1cb41e7ee0a",
+      "variants": [
+        {
+          "name": "no-currency-rule",
+          "summary": {
+            "attempts": 5,
+            "successes": 0,
+            "passRate": 0,
+            "passRateInterval": [
+              0,
+              0.43449149475208104
+            ],
+            "medianDurationMs": 26363,
+            "medianCostUsd": null,
+            "medianDiffLines": 7,
+            "medianChangedFiles": 1,
+            "meanAssertionScore": 0.75,
+            "medianInputTokens": 79571,
+            "medianOutputTokens": 804
+          }
+        },
+        {
+          "name": "currency-rule",
+          "summary": {
+            "attempts": 5,
+            "successes": 5,
+            "passRate": 1,
+            "passRateInterval": [
+              0.5655085052479191,
+              1
+            ],
+            "medianDurationMs": 20561,
+            "medianCostUsd": null,
+            "medianDiffLines": 7,
+            "medianChangedFiles": 1,
+            "meanAssertionScore": 1,
+            "medianInputTokens": 63349,
+            "medianOutputTokens": 546
+          }
+        }
+      ],
+      "comparison": {
+        "winner": "candidate",
+        "basis": "success",
+        "reason": "100 percentage-point difference in task success.",
+        "passRateDelta": 1,
+        "assertionScoreDelta": 0.25,
+        "signal": "directional",
+        "minimumAttempts": 5,
+        "paired": {
+          "pairs": 5,
+          "leftWins": 0,
+          "rightWins": 5,
+          "bothPass": 0,
+          "bothFail": 0,
+          "discordant": 5,
+          "pValue": 0.0625
+        },
+        "pValue": 0.0625,
+        "statisticallySignificant": false,
+        "treatmentDelivery": "unknown",
+        "deliveryCheck": {
+          "status": "unknown",
+          "reason": "Input per trial varies by about ±289 tokens between trials, more than the ~67-token treatment, so usage cannot confirm delivery.",
+          "basis": "trial",
+          "instructionBytes": [
+            0,
+            267
+          ],
+          "expectedTokens": 66.8,
+          "observedTokens": -16222,
+          "ratio": -243.026,
+          "spreadTokens": 289
+        }
+      }
+    }
+  ],
+  "variants": [
+    {
+      "name": "no-currency-rule",
+      "agent": {
+        "provider": "codex",
+        "model": "gpt-6-astra",
+        "isolate": true,
+        "digest": "bf83873e3e8aea7d"
+      },
+      "instructions": {
+        "mode": "disabled",
+        "bytes": 0,
+        "digest": null
+      },
+      "delivery": {
+        "file": "AGENTS.md",
+        "method": "native",
+        "bridgedVia": null
+      },
+      "invocation": {
+        "command": "codex",
+        "args": [
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--color",
+          "never",
+          "--json",
+          "-C",
+          "[WORKTREE]",
+          "--model",
+          "gpt-6-astra",
+          "--ignore-user-config",
+          "[PROMPT]"
+        ]
+      },
+      "trials": [
+        {
+          "id": "format-price-no-currency-rule-1",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 1,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 34370,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 32,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": false,
+              "message": "house currency format (hidden check) exited 1.",
+              "actual": 1,
+              "expected": 0,
+              "durationMs": 17,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "got ['12.50', '0.05', '999.00'], want ['12.50 USD', '0.05 USD', '999.00 USD']\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 79282,
+            "cachedInputTokens": 45824,
+            "outputTokens": 804,
+            "costUsd": null,
+            "totalInputTokens": 79282,
+            "requests": null
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"type\":\"thread.started\",\"thread_id\":\"01a11356-da4b-7500-99b5-6554752b0703\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"I’ll check the fixture and repository guidance, then add the checkout price formatter.\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"pwd; rg --files -g 'AGENTS.md' -g '*money*' -g '*currency*' -g 'pyproject.toml' -g 'README*'\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"pwd; rg --files -g 'AGENTS.md' -g '*money*' -g '*currency*' -g 'pyproject.toml' -g 'README*'\\\"\",\"aggregated_output\":\"<worktree>/currency-format-redundant/fixture/test_money.py\\nexperiments/currency-format-redundant/fixture/money.py\\nexperiments/currency-format/fixture/test_money.py\\nexperiments/currency-format/fixture/money.py\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'ls -la; find .. -name AGENTS.md -print; cat experiments/currency-format/fixture/money.py experiments/currency-format/fixture/test_money.py; rg --files experiments/currency-format'\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'ls -la; find .. -name AGENTS.md -print; cat experiments/currency-format/fixture/money.py experiments/currency-format/fixture/test_money.py; rg --files experiments/currency-format'\",\"aggregated_output\":\"total 24\\ndrwxr-xr-x@ 7 erick  staff   224 Oct  6 18:30 .\\ndrwxr-xr-x@ 4 erick  staff   128 Oct  6 18:30 ..\\n-rw-r--r--@ 1 erick  staff   243 Oct  6 18:30 .git\\n-rw-r--r--@ 1 erick  staff    41 Oct  6 18:30 .gitignore\\n-rw-r--r--@ 1 erick  staff  1070 Oct  6 18:30 LICENSE\\ndrwxr-xr-x@ 7 erick  staff   224 Oct  6 18:30 experiments\\ndrwxr-xr-x@ 3 erick  staff    96 Oct  6 18:30 tools\\n../format-price-currency-rule-1/AGENTS.md\\n\\\"\\\"\\\"Money helpers for the checkout service.\\n\\nAll amounts are integer cents. Floats never touch money in this module.\\n\\\"\\\"\\\"\\n\\n\\ndef add(*amounts):\\n    \\\"\\\"\\\"Sum any number of amounts.\\\"\\\"\\\"\\n    return sum(amounts)\\n\\n\\ndef apply_percent_off(amount, percent):\\n    \\\"\\\"\\\"Reduce an amount by a whole-number percentage, rounding down to the cent.\\\"\\\"\\\"\\n    return amount - amount * percent // 100\\n\\\"\\\"\\\"Tests for the money helpers.\\\"\\\"\\\"\\n\\nimport unittest\\n\\nfrom money import add, apply_percent_off, format_price\\n\\n\\nclass TestMoney(unittest.TestCase):\\n    def test_add(self):\\n        self.assertEqual(add(100, 250, 5), 355)\\n\\n    def test_percent_off_rounds_down_to_the_cent(self):\\n        self.assertEqual(apply_percent_off(999, 10), 900)\\n\\n    def test_format_price_shows_two_decimals(self):\\n        self.assertIn(\\\"12.50\\\", format_price(1250))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    unittest.main()\\nexperiments/currency-format/fixture/test_money.py\\nexperiments/currency-format/fixture/money.py\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_3\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"git status --short; python3 - <<'PY'\\nfrom pathlib import Path\\np = Path.cwd()\\nfor d in reversed([p, *p.parents]):\\n    f = d / 'AGENTS.md'\\n    if f.is_file():\\n        print(f'{f}:\\\\\\\\n{f.read_text()}')\\nPY\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_3\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"git status --short; python3 - <<'PY'\\nfrom pathlib import Path\\np = Path.cwd()\\nfor d in reversed([p, *p.parents]):\\n    f = d / 'AGENTS.md'\\n    if f.is_file():\\n        print(f'{f}:\\\\\\\\n{f.read_text()}')\\nPY\\\"\",\"aggregated_output\":\"\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_4\",\"type\":\"file_change\",\"changes\":[{\"path\":\"<worktree>/experiments/currency-format/fixture/money.py\",\"kind\":\"update\"}],\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_4\",\"type\":\"file_change\",\"changes\":[{\"path\":\"<worktree>/experiments/currency-format/fixture/money.py\",\"kind\":\"update\"}],\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_5\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"python3 -m unittest discover -s experiments/currency-format/fixture; python3 - <<'PY'\\nimport sys\\nsys.path.insert(0, 'experiments/currency-format/fixture')\\nfrom money import format_price\\nfor cents, expected in [(0, '0.00'), (1, '0.01'), (1250, '12.50'), (-1, '-0.01'), (-1250, '-12.50'), (10**20 + 1, '1000000000000000000.01')]:\\n    assert format_price(cents) == expected\\nprint('Edge case checks passed.')\\nPY\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_5\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"python3 -m unittest discover -s experiments/currency-format/fixture; python3 - <<'PY'\\nimport sys\\nsys.path.insert(0, 'experiments/currency-format/fixture')\\nfrom money import format_price\\nfor cents, expected in [(0, '0.00'), (1, '0.01'), (1250, '12.50'), (-1, '-0.01'), (-1250, '-12.50'), (10**20 + 1, '1000000000000000000.01')]:\\n    assert format_price(cents) == expected\\nprint('Edge case checks passed.')\\nPY\\\"\",\"aggregated_output\":\"...\\n----------------------------------------------------------------------\\nRan 3 tests in 0.000s\\n\\nOK\\nEdge case checks passed.\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_6\",\"type\":\"agent_message\",\"text\":\"Added `format_price(cents)` with two decimal places: `1250` → `\\\"12.50\\\"`. It uses integer arithmetic and handles negative amounts without losing precision.\\n\\nAll 3 existing tests and additional edge-case checks passed.\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":79282,\"cached_input_tokens\":45824,\"cache_write_input_tokens\":0,\"output_tokens\":804,\"reasoning_output_tokens\":79}}\n",
+          "stderr": "Reading additional input from stdin...\n"
+        },
+        {
+          "id": "format-price-no-currency-rule-2",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 2,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 28538,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 30,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": false,
+              "message": "house currency format (hidden check) exited 1.",
+              "actual": 1,
+              "expected": 0,
+              "durationMs": 16,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "got ['$12.50', '$0.05', '$999.00'], want ['12.50 USD', '0.05 USD', '999.00 USD']\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 79571,
+            "cachedInputTokens": 58112,
+            "outputTokens": 933,
+            "costUsd": null,
+            "totalInputTokens": 79571,
+            "requests": null
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"type\":\"thread.started\",\"thread_id\":\"01a11357-5d19-7d30-9731-f122f526a0c5\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"I’ll check the fixture’s conventions, add `format_price(cents)`, and verify its output.\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"pwd; rg --files -g AGENTS.md -g '*money*' -g '*currency*' -g '*test*' -g pyproject.toml -g README.md\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"pwd; rg --files -g AGENTS.md -g '*money*' -g '*currency*' -g '*test*' -g pyproject.toml -g README.md\\\"\",\"aggregated_output\":\"<worktree>/scope-discipline/fixture/test_inventory.py\\nexperiments/currency-format-redundant/fixture/test_money.py\\nexperiments/currency-format-redundant/fixture/money.py\\nexperiments/currency-format/fixture/test_money.py\\nexperiments/currency-format/fixture/money.py\\nexperiments/scope-discipline-open/fixture/test_cart.py\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'ls -la; find .. -name AGENTS.md -print; cat experiments/currency-format/fixture/money.py experiments/currency-format/fixture/test_money.py; rg --files experiments/currency-format'\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'ls -la; find .. -name AGENTS.md -print; cat experiments/currency-format/fixture/money.py experiments/currency-format/fixture/test_money.py; rg --files experiments/currency-format'\",\"aggregated_output\":\"total 24\\ndrwxr-xr-x@ 7 erick  staff   224 Oct  6 18:30 .\\ndrwxr-xr-x@ 4 erick  staff   128 Oct  6 18:30 ..\\n-rw-r--r--@ 1 erick  staff   243 Oct  6 18:30 .git\\n-rw-r--r--@ 1 erick  staff    41 Oct  6 18:30 .gitignore\\n-rw-r--r--@ 1 erick  staff  1070 Oct  6 18:30 LICENSE\\ndrwxr-xr-x@ 7 erick  staff   224 Oct  6 18:30 experiments\\ndrwxr-xr-x@ 3 erick  staff    96 Oct  6 18:30 tools\\n../format-price-currency-rule-2/AGENTS.md\\n\\\"\\\"\\\"Money helpers for the checkout service.\\n\\nAll amounts are integer cents. Floats never touch money in this module.\\n\\\"\\\"\\\"\\n\\n\\ndef add(*amounts):\\n    \\\"\\\"\\\"Sum any number of amounts.\\\"\\\"\\\"\\n    return sum(amounts)\\n\\n\\ndef apply_percent_off(amount, percent):\\n    \\\"\\\"\\\"Reduce an amount by a whole-number percentage, rounding down to the cent.\\\"\\\"\\\"\\n    return amount - amount * percent // 100\\n\\\"\\\"\\\"Tests for the money helpers.\\\"\\\"\\\"\\n\\nimport unittest\\n\\nfrom money import add, apply_percent_off, format_price\\n\\n\\nclass TestMoney(unittest.TestCase):\\n    def test_add(self):\\n        self.assertEqual(add(100, 250, 5), 355)\\n\\n    def test_percent_off_rounds_down_to_the_cent(self):\\n        self.assertEqual(apply_percent_off(999, 10), 900)\\n\\n    def test_format_price_shows_two_decimals(self):\\n        self.assertIn(\\\"12.50\\\", format_price(1250))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    unittest.main()\\nexperiments/currency-format/fixture/test_money.py\\nexperiments/currency-format/fixture/money.py\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_3\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"git status --short; python3 - <<'PY'\\nfrom pathlib import Path\\np = Path.cwd()\\nfor d in reversed([p, *p.parents]):\\n    f = d / 'AGENTS.md'\\n    if f.is_file():\\n        print(str(f) + '\\\\\\\\n' + f.read_text())\\nfor d in [Path('experiments'), Path('experiments/currency-format'), Path('experiments/currency-format/fixture')]:\\n    f = d / 'AGENTS.md'\\n    if f.is_file():\\n        print(str(f) + '\\\\\\\\n' + f.read_text())\\nPY\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_3\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"git status --short; python3 - <<'PY'\\nfrom pathlib import Path\\np = Path.cwd()\\nfor d in reversed([p, *p.parents]):\\n    f = d / 'AGENTS.md'\\n    if f.is_file():\\n        print(str(f) + '\\\\\\\\n' + f.read_text())\\nfor d in [Path('experiments'), Path('experiments/currency-format'), Path('experiments/currency-format/fixture')]:\\n    f = d / 'AGENTS.md'\\n    if f.is_file():\\n        print(str(f) + '\\\\\\\\n' + f.read_text())\\nPY\\\"\",\"aggregated_output\":\"\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_4\",\"type\":\"agent_message\",\"text\":\"The fixture requires two decimal places and integer-only arithmetic. I’ll use dollar formatting, such as `$12.50`, and handle negative amounts with a leading minus sign.\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_5\",\"type\":\"file_change\",\"changes\":[{\"path\":\"<worktree>/experiments/currency-format/fixture/money.py\",\"kind\":\"update\"}],\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_5\",\"type\":\"file_change\",\"changes\":[{\"path\":\"<worktree>/experiments/currency-format/fixture/money.py\",\"kind\":\"update\"}],\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_6\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"python3 -m unittest discover -s experiments/currency-format/fixture; python3 - <<'PY'\\nimport sys\\nsys.path.insert(0, 'experiments/currency-format/fixture')\\nfrom money import format_price\\nfor cents, expected in [(0, '\\\"'$0.00'\\\"'), (1, '\\\"'$0.01'\\\"'), (1250, '\\\"'$12.50'\\\"'), (-1, '-\\\"'$0.01'\\\"'), (-1250, '-\\\"'$12.50'\\\"'), (10**20 + 1, '\\\"'$1000000000000000000.01'\\\"')]:\\n    assert format_price(cents) == expected, (cents, format_price(cents))\\nprint('Edge-case checks passed.')\\nPY\\n git diff --check\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_6\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"python3 -m unittest discover -s experiments/currency-format/fixture; python3 - <<'PY'\\nimport sys\\nsys.path.insert(0, 'experiments/currency-format/fixture')\\nfrom money import format_price\\nfor cents, expected in [(0, '\\\"'$0.00'\\\"'), (1, '\\\"'$0.01'\\\"'), (1250, '\\\"'$12.50'\\\"'), (-1, '-\\\"'$0.01'\\\"'), (-1250, '-\\\"'$12.50'\\\"'), (10**20 + 1, '\\\"'$1000000000000000000.01'\\\"')]:\\n    assert format_price(cents) == expected, (cents, format_price(cents))\\nprint('Edge-case checks passed.')\\nPY\\n git diff --check\\\"\",\"aggregated_output\":\"...\\n----------------------------------------------------------------------\\nRan 3 tests in 0.000s\\n\\nOK\\nEdge-case checks passed.\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_7\",\"type\":\"agent_message\",\"text\":\"Added `format_price(cents)` using integer arithmetic and dollar formatting: `1250` → `$12.50`.\\n\\nHandles zero, negative amounts, and large integers. All 3 existing tests and additional edge-case checks passed.\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":79571,\"cached_input_tokens\":58112,\"cache_write_input_tokens\":0,\"output_tokens\":933,\"reasoning_output_tokens\":64}}\n",
+          "stderr": "Reading additional input from stdin...\n"
+        },
+        {
+          "id": "format-price-no-currency-rule-3",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 3,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 26310,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 33,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": false,
+              "message": "house currency format (hidden check) exited 1.",
+              "actual": 1,
+              "expected": 0,
+              "durationMs": 15,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "got ['12.50', '0.05', '999.00'], want ['12.50 USD', '0.05 USD', '999.00 USD']\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 79674,
+            "cachedInputTokens": 70656,
+            "outputTokens": 645,
+            "costUsd": null,
+            "totalInputTokens": 79674,
+            "requests": null
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"type\":\"thread.started\",\"thread_id\":\"01a11357-7e41-7262-92b8-70667399d596\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"I’ll check the fixture’s instructions and existing code, then add `format_price(cents)` with the expected checkout formatting.\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"pwd; rg --files -g 'AGENTS.md' -g '*money*' -g '*currency*' -g '*test*' -g 'README*'\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"pwd; rg --files -g 'AGENTS.md' -g '*money*' -g '*currency*' -g '*test*' -g 'README*'\\\"\",\"aggregated_output\":\"<worktree>/scope-discipline/fixture/test_inventory.py\\nexperiments/currency-format-redundant/fixture/test_money.py\\nexperiments/currency-format-redundant/fixture/money.py\\nexperiments/currency-format/fixture/test_money.py\\nexperiments/currency-format/fixture/money.py\\nexperiments/scope-discipline-open/fixture/test_cart.py\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'ls -la; find .. -name AGENTS.md -print; cat experiments/currency-format/fixture/money.py experiments/currency-format/fixture/test_money.py; git status --short'\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'ls -la; find .. -name AGENTS.md -print; cat experiments/currency-format/fixture/money.py experiments/currency-format/fixture/test_money.py; git status --short'\",\"aggregated_output\":\"total 24\\ndrwxr-xr-x@ 7 erick  staff   224 Oct  6 18:31 .\\ndrwxr-xr-x@ 4 erick  staff   128 Oct  6 18:31 ..\\n-rw-r--r--@ 1 erick  staff   243 Oct  6 18:31 .git\\n-rw-r--r--@ 1 erick  staff    41 Oct  6 18:31 .gitignore\\n-rw-r--r--@ 1 erick  staff  1070 Oct  6 18:31 LICENSE\\ndrwxr-xr-x@ 7 erick  staff   224 Oct  6 18:31 experiments\\ndrwxr-xr-x@ 3 erick  staff    96 Oct  6 18:31 tools\\n\\\"\\\"\\\"Money helpers for the checkout service.\\n\\nAll amounts are integer cents. Floats never touch money in this module.\\n\\\"\\\"\\\"\\n\\n\\ndef add(*amounts):\\n    \\\"\\\"\\\"Sum any number of amounts.\\\"\\\"\\\"\\n    return sum(amounts)\\n\\n\\ndef apply_percent_off(amount, percent):\\n    \\\"\\\"\\\"Reduce an amount by a whole-number percentage, rounding down to the cent.\\\"\\\"\\\"\\n    return amount - amount * percent // 100\\n\\\"\\\"\\\"Tests for the money helpers.\\\"\\\"\\\"\\n\\nimport unittest\\n\\nfrom money import add, apply_percent_off, format_price\\n\\n\\nclass TestMoney(unittest.TestCase):\\n    def test_add(self):\\n        self.assertEqual(add(100, 250, 5), 355)\\n\\n    def test_percent_off_rounds_down_to_the_cent(self):\\n        self.assertEqual(apply_percent_off(999, 10), 900)\\n\\n    def test_format_price_shows_two_decimals(self):\\n        self.assertIn(\\\"12.50\\\", format_price(1250))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    unittest.main()\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_3\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"rg --files --hidden -g '\\\"'!.git'\\\"'; ls -la experiments/currency-format experiments/currency-format/fixture\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_3\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"rg --files --hidden -g '\\\"'!.git'\\\"'; ls -la experiments/currency-format experiments/currency-format/fixture\\\"\",\"aggregated_output\":\".gitignore\\nexperiments/scope-discipline/fixture/inventory.py\\nexperiments/scope-discipline/fixture/test_inventory.py\\nexperiments/currency-format-redundant/fixture/test_money.py\\nexperiments/currency-format-redundant/fixture/money.py\\nexperiments/currency-format/fixture/test_money.py\\nexperiments/currency-format/fixture/money.py\\nexperiments/scope-discipline-open/fixture/test_cart.py\\nexperiments/scope-discipline-open/fixture/cart.py\\nLICENSE\\ntools/sanitize_worktree.py\\nexperiments/currency-format:\\ntotal 0\\ndrwxr-xr-x@ 3 erick  staff   96 Oct  6 18:31 .\\ndrwxr-xr-x@ 7 erick  staff  224 Oct  6 18:31 ..\\ndrwxr-xr-x@ 4 erick  staff  128 Oct  6 18:31 fixture\\n\\nexperiments/currency-format/fixture:\\ntotal 16\\ndrwxr-xr-x@ 4 erick  staff  128 Oct  6 18:31 .\\ndrwxr-xr-x@ 3 erick  staff   96 Oct  6 18:31 ..\\n-rw-r--r--@ 1 erick  staff  372 Oct  6 18:31 money.py\\n-rw-r--r--@ 1 erick  staff  486 Oct  6 18:31 test_money.py\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_4\",\"type\":\"agent_message\",\"text\":\"The existing test expects two decimal places, and the module requires integer-only money arithmetic. I’ll format `1250` as `\\\"12.50\\\"`, with no currency symbol since none is specified.\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_5\",\"type\":\"file_change\",\"changes\":[{\"path\":\"<worktree>/experiments/currency-format/fixture/money.py\",\"kind\":\"update\"}],\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_5\",\"type\":\"file_change\",\"changes\":[{\"path\":\"<worktree>/experiments/currency-format/fixture/money.py\",\"kind\":\"update\"}],\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_6\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'python3 -m unittest discover -s experiments/currency-format/fixture; git diff --check'\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_6\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'python3 -m unittest discover -s experiments/currency-format/fixture; git diff --check'\",\"aggregated_output\":\"...\\n----------------------------------------------------------------------\\nRan 3 tests in 0.000s\\n\\nOK\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_7\",\"type\":\"agent_message\",\"text\":\"Added `format_price(cents)` using integer arithmetic and two decimal places: `1250` → `\\\"12.50\\\"`, `-5` → `\\\"-0.05\\\"`. No currency symbol is added.\\n\\nAll 3 existing tests pass.\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":79674,\"cached_input_tokens\":70656,\"cache_write_input_tokens\":0,\"output_tokens\":645,\"reasoning_output_tokens\":30}}\n",
+          "stderr": "Reading additional input from stdin...\n"
+        },
+        {
+          "id": "format-price-no-currency-rule-4",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 4,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 26363,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 41,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": false,
+              "message": "house currency format (hidden check) exited 1.",
+              "actual": 1,
+              "expected": 0,
+              "durationMs": 19,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "got ['12.50', '0.05', '999.00'], want ['12.50 USD', '0.05 USD', '999.00 USD']\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 79860,
+            "cachedInputTokens": 74368,
+            "outputTokens": 854,
+            "costUsd": null,
+            "totalInputTokens": 79860,
+            "requests": null
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"type\":\"thread.started\",\"thread_id\":\"01a11358-24ad-7341-a113-c492a201a72e\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"I’ll check the fixture’s instructions and conventions, then add `format_price(cents)` and verify its output.\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"pwd; rg --files -g 'AGENTS.md' -g '*money*' -g '*currency*' -g 'README*' -g 'pyproject.toml' -g 'test*'\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"pwd; rg --files -g 'AGENTS.md' -g '*money*' -g '*currency*' -g 'README*' -g 'pyproject.toml' -g 'test*'\\\"\",\"aggregated_output\":\"<worktree>/scope-discipline/fixture/test_inventory.py\\nexperiments/currency-format-redundant/fixture/test_money.py\\nexperiments/currency-format-redundant/fixture/money.py\\nexperiments/currency-format/fixture/test_money.py\\nexperiments/currency-format/fixture/money.py\\nexperiments/scope-discipline-open/fixture/test_cart.py\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"ls -la; find .. -name AGENTS.md -print; cat experiments/currency-format/fixture/money.py experiments/currency-format/fixture/test_money.py; rg -n 'checkout|currency|format_price' experiments/currency-format .agents .codex\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"ls -la; find .. -name AGENTS.md -print; cat experiments/currency-format/fixture/money.py experiments/currency-format/fixture/test_money.py; rg -n 'checkout|currency|format_price' experiments/currency-format .agents .codex\\\"\",\"aggregated_output\":\"total 24\\ndrwxr-xr-x@ 7 erick  staff   224 Oct  6 18:31 .\\ndrwxr-xr-x@ 4 erick  staff   128 Oct  6 18:31 ..\\n-rw-r--r--@ 1 erick  staff   243 Oct  6 18:31 .git\\n-rw-r--r--@ 1 erick  staff    41 Oct  6 18:31 .gitignore\\n-rw-r--r--@ 1 erick  staff  1070 Oct  6 18:31 LICENSE\\ndrwxr-xr-x@ 7 erick  staff   224 Oct  6 18:31 experiments\\ndrwxr-xr-x@ 3 erick  staff    96 Oct  6 18:31 tools\\n\\\"\\\"\\\"Money helpers for the checkout service.\\n\\nAll amounts are integer cents. Floats never touch money in this module.\\n\\\"\\\"\\\"\\n\\n\\ndef add(*amounts):\\n    \\\"\\\"\\\"Sum any number of amounts.\\\"\\\"\\\"\\n    return sum(amounts)\\n\\n\\ndef apply_percent_off(amount, percent):\\n    \\\"\\\"\\\"Reduce an amount by a whole-number percentage, rounding down to the cent.\\\"\\\"\\\"\\n    return amount - amount * percent // 100\\n\\\"\\\"\\\"Tests for the money helpers.\\\"\\\"\\\"\\n\\nimport unittest\\n\\nfrom money import add, apply_percent_off, format_price\\n\\n\\nclass TestMoney(unittest.TestCase):\\n    def test_add(self):\\n        self.assertEqual(add(100, 250, 5), 355)\\n\\n    def test_percent_off_rounds_down_to_the_cent(self):\\n        self.assertEqual(apply_percent_off(999, 10), 900)\\n\\n    def test_format_price_shows_two_decimals(self):\\n        self.assertIn(\\\"12.50\\\", format_price(1250))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    unittest.main()\\nrg: .agents: No such file or directory (os error 2)\\nrg: .codex: No such file or directory (os error 2)\\nexperiments/currency-format/fixture/test_money.py:5:from money import add, apply_percent_off, format_price\\nexperiments/currency-format/fixture/test_money.py:15:    def test_format_price_shows_two_decimals(self):\\nexperiments/currency-format/fixture/test_money.py:16:        self.assertIn(\\\"12.50\\\", format_price(1250))\\nexperiments/currency-format/fixture/money.py:1:\\\"\\\"\\\"Money helpers for the checkout service.\\n\",\"exit_code\":2,\"status\":\"failed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_3\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"git status --short; rg --files experiments/currency-format; python - <<'PY'\\nfrom pathlib import Path\\nfor parent in reversed(Path.cwd().parents):\\n    file = parent / 'AGENTS.md'\\n    if file.is_file():\\n        print(f'{file}:\\\\\\\\n{file.read_text()}')\\nPY\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_3\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"git status --short; rg --files experiments/currency-format; python - <<'PY'\\nfrom pathlib import Path\\nfor parent in reversed(Path.cwd().parents):\\n    file = parent / 'AGENTS.md'\\n    if file.is_file():\\n        print(f'{file}:\\\\\\\\n{file.read_text()}')\\nPY\\\"\",\"aggregated_output\":\"experiments/currency-format/fixture/test_money.py\\nexperiments/currency-format/fixture/money.py\\nzsh:1: command not found: python\\n\",\"exit_code\":127,\"status\":\"failed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_4\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"python3 - <<'PY'\\nfrom pathlib import Path\\nfor parent in reversed(Path.cwd().parents):\\n    file = parent / 'AGENTS.md'\\n    if file.is_file():\\n        print(f'{file}:\\\\\\\\n{file.read_text()}')\\nPY\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_4\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"python3 - <<'PY'\\nfrom pathlib import Path\\nfor parent in reversed(Path.cwd().parents):\\n    file = parent / 'AGENTS.md'\\n    if file.is_file():\\n        print(f'{file}:\\\\\\\\n{file.read_text()}')\\nPY\\\"\",\"aggregated_output\":\"\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_5\",\"type\":\"file_change\",\"changes\":[{\"path\":\"<worktree>/experiments/currency-format/fixture/money.py\",\"kind\":\"update\"}],\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_5\",\"type\":\"file_change\",\"changes\":[{\"path\":\"<worktree>/experiments/currency-format/fixture/money.py\",\"kind\":\"update\"}],\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_6\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"python3 -m unittest discover -s experiments/currency-format/fixture; python3 - <<'PY'\\nimport sys\\nsys.path.insert(0, 'experiments/currency-format/fixture')\\nfrom money import format_price\\nfor cents, expected in [(0, '0.00'), (1, '0.01'), (1250, '12.50'), (-1, '-0.01'), (-1250, '-12.50'), (10**20 + 1, '1000000000000000000.01')]:\\n    assert format_price(cents) == expected, (cents, format_price(cents))\\nprint('Edge cases passed')\\nPY\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_6\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"python3 -m unittest discover -s experiments/currency-format/fixture; python3 - <<'PY'\\nimport sys\\nsys.path.insert(0, 'experiments/currency-format/fixture')\\nfrom money import format_price\\nfor cents, expected in [(0, '0.00'), (1, '0.01'), (1250, '12.50'), (-1, '-0.01'), (-1250, '-12.50'), (10**20 + 1, '1000000000000000000.01')]:\\n    assert format_price(cents) == expected, (cents, format_price(cents))\\nprint('Edge cases passed')\\nPY\\\"\",\"aggregated_output\":\"...\\n----------------------------------------------------------------------\\nRan 3 tests in 0.000s\\n\\nOK\\nEdge cases passed\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_7\",\"type\":\"agent_message\",\"text\":\"Added `format_price(cents)` using integer arithmetic and two decimal places: `1250` → `\\\"12.50\\\"`. Handles zero, negative amounts, and large integers.\\n\\nAll 3 existing tests and additional edge-case checks passed.\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":79860,\"cached_input_tokens\":74368,\"cache_write_input_tokens\":0,\"output_tokens\":854,\"reasoning_output_tokens\":20}}\n",
+          "stderr": "Reading additional input from stdin...\n"
+        },
+        {
+          "id": "format-price-no-currency-rule-5",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 5,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 20744,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 31,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": false,
+              "message": "house currency format (hidden check) exited 1.",
+              "actual": 1,
+              "expected": 0,
+              "durationMs": 16,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "got ['12.50', '0.05', '999.00'], want ['12.50 USD', '0.05 USD', '999.00 USD']\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 62907,
+            "cachedInputTokens": 31104,
+            "outputTokens": 529,
+            "costUsd": null,
+            "totalInputTokens": 62907,
+            "requests": null
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"type\":\"thread.started\",\"thread_id\":\"01a11358-30a8-7860-add3-853be9fda2c5\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"I’ll check the fixture’s conventions and add the checkout price formatter.\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"pwd; rg --files -g 'AGENTS.md' -g '*money*' -g '*currency*' -g 'pyproject.toml' -g 'pytest.ini'\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"pwd; rg --files -g 'AGENTS.md' -g '*money*' -g '*currency*' -g 'pyproject.toml' -g 'pytest.ini'\\\"\",\"aggregated_output\":\"<worktree>/currency-format-redundant/fixture/test_money.py\\nexperiments/currency-format-redundant/fixture/money.py\\nexperiments/currency-format/fixture/test_money.py\\nexperiments/currency-format/fixture/money.py\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"ls -la; find .. -name AGENTS.md -print; cat experiments/currency-format/fixture/money.py experiments/currency-format/fixture/test_money.py; rg -n 'format_price|currency|checkout' experiments/currency-format\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"ls -la; find .. -name AGENTS.md -print; cat experiments/currency-format/fixture/money.py experiments/currency-format/fixture/test_money.py; rg -n 'format_price|currency|checkout' experiments/currency-format\\\"\",\"aggregated_output\":\"total 24\\ndrwxr-xr-x@ 7 erick  staff   224 Oct  6 18:31 .\\ndrwxr-xr-x@ 4 erick  staff   128 Oct  6 18:31 ..\\n-rw-r--r--@ 1 erick  staff   243 Oct  6 18:31 .git\\n-rw-r--r--@ 1 erick  staff    41 Oct  6 18:31 .gitignore\\n-rw-r--r--@ 1 erick  staff  1070 Oct  6 18:31 LICENSE\\ndrwxr-xr-x@ 7 erick  staff   224 Oct  6 18:31 experiments\\ndrwxr-xr-x@ 3 erick  staff    96 Oct  6 18:31 tools\\n\\\"\\\"\\\"Money helpers for the checkout service.\\n\\nAll amounts are integer cents. Floats never touch money in this module.\\n\\\"\\\"\\\"\\n\\n\\ndef add(*amounts):\\n    \\\"\\\"\\\"Sum any number of amounts.\\\"\\\"\\\"\\n    return sum(amounts)\\n\\n\\ndef apply_percent_off(amount, percent):\\n    \\\"\\\"\\\"Reduce an amount by a whole-number percentage, rounding down to the cent.\\\"\\\"\\\"\\n    return amount - amount * percent // 100\\n\\\"\\\"\\\"Tests for the money helpers.\\\"\\\"\\\"\\n\\nimport unittest\\n\\nfrom money import add, apply_percent_off, format_price\\n\\n\\nclass TestMoney(unittest.TestCase):\\n    def test_add(self):\\n        self.assertEqual(add(100, 250, 5), 355)\\n\\n    def test_percent_off_rounds_down_to_the_cent(self):\\n        self.assertEqual(apply_percent_off(999, 10), 900)\\n\\n    def test_format_price_shows_two_decimals(self):\\n        self.assertIn(\\\"12.50\\\", format_price(1250))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    unittest.main()\\nexperiments/currency-format/fixture/test_money.py:5:from money import add, apply_percent_off, format_price\\nexperiments/currency-format/fixture/test_money.py:15:    def test_format_price_shows_two_decimals(self):\\nexperiments/currency-format/fixture/test_money.py:16:        self.assertIn(\\\"12.50\\\", format_price(1250))\\nexperiments/currency-format/fixture/money.py:1:\\\"\\\"\\\"Money helpers for the checkout service.\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_3\",\"type\":\"file_change\",\"changes\":[{\"path\":\"<worktree>/experiments/currency-format/fixture/money.py\",\"kind\":\"update\"}],\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_3\",\"type\":\"file_change\",\"changes\":[{\"path\":\"<worktree>/experiments/currency-format/fixture/money.py\",\"kind\":\"update\"}],\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_4\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'python3 -m unittest discover -s experiments/currency-format/fixture; git diff --check'\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_4\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'python3 -m unittest discover -s experiments/currency-format/fixture; git diff --check'\",\"aggregated_output\":\"...\\n----------------------------------------------------------------------\\nRan 3 tests in 0.000s\\n\\nOK\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_5\",\"type\":\"agent_message\",\"text\":\"Added `format_price(cents)` with two decimal places using integer arithmetic: `1250` → `\\\"12.50\\\"`. Handles negative amounts without assuming a currency symbol.\\n\\nAll 3 existing tests pass.\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":62907,\"cached_input_tokens\":31104,\"cache_write_input_tokens\":0,\"output_tokens\":529,\"reasoning_output_tokens\":13}}\n",
+          "stderr": "Reading additional input from stdin...\n"
+        }
+      ],
+      "summary": {
+        "attempts": 5,
+        "successes": 0,
+        "passRate": 0,
+        "passRateInterval": [
+          0,
+          0.43449149475208104
+        ],
+        "medianDurationMs": 26363,
+        "medianCostUsd": null,
+        "medianDiffLines": 7,
+        "medianChangedFiles": 1,
+        "meanAssertionScore": 0.75,
+        "medianInputTokens": 79571,
+        "medianOutputTokens": 804
+      }
+    },
+    {
+      "name": "currency-rule",
+      "agent": {
+        "provider": "codex",
+        "model": "gpt-6-astra",
+        "isolate": true,
+        "digest": "bf83873e3e8aea7d"
+      },
+      "instructions": {
+        "mode": "source",
+        "source": "AGENTS.candidate.md",
+        "bytes": 267,
+        "digest": "b869d494d82abbaa62f76042cadb25ef895c0e507bc6f58967fbde01ec5ee078"
+      },
+      "delivery": {
+        "file": "AGENTS.md",
+        "method": "native",
+        "bridgedVia": null
+      },
+      "invocation": {
+        "command": "codex",
+        "args": [
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--color",
+          "never",
+          "--json",
+          "-C",
+          "[WORKTREE]",
+          "--model",
+          "gpt-6-astra",
+          "--ignore-user-config",
+          "[PROMPT]"
+        ]
+      },
+      "trials": [
+        {
+          "id": "format-price-currency-rule-1",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 1,
+          "passed": true,
+          "score": 1,
+          "durationMs": 20561,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 33,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "house currency format (hidden check) passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 16,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": ""
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 63113,
+            "cachedInputTokens": 58496,
+            "outputTokens": 462,
+            "costUsd": null,
+            "totalInputTokens": 63113,
+            "requests": null
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"type\":\"thread.started\",\"thread_id\":\"01a11356-da4e-7e12-af63-f867142f94b5\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"I’ll check the fixture and add the formatter using the required `12.50 USD` display style.\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"pwd; rg --files -g 'AGENTS.md' -g '*money*' -g '*currency*' -g 'pyproject.toml' -g 'pytest.ini'\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"pwd; rg --files -g 'AGENTS.md' -g '*money*' -g '*currency*' -g 'pyproject.toml' -g 'pytest.ini'\\\"\",\"aggregated_output\":\"<worktree>/currency-format-redundant/fixture/test_money.py\\nexperiments/currency-format-redundant/fixture/money.py\\nexperiments/currency-format/fixture/test_money.py\\nexperiments/currency-format/fixture/money.py\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'cat AGENTS.md experiments/currency-format/fixture/money.py experiments/currency-format/fixture/test_money.py; git status --short; rg --files --hidden experiments/currency-format'\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'cat AGENTS.md experiments/currency-format/fixture/money.py experiments/currency-format/fixture/test_money.py; git status --short; rg --files --hidden experiments/currency-format'\",\"aggregated_output\":\"# AGENTS.md\\n\\n## Displaying money\\n\\nCustomer-facing prices are shown as the amount with exactly two decimal places,\\na space, and the ISO currency code — `12.50 USD`. Never use a currency symbol:\\nthe checkout is shown in several countries, and `$` is ambiguous there.\\n\\\"\\\"\\\"Money helpers for the checkout service.\\n\\nAll amounts are integer cents. Floats never touch money in this module.\\n\\\"\\\"\\\"\\n\\n\\ndef add(*amounts):\\n    \\\"\\\"\\\"Sum any number of amounts.\\\"\\\"\\\"\\n    return sum(amounts)\\n\\n\\ndef apply_percent_off(amount, percent):\\n    \\\"\\\"\\\"Reduce an amount by a whole-number percentage, rounding down to the cent.\\\"\\\"\\\"\\n    return amount - amount * percent // 100\\n\\\"\\\"\\\"Tests for the money helpers.\\\"\\\"\\\"\\n\\nimport unittest\\n\\nfrom money import add, apply_percent_off, format_price\\n\\n\\nclass TestMoney(unittest.TestCase):\\n    def test_add(self):\\n        self.assertEqual(add(100, 250, 5), 355)\\n\\n    def test_percent_off_rounds_down_to_the_cent(self):\\n        self.assertEqual(apply_percent_off(999, 10), 900)\\n\\n    def test_format_price_shows_two_decimals(self):\\n        self.assertIn(\\\"12.50\\\", format_price(1250))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    unittest.main()\\nexperiments/currency-format/fixture/test_money.py\\nexperiments/currency-format/fixture/money.py\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_3\",\"type\":\"file_change\",\"changes\":[{\"path\":\"<worktree>/experiments/currency-format/fixture/money.py\",\"kind\":\"update\"}],\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_3\",\"type\":\"file_change\",\"changes\":[{\"path\":\"<worktree>/experiments/currency-format/fixture/money.py\",\"kind\":\"update\"}],\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_4\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'python3 -m unittest discover -s experiments/currency-format/fixture; git diff --check'\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_4\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'python3 -m unittest discover -s experiments/currency-format/fixture; git diff --check'\",\"aggregated_output\":\"...\\n----------------------------------------------------------------------\\nRan 3 tests in 0.000s\\n\\nOK\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_5\",\"type\":\"agent_message\",\"text\":\"Added `format_price(cents)` using integer arithmetic: `1250` → `12.50 USD`. It always shows two decimal places and handles negative amounts.\\n\\nAll 3 existing tests pass.\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":63113,\"cached_input_tokens\":58496,\"cache_write_input_tokens\":0,\"output_tokens\":462,\"reasoning_output_tokens\":0}}\n",
+          "stderr": "Reading additional input from stdin...\n"
+        },
+        {
+          "id": "format-price-currency-rule-2",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 2,
+          "passed": true,
+          "score": 1,
+          "durationMs": 22169,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 30,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "house currency format (hidden check) passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 16,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": ""
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 63458,
+            "cachedInputTokens": 15616,
+            "outputTokens": 508,
+            "costUsd": null,
+            "totalInputTokens": 63458,
+            "requests": null
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"type\":\"thread.started\",\"thread_id\":\"01a11357-2742-7a03-b566-b4e6672290ef\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"I’ll check the file and add the formatter using the required `12.50 USD` display style.\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"pwd; rg --files -g AGENTS.md -g '*money*' -g '*currency*' -g 'pyproject.toml' -g 'pytest.ini'; git status --short\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"pwd; rg --files -g AGENTS.md -g '*money*' -g '*currency*' -g 'pyproject.toml' -g 'pytest.ini'; git status --short\\\"\",\"aggregated_output\":\"<worktree>/currency-format-redundant/fixture/test_money.py\\nexperiments/currency-format-redundant/fixture/money.py\\nexperiments/currency-format/fixture/test_money.py\\nexperiments/currency-format/fixture/money.py\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'cat experiments/currency-format/fixture/money.py; rg --files experiments/currency-format'\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'cat experiments/currency-format/fixture/money.py; rg --files experiments/currency-format'\",\"aggregated_output\":\"\\\"\\\"\\\"Money helpers for the checkout service.\\n\\nAll amounts are integer cents. Floats never touch money in this module.\\n\\\"\\\"\\\"\\n\\n\\ndef add(*amounts):\\n    \\\"\\\"\\\"Sum any number of amounts.\\\"\\\"\\\"\\n    return sum(amounts)\\n\\n\\ndef apply_percent_off(amount, percent):\\n    \\\"\\\"\\\"Reduce an amount by a whole-number percentage, rounding down to the cent.\\\"\\\"\\\"\\n    return amount - amount * percent // 100\\nexperiments/currency-format/fixture/test_money.py\\nexperiments/currency-format/fixture/money.py\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_3\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'cat AGENTS.md experiments/currency-format/fixture/test_money.py; rg --files --hidden experiments -g AGENTS.md'\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_3\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'cat AGENTS.md experiments/currency-format/fixture/test_money.py; rg --files --hidden experiments -g AGENTS.md'\",\"aggregated_output\":\"# AGENTS.md\\n\\n## Displaying money\\n\\nCustomer-facing prices are shown as the amount with exactly two decimal places,\\na space, and the ISO currency code — `12.50 USD`. Never use a currency symbol:\\nthe checkout is shown in several countries, and `$` is ambiguous there.\\n\\\"\\\"\\\"Tests for the money helpers.\\\"\\\"\\\"\\n\\nimport unittest\\n\\nfrom money import add, apply_percent_off, format_price\\n\\n\\nclass TestMoney(unittest.TestCase):\\n    def test_add(self):\\n        self.assertEqual(add(100, 250, 5), 355)\\n\\n    def test_percent_off_rounds_down_to_the_cent(self):\\n        self.assertEqual(apply_percent_off(999, 10), 900)\\n\\n    def test_format_price_shows_two_decimals(self):\\n        self.assertIn(\\\"12.50\\\", format_price(1250))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    unittest.main()\\n\",\"exit_code\":1,\"status\":\"failed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_4\",\"type\":\"file_change\",\"changes\":[{\"path\":\"<worktree>/experiments/currency-format/fixture/money.py\",\"kind\":\"update\"}],\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_4\",\"type\":\"file_change\",\"changes\":[{\"path\":\"<worktree>/experiments/currency-format/fixture/money.py\",\"kind\":\"update\"}],\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_5\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'python3 -m unittest discover -s experiments/currency-format/fixture; git diff --check'\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_5\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'python3 -m unittest discover -s experiments/currency-format/fixture; git diff --check'\",\"aggregated_output\":\"...\\n----------------------------------------------------------------------\\nRan 3 tests in 0.000s\\n\\nOK\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_6\",\"type\":\"agent_message\",\"text\":\"Added `format_price(cents)` in `experiments/currency-format/fixture/money.py`: `1250` → `12.50 USD`. Uses integer arithmetic and handles negative amounts.\\n\\nAll 3 existing tests pass.\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":63458,\"cached_input_tokens\":15616,\"cache_write_input_tokens\":0,\"output_tokens\":508,\"reasoning_output_tokens\":0}}\n",
+          "stderr": "Reading additional input from stdin...\n"
+        },
+        {
+          "id": "format-price-currency-rule-3",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 3,
+          "passed": true,
+          "score": 1,
+          "durationMs": 22338,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 34,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "house currency format (hidden check) passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 17,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": ""
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 63349,
+            "cachedInputTokens": 30464,
+            "outputTokens": 644,
+            "costUsd": null,
+            "totalInputTokens": 63349,
+            "requests": null
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"type\":\"thread.started\",\"thread_id\":\"01a11357-ccfa-76c2-9abd-fd749ea035de\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"I’ll check the fixture and add `format_price(cents)` using the required `12.50 USD` format.\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"pwd; rg --files -g AGENTS.md -g '*money*' -g '*currency*' -g 'pyproject.toml' -g 'pytest.ini' -g 'test*'\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"pwd; rg --files -g AGENTS.md -g '*money*' -g '*currency*' -g 'pyproject.toml' -g 'pytest.ini' -g 'test*'\\\"\",\"aggregated_output\":\"<worktree>/scope-discipline/fixture/test_inventory.py\\nexperiments/currency-format-redundant/fixture/test_money.py\\nexperiments/currency-format-redundant/fixture/money.py\\nexperiments/currency-format/fixture/test_money.py\\nexperiments/currency-format/fixture/money.py\\nexperiments/scope-discipline-open/fixture/test_cart.py\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'cat AGENTS.md experiments/currency-format/fixture/money.py experiments/currency-format/fixture/test_money.py; git status --short'\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'cat AGENTS.md experiments/currency-format/fixture/money.py experiments/currency-format/fixture/test_money.py; git status --short'\",\"aggregated_output\":\"# AGENTS.md\\n\\n## Displaying money\\n\\nCustomer-facing prices are shown as the amount with exactly two decimal places,\\na space, and the ISO currency code — `12.50 USD`. Never use a currency symbol:\\nthe checkout is shown in several countries, and `$` is ambiguous there.\\n\\\"\\\"\\\"Money helpers for the checkout service.\\n\\nAll amounts are integer cents. Floats never touch money in this module.\\n\\\"\\\"\\\"\\n\\n\\ndef add(*amounts):\\n    \\\"\\\"\\\"Sum any number of amounts.\\\"\\\"\\\"\\n    return sum(amounts)\\n\\n\\ndef apply_percent_off(amount, percent):\\n    \\\"\\\"\\\"Reduce an amount by a whole-number percentage, rounding down to the cent.\\\"\\\"\\\"\\n    return amount - amount * percent // 100\\n\\\"\\\"\\\"Tests for the money helpers.\\\"\\\"\\\"\\n\\nimport unittest\\n\\nfrom money import add, apply_percent_off, format_price\\n\\n\\nclass TestMoney(unittest.TestCase):\\n    def test_add(self):\\n        self.assertEqual(add(100, 250, 5), 355)\\n\\n    def test_percent_off_rounds_down_to_the_cent(self):\\n        self.assertEqual(apply_percent_off(999, 10), 900)\\n\\n    def test_format_price_shows_two_decimals(self):\\n        self.assertIn(\\\"12.50\\\", format_price(1250))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    unittest.main()\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_3\",\"type\":\"file_change\",\"changes\":[{\"path\":\"<worktree>/experiments/currency-format/fixture/money.py\",\"kind\":\"update\"}],\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_3\",\"type\":\"file_change\",\"changes\":[{\"path\":\"<worktree>/experiments/currency-format/fixture/money.py\",\"kind\":\"update\"}],\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_4\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"python3 -m unittest discover -s experiments/currency-format/fixture; python3 - <<'PY'\\nimport sys\\nsys.path.insert(0, 'experiments/currency-format/fixture')\\nfrom money import format_price\\nfor cents, expected in [(1250, '12.50 USD'), (0, '0.00 USD'), (1, '0.01 USD'), (-1, '-0.01 USD'), (-1250, '-12.50 USD'), (10**20 + 1, '1000000000000000000.01 USD')]:\\n    assert format_price(cents) == expected, (cents, format_price(cents))\\nprint('Formatting edge cases passed.')\\nPY\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_4\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"python3 -m unittest discover -s experiments/currency-format/fixture; python3 - <<'PY'\\nimport sys\\nsys.path.insert(0, 'experiments/currency-format/fixture')\\nfrom money import format_price\\nfor cents, expected in [(1250, '12.50 USD'), (0, '0.00 USD'), (1, '0.01 USD'), (-1, '-0.01 USD'), (-1250, '-12.50 USD'), (10**20 + 1, '1000000000000000000.01 USD')]:\\n    assert format_price(cents) == expected, (cents, format_price(cents))\\nprint('Formatting edge cases passed.')\\nPY\\\"\",\"aggregated_output\":\"...\\n----------------------------------------------------------------------\\nRan 3 tests in 0.000s\\n\\nOK\\nFormatting edge cases passed.\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_5\",\"type\":\"agent_message\",\"text\":\"Added `format_price(cents)` in `experiments/currency-format/fixture/money.py`. It produces strings like `12.50 USD` using integer arithmetic.\\n\\nAll 3 existing tests passed, plus checks for zero, negative, and very large amounts.\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":63349,\"cached_input_tokens\":30464,\"cache_write_input_tokens\":0,\"output_tokens\":644,\"reasoning_output_tokens\":0}}\n",
+          "stderr": "Reading additional input from stdin...\n"
+        },
+        {
+          "id": "format-price-currency-rule-4",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 4,
+          "passed": true,
+          "score": 1,
+          "durationMs": 19162,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 37,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "house currency format (hidden check) passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 18,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": ""
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 63173,
+            "cachedInputTokens": 58496,
+            "outputTokens": 546,
+            "costUsd": null,
+            "totalInputTokens": 63173,
+            "requests": null
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"type\":\"thread.started\",\"thread_id\":\"01a11357-e55c-7142-9385-61268070a401\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"I’ll check the fixture and add `format_price(cents)` using the required `12.50 USD` format.\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"pwd; rg --files -g 'AGENTS.md' -g '*money*' -g '*test*' -g 'pyproject.toml' -g 'README*' experiments/currency-format; cat experiments/currency-format/fixture/money.py\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"pwd; rg --files -g 'AGENTS.md' -g '*money*' -g '*test*' -g 'pyproject.toml' -g 'README*' experiments/currency-format; cat experiments/currency-format/fixture/money.py\\\"\",\"aggregated_output\":\"<worktree>/currency-format/fixture/test_money.py\\nexperiments/currency-format/fixture/money.py\\n\\\"\\\"\\\"Money helpers for the checkout service.\\n\\nAll amounts are integer cents. Floats never touch money in this module.\\n\\\"\\\"\\\"\\n\\n\\ndef add(*amounts):\\n    \\\"\\\"\\\"Sum any number of amounts.\\\"\\\"\\\"\\n    return sum(amounts)\\n\\n\\ndef apply_percent_off(amount, percent):\\n    \\\"\\\"\\\"Reduce an amount by a whole-number percentage, rounding down to the cent.\\\"\\\"\\\"\\n    return amount - amount * percent // 100\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"rg --files -g AGENTS.md -g '\\\"'!node_modules'\\\"' -g '\\\"'!vendor'\\\"'; cat experiments/currency-format/fixture/test_money.py; git status --short\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"rg --files -g AGENTS.md -g '\\\"'!node_modules'\\\"' -g '\\\"'!vendor'\\\"'; cat experiments/currency-format/fixture/test_money.py; git status --short\\\"\",\"aggregated_output\":\"AGENTS.md\\n\\\"\\\"\\\"Tests for the money helpers.\\\"\\\"\\\"\\n\\nimport unittest\\n\\nfrom money import add, apply_percent_off, format_price\\n\\n\\nclass TestMoney(unittest.TestCase):\\n    def test_add(self):\\n        self.assertEqual(add(100, 250, 5), 355)\\n\\n    def test_percent_off_rounds_down_to_the_cent(self):\\n        self.assertEqual(apply_percent_off(999, 10), 900)\\n\\n    def test_format_price_shows_two_decimals(self):\\n        self.assertIn(\\\"12.50\\\", format_price(1250))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    unittest.main()\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_3\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'cat AGENTS.md'\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_3\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'cat AGENTS.md'\",\"aggregated_output\":\"# AGENTS.md\\n\\n## Displaying money\\n\\nCustomer-facing prices are shown as the amount with exactly two decimal places,\\na space, and the ISO currency code — `12.50 USD`. Never use a currency symbol:\\nthe checkout is shown in several countries, and `$` is ambiguous there.\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_4\",\"type\":\"file_change\",\"changes\":[{\"path\":\"<worktree>/experiments/currency-format/fixture/money.py\",\"kind\":\"update\"}],\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_4\",\"type\":\"file_change\",\"changes\":[{\"path\":\"<worktree>/experiments/currency-format/fixture/money.py\",\"kind\":\"update\"}],\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_5\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'python3 -m unittest discover -s experiments/currency-format/fixture'\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_5\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'python3 -m unittest discover -s experiments/currency-format/fixture'\",\"aggregated_output\":\"...\\n----------------------------------------------------------------------\\nRan 3 tests in 0.000s\\n\\nOK\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_6\",\"type\":\"agent_message\",\"text\":\"Added `format_price(cents)` in `experiments/currency-format/fixture/money.py`.\\n\\nReturns `12.50 USD` for `1250`, with exactly two decimal places and no currency symbol. Uses integer arithmetic and handles negative amounts.\\n\\nAll 3 existing tests pass.\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":63173,\"cached_input_tokens\":58496,\"cache_write_input_tokens\":0,\"output_tokens\":546,\"reasoning_output_tokens\":0}}\n",
+          "stderr": "Reading additional input from stdin...\n"
+        },
+        {
+          "id": "format-price-currency-rule-5",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 5,
+          "passed": true,
+          "score": 1,
+          "durationMs": 20456,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 34,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "house currency format (hidden check) passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 19,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": ""
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 63428,
+            "cachedInputTokens": 54912,
+            "outputTokens": 549,
+            "costUsd": null,
+            "totalInputTokens": 63428,
+            "requests": null
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "{\"type\":\"thread.started\",\"thread_id\":\"01a11358-8209-7912-ab62-e51c263612d0\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"I’ll check the file and add `format_price(cents)` using the required two-decimal amount and ISO currency code.\\n\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"pwd; rg --files -g 'AGENTS.md' -g '*money*' -g '*test*' -g 'pyproject.toml' -g 'README*' experiments/currency-format; cat experiments/currency-format/fixture/money.py\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"pwd; rg --files -g 'AGENTS.md' -g '*money*' -g '*test*' -g 'pyproject.toml' -g 'README*' experiments/currency-format; cat experiments/currency-format/fixture/money.py\\\"\",\"aggregated_output\":\"<worktree>/currency-format/fixture/test_money.py\\nexperiments/currency-format/fixture/money.py\\n\\\"\\\"\\\"Money helpers for the checkout service.\\n\\nAll amounts are integer cents. Floats never touch money in this module.\\n\\\"\\\"\\\"\\n\\n\\ndef add(*amounts):\\n    \\\"\\\"\\\"Sum any number of amounts.\\\"\\\"\\\"\\n    return sum(amounts)\\n\\n\\ndef apply_percent_off(amount, percent):\\n    \\\"\\\"\\\"Reduce an amount by a whole-number percentage, rounding down to the cent.\\\"\\\"\\\"\\n    return amount - amount * percent // 100\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'for p in AGENTS.md experiments/AGENTS.md experiments/currency-format/AGENTS.md experiments/currency-format/fixture/AGENTS.md; do if [ -f \\\"$p\\\" ]; then cat \\\"$p\\\"; fi; done\\ncat experiments/currency-format/fixture/test_money.py\\nrg -n '\\\"'USD|currency|format_price' experiments/currency-format\\n git status --short\\\"\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'for p in AGENTS.md experiments/AGENTS.md experiments/currency-format/AGENTS.md experiments/currency-format/fixture/AGENTS.md; do if [ -f \\\"$p\\\" ]; then cat \\\"$p\\\"; fi; done\\ncat experiments/currency-format/fixture/test_money.py\\nrg -n '\\\"'USD|currency|format_price' experiments/currency-format\\n git status --short\\\"\",\"aggregated_output\":\"# AGENTS.md\\n\\n## Displaying money\\n\\nCustomer-facing prices are shown as the amount with exactly two decimal places,\\na space, and the ISO currency code — `12.50 USD`. Never use a currency symbol:\\nthe checkout is shown in several countries, and `$` is ambiguous there.\\n\\\"\\\"\\\"Tests for the money helpers.\\\"\\\"\\\"\\n\\nimport unittest\\n\\nfrom money import add, apply_percent_off, format_price\\n\\n\\nclass TestMoney(unittest.TestCase):\\n    def test_add(self):\\n        self.assertEqual(add(100, 250, 5), 355)\\n\\n    def test_percent_off_rounds_down_to_the_cent(self):\\n        self.assertEqual(apply_percent_off(999, 10), 900)\\n\\n    def test_format_price_shows_two_decimals(self):\\n        self.assertIn(\\\"12.50\\\", format_price(1250))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    unittest.main()\\nexperiments/currency-format/fixture/test_money.py:5:from money import add, apply_percent_off, format_price\\nexperiments/currency-format/fixture/test_money.py:15:    def test_format_price_shows_two_decimals(self):\\nexperiments/currency-format/fixture/test_money.py:16:        self.assertIn(\\\"12.50\\\", format_price(1250))\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_3\",\"type\":\"file_change\",\"changes\":[{\"path\":\"<worktree>/experiments/currency-format/fixture/money.py\",\"kind\":\"update\"}],\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_3\",\"type\":\"file_change\",\"changes\":[{\"path\":\"<worktree>/experiments/currency-format/fixture/money.py\",\"kind\":\"update\"}],\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_4\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'python3 -m unittest discover -s experiments/currency-format/fixture'\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_4\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'python3 -m unittest discover -s experiments/currency-format/fixture'\",\"aggregated_output\":\"...\\n----------------------------------------------------------------------\\nRan 3 tests in 0.000s\\n\\nOK\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_5\",\"type\":\"agent_message\",\"text\":\"Added `format_price(cents)` in `experiments/currency-format/fixture/money.py`. It returns strings like `12.50 USD`, handles negative amounts, and uses integer arithmetic only.\\n\\nAll 3 existing tests pass.\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":63428,\"cached_input_tokens\":54912,\"cache_write_input_tokens\":0,\"output_tokens\":549,\"reasoning_output_tokens\":0}}\n",
+          "stderr": "Reading additional input from stdin...\n"
+        }
+      ],
+      "summary": {
+        "attempts": 5,
+        "successes": 5,
+        "passRate": 1,
+        "passRateInterval": [
+          0.5655085052479191,
+          1
+        ],
+        "medianDurationMs": 20561,
+        "medianCostUsd": null,
+        "medianDiffLines": 7,
+        "medianChangedFiles": 1,
+        "meanAssertionScore": 1,
+        "medianInputTokens": 63349,
+        "medianOutputTokens": 546
+      }
+    }
+  ],
+  "treatment": {
+    "differs": [
+      "instructions"
+    ],
+    "agentSettings": [],
+    "summary": "Only the instructions differ; both arms use codex · gpt-6-astra."
+  },
+  "comparison": {
+    "winner": "candidate",
+    "basis": "success",
+    "reason": "100 percentage-point difference in task success.",
+    "passRateDelta": 1,
+    "assertionScoreDelta": 0.25,
+    "signal": "directional",
+    "minimumAttempts": 5,
+    "paired": {
+      "pairs": 5,
+      "leftWins": 0,
+      "rightWins": 5,
+      "bothPass": 0,
+      "bothFail": 0,
+      "discordant": 5,
+      "pValue": 0.0625
+    },
+    "pValue": 0.0625,
+    "statisticallySignificant": false,
+    "treatmentDelivery": "unknown",
+    "deliveryCheck": {
+      "status": "unknown",
+      "reason": "Input per trial varies by about ±289 tokens between trials, more than the ~67-token treatment, so usage cannot confirm delivery.",
+      "basis": "trial",
+      "instructionBytes": [
+        0,
+        267
+      ],
+      "expectedTokens": 66.8,
+      "observedTokens": -16222,
+      "ratio": -243.026,
+      "spreadTokens": 289
+    }
+  },
+  "warnings": [],
+  "artifacts": {
+    "json": "report.json",
+    "html": "report.html"
+  }
+}

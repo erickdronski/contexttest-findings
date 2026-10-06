@@ -1,0 +1,948 @@
+{
+  "schemaVersion": 1,
+  "kind": "aggregate",
+  "version": "0.3.0",
+  "aggregateId": "20261006T223321992Z-currency-format-redundant-aggregate-1930",
+  "generatedAt": "2026-10-06T22:33:21.992Z",
+  "project": "currency-format-redundant",
+  "commit": "af742fce8090abdc83be08bfacc0a1cb41e7ee0a",
+  "instructionFile": "CLAUDE.md",
+  "tasks": [
+    "format-price"
+  ],
+  "sources": [
+    {
+      "runId": "20261006T221209991Z-currency-format-redundant-4dd4",
+      "report": "results/currency-format-redundant/2026-10-06/run-1/report.json",
+      "generatedAt": "2026-10-06T22:15:45.775Z",
+      "version": "0.3.0",
+      "project": "currency-format-redundant",
+      "commit": "af742fce8090abdc83be08bfacc0a1cb41e7ee0a",
+      "configDigest": "6dd645ef7fc6af5373c4b68b9112d6a901368b3cdfad0f5a6b029889a95a473c",
+      "order": "sequential",
+      "seed": null,
+      "agents": [
+        "claude · claude-opus-5 · isolated",
+        "claude · claude-opus-5 · isolated"
+      ],
+      "variants": [
+        {
+          "name": "no-currency-rule",
+          "summary": {
+            "attempts": 5,
+            "successes": 1,
+            "passRate": 0.2,
+            "passRateInterval": [
+              0.03622316096978745,
+              0.6244717358814613
+            ],
+            "medianDurationMs": 51471,
+            "medianCostUsd": 0.3139425,
+            "medianDiffLines": 12,
+            "medianChangedFiles": 1,
+            "meanAssertionScore": 0.8,
+            "medianInputTokens": 18,
+            "medianOutputTokens": 3392
+          }
+        },
+        {
+          "name": "currency-rule",
+          "summary": {
+            "attempts": 5,
+            "successes": 5,
+            "passRate": 1,
+            "passRateInterval": [
+              0.5655085052479191,
+              1
+            ],
+            "medianDurationMs": 34335,
+            "medianCostUsd": 0.2245155,
+            "medianDiffLines": 5,
+            "medianChangedFiles": 1,
+            "meanAssertionScore": 1,
+            "medianInputTokens": 12,
+            "medianOutputTokens": 2108
+          }
+        }
+      ],
+      "comparison": {
+        "winner": "candidate",
+        "basis": "success",
+        "reason": "80 percentage-point difference in task success.",
+        "passRateDelta": 0.8,
+        "assertionScoreDelta": 0.19999999999999996,
+        "signal": "directional",
+        "minimumAttempts": 5,
+        "paired": {
+          "pairs": 5,
+          "leftWins": 0,
+          "rightWins": 4,
+          "bothPass": 1,
+          "bothFail": 0,
+          "discordant": 4,
+          "pValue": 0.125
+        },
+        "pValue": 0.125,
+        "statisticallySignificant": false,
+        "treatmentDelivery": "unknown",
+        "deliveryCheck": {
+          "status": "unknown",
+          "reason": "Input per request varies by about ±1552 tokens between trials, more than the ~67-token treatment, so usage cannot confirm delivery.",
+          "basis": "request",
+          "instructionBytes": [
+            0,
+            267
+          ],
+          "expectedTokens": 66.8,
+          "observedTokens": -531.3,
+          "ratio": -7.96,
+          "spreadTokens": 1552.2
+        }
+      },
+      "taskResults": [
+        {
+          "name": "format-price",
+          "passRates": [
+            0.2,
+            1
+          ],
+          "winner": "candidate",
+          "pValue": 0.125
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "runId": "20261006T222626144Z-currency-format-redundant-64ad",
+      "report": "results/currency-format-redundant/2026-10-06/run-2/report.json",
+      "generatedAt": "2026-10-06T22:30:20.242Z",
+      "version": "0.3.0",
+      "project": "currency-format-redundant",
+      "commit": "af742fce8090abdc83be08bfacc0a1cb41e7ee0a",
+      "configDigest": "6dd645ef7fc6af5373c4b68b9112d6a901368b3cdfad0f5a6b029889a95a473c",
+      "order": "sequential",
+      "seed": null,
+      "agents": [
+        "claude · claude-opus-5 · isolated",
+        "claude · claude-opus-5 · isolated"
+      ],
+      "variants": [
+        {
+          "name": "no-currency-rule",
+          "summary": {
+            "attempts": 5,
+            "successes": 2,
+            "passRate": 0.4,
+            "passRateInterval": [
+              0.1176182311592533,
+              0.769280067791163
+            ],
+            "medianDurationMs": 52114,
+            "medianCostUsd": 0.3004235,
+            "medianDiffLines": 9,
+            "medianChangedFiles": 1,
+            "meanAssertionScore": 0.85,
+            "medianInputTokens": 16,
+            "medianOutputTokens": 3548
+          }
+        },
+        {
+          "name": "currency-rule",
+          "summary": {
+            "attempts": 5,
+            "successes": 5,
+            "passRate": 1,
+            "passRateInterval": [
+              0.5655085052479191,
+              1
+            ],
+            "medianDurationMs": 37846,
+            "medianCostUsd": 0.242088,
+            "medianDiffLines": 5,
+            "medianChangedFiles": 1,
+            "meanAssertionScore": 1,
+            "medianInputTokens": 12,
+            "medianOutputTokens": 2572
+          }
+        }
+      ],
+      "comparison": {
+        "winner": "candidate",
+        "basis": "success",
+        "reason": "60 percentage-point difference in task success.",
+        "passRateDelta": 0.6,
+        "assertionScoreDelta": 0.15000000000000002,
+        "signal": "directional",
+        "minimumAttempts": 5,
+        "paired": {
+          "pairs": 5,
+          "leftWins": 0,
+          "rightWins": 3,
+          "bothPass": 2,
+          "bothFail": 0,
+          "discordant": 3,
+          "pValue": 0.25000000000000006
+        },
+        "pValue": 0.25000000000000006,
+        "statisticallySignificant": false,
+        "treatmentDelivery": "consistent",
+        "deliveryCheck": {
+          "status": "consistent",
+          "reason": "currency-rule sent about 950 more input tokens per request than no-currency-rule; its instructions should add about 67.",
+          "basis": "request",
+          "instructionBytes": [
+            0,
+            267
+          ],
+          "expectedTokens": 66.8,
+          "observedTokens": 949.9,
+          "ratio": 14.23,
+          "spreadTokens": 1776.2
+        }
+      },
+      "taskResults": [
+        {
+          "name": "format-price",
+          "passRates": [
+            0.4,
+            1
+          ],
+          "winner": "candidate",
+          "pValue": 0.25000000000000006
+        }
+      ],
+      "warnings": []
+    }
+  ],
+  "variants": [
+    {
+      "name": "no-currency-rule",
+      "agent": {
+        "provider": "claude",
+        "model": "claude-opus-5",
+        "isolate": true,
+        "digest": "3a1d8a95f59d65bd"
+      },
+      "agents": [
+        "claude · claude-opus-5 · isolated"
+      ],
+      "instructions": {
+        "mode": "disabled",
+        "bytes": 0,
+        "digest": null
+      },
+      "trials": [
+        {
+          "source": "20261006T221209991Z-currency-format-redundant-4dd4",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 1,
+          "sourceAttempt": 1,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 46729,
+          "files": [
+            "experiments/currency-format-redundant/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 11,
+            "deletions": 1,
+            "total": 12
+          },
+          "usage": {
+            "inputTokens": 18,
+            "cachedInputTokens": 271366,
+            "outputTokens": 2964,
+            "costUsd": 0.29858399999999996,
+            "totalInputTokens": 271384,
+            "requests": 11
+          }
+        },
+        {
+          "source": "20261006T221209991Z-currency-format-redundant-4dd4",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 2,
+          "sourceAttempt": 2,
+          "passed": true,
+          "score": 1,
+          "durationMs": 64933,
+          "files": [
+            "experiments/currency-format-redundant/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 11,
+            "deletions": 1,
+            "total": 12
+          },
+          "usage": {
+            "inputTokens": 16,
+            "cachedInputTokens": 244459,
+            "outputTokens": 4003,
+            "costUsd": 0.3201965,
+            "totalInputTokens": 244475,
+            "requests": 10
+          }
+        },
+        {
+          "source": "20261006T221209991Z-currency-format-redundant-4dd4",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 3,
+          "sourceAttempt": 3,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 55854,
+          "files": [
+            "experiments/currency-format-redundant/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 13,
+            "deletions": 1,
+            "total": 14
+          },
+          "usage": {
+            "inputTokens": 20,
+            "cachedInputTokens": 304241,
+            "outputTokens": 3538,
+            "costUsd": 0.33150949999999996,
+            "totalInputTokens": 304261,
+            "requests": 11
+          }
+        },
+        {
+          "source": "20261006T221209991Z-currency-format-redundant-4dd4",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 4,
+          "sourceAttempt": 4,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 37395,
+          "files": [
+            "experiments/currency-format-redundant/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 5,
+            "deletions": 0,
+            "total": 5
+          },
+          "usage": {
+            "inputTokens": 16,
+            "cachedInputTokens": 235995,
+            "outputTokens": 2374,
+            "costUsd": 0.257256,
+            "totalInputTokens": 236011,
+            "requests": 9
+          }
+        },
+        {
+          "source": "20261006T221209991Z-currency-format-redundant-4dd4",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 5,
+          "sourceAttempt": 5,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 51471,
+          "files": [
+            "experiments/currency-format-redundant/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 13,
+            "deletions": 1,
+            "total": 14
+          },
+          "usage": {
+            "inputTokens": 18,
+            "cachedInputTokens": 271126,
+            "outputTokens": 3392,
+            "costUsd": 0.3139425,
+            "totalInputTokens": 271144,
+            "requests": 9
+          }
+        },
+        {
+          "source": "20261006T222626144Z-currency-format-redundant-64ad",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 6,
+          "sourceAttempt": 1,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 56773,
+          "files": [
+            "experiments/currency-format-redundant/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 10,
+            "deletions": 0,
+            "total": 10
+          },
+          "usage": {
+            "inputTokens": 16,
+            "cachedInputTokens": 239856,
+            "outputTokens": 3550,
+            "costUsd": 0.2979725,
+            "totalInputTokens": 239872,
+            "requests": 9
+          }
+        },
+        {
+          "source": "20261006T222626144Z-currency-format-redundant-64ad",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 7,
+          "sourceAttempt": 2,
+          "passed": true,
+          "score": 1,
+          "durationMs": 48469,
+          "files": [
+            "experiments/currency-format-redundant/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 9,
+            "deletions": 0,
+            "total": 9
+          },
+          "usage": {
+            "inputTokens": 18,
+            "cachedInputTokens": 272336,
+            "outputTokens": 3033,
+            "costUsd": 0.3004235,
+            "totalInputTokens": 272354,
+            "requests": 10
+          }
+        },
+        {
+          "source": "20261006T222626144Z-currency-format-redundant-64ad",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 8,
+          "sourceAttempt": 3,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 52114,
+          "files": [
+            "experiments/currency-format-redundant/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 13,
+            "deletions": 1,
+            "total": 14
+          },
+          "usage": {
+            "inputTokens": 14,
+            "cachedInputTokens": 207929,
+            "outputTokens": 3174,
+            "costUsd": 0.2665,
+            "totalInputTokens": 207943,
+            "requests": 8
+          }
+        },
+        {
+          "source": "20261006T222626144Z-currency-format-redundant-64ad",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 9,
+          "sourceAttempt": 4,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 50210,
+          "files": [
+            "experiments/currency-format-redundant/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 16,
+            "cachedInputTokens": 243259,
+            "outputTokens": 3548,
+            "costUsd": 0.30265450000000005,
+            "totalInputTokens": 243275,
+            "requests": 9
+          }
+        },
+        {
+          "source": "20261006T222626144Z-currency-format-redundant-64ad",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 10,
+          "sourceAttempt": 5,
+          "passed": true,
+          "score": 1,
+          "durationMs": 65576,
+          "files": [
+            "experiments/currency-format-redundant/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 6,
+            "deletions": 1,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 22,
+            "cachedInputTokens": 337795,
+            "outputTokens": 3680,
+            "costUsd": 0.35919,
+            "totalInputTokens": 337817,
+            "requests": 13
+          }
+        }
+      ],
+      "summary": {
+        "attempts": 10,
+        "successes": 3,
+        "passRate": 0.3,
+        "passRateInterval": [
+          0.10778928748621183,
+          0.6032267800204347
+        ],
+        "medianDurationMs": 51792.5,
+        "medianCostUsd": 0.301539,
+        "medianDiffLines": 11,
+        "medianChangedFiles": 1,
+        "meanAssertionScore": 0.825,
+        "medianInputTokens": 17,
+        "medianOutputTokens": 3465
+      }
+    },
+    {
+      "name": "currency-rule",
+      "agent": {
+        "provider": "claude",
+        "model": "claude-opus-5",
+        "isolate": true,
+        "digest": "3a1d8a95f59d65bd"
+      },
+      "agents": [
+        "claude · claude-opus-5 · isolated"
+      ],
+      "instructions": {
+        "mode": "source",
+        "source": "CLAUDE.candidate.md",
+        "bytes": 267,
+        "digest": "d67665a3741d65d7afeb728a04df9965377d7b3dbc7087f2719465f3f6118076"
+      },
+      "trials": [
+        {
+          "source": "20261006T221209991Z-currency-format-redundant-4dd4",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 1,
+          "sourceAttempt": 1,
+          "passed": true,
+          "score": 1,
+          "durationMs": 37613,
+          "files": [
+            "experiments/currency-format-redundant/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 10,
+            "cachedInputTokens": 147398,
+            "outputTokens": 2273,
+            "costUsd": 0.20733399999999996,
+            "totalInputTokens": 147408,
+            "requests": 5
+          }
+        },
+        {
+          "source": "20261006T221209991Z-currency-format-redundant-4dd4",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 2,
+          "sourceAttempt": 2,
+          "passed": true,
+          "score": 1,
+          "durationMs": 31898,
+          "files": [
+            "experiments/currency-format-redundant/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 5,
+            "deletions": 0,
+            "total": 5
+          },
+          "usage": {
+            "inputTokens": 12,
+            "cachedInputTokens": 178910,
+            "outputTokens": 2077,
+            "costUsd": 0.223102,
+            "totalInputTokens": 178922,
+            "requests": 7
+          }
+        },
+        {
+          "source": "20261006T221209991Z-currency-format-redundant-4dd4",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 3,
+          "sourceAttempt": 3,
+          "passed": true,
+          "score": 1,
+          "durationMs": 36982,
+          "files": [
+            "experiments/currency-format-redundant/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 6,
+            "deletions": 1,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 12,
+            "cachedInputTokens": 179833,
+            "outputTokens": 2477,
+            "costUsd": 0.23763900000000002,
+            "totalInputTokens": 179845,
+            "requests": 7
+          }
+        },
+        {
+          "source": "20261006T221209991Z-currency-format-redundant-4dd4",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 4,
+          "sourceAttempt": 4,
+          "passed": true,
+          "score": 1,
+          "durationMs": 34335,
+          "files": [
+            "experiments/currency-format-redundant/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 5,
+            "deletions": 0,
+            "total": 5
+          },
+          "usage": {
+            "inputTokens": 14,
+            "cachedInputTokens": 207314,
+            "outputTokens": 2085,
+            "costUsd": 0.2346925,
+            "totalInputTokens": 207328,
+            "requests": 8
+          }
+        },
+        {
+          "source": "20261006T221209991Z-currency-format-redundant-4dd4",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 5,
+          "sourceAttempt": 5,
+          "passed": true,
+          "score": 1,
+          "durationMs": 28682,
+          "files": [
+            "experiments/currency-format-redundant/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 5,
+            "deletions": 0,
+            "total": 5
+          },
+          "usage": {
+            "inputTokens": 12,
+            "cachedInputTokens": 179085,
+            "outputTokens": 2108,
+            "costUsd": 0.2245155,
+            "totalInputTokens": 179097,
+            "requests": 7
+          }
+        },
+        {
+          "source": "20261006T222626144Z-currency-format-redundant-64ad",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 6,
+          "sourceAttempt": 1,
+          "passed": true,
+          "score": 1,
+          "durationMs": 37846,
+          "files": [
+            "experiments/currency-format-redundant/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 6,
+            "deletions": 1,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 12,
+            "cachedInputTokens": 180238,
+            "outputTokens": 2572,
+            "costUsd": 0.242088,
+            "totalInputTokens": 180250,
+            "requests": 7
+          }
+        },
+        {
+          "source": "20261006T222626144Z-currency-format-redundant-64ad",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 7,
+          "sourceAttempt": 2,
+          "passed": true,
+          "score": 1,
+          "durationMs": 36062,
+          "files": [
+            "experiments/currency-format-redundant/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 5,
+            "deletions": 0,
+            "total": 5
+          },
+          "usage": {
+            "inputTokens": 12,
+            "cachedInputTokens": 176259,
+            "outputTokens": 1623,
+            "costUsd": 0.20399499999999998,
+            "totalInputTokens": 176271,
+            "requests": 6
+          }
+        },
+        {
+          "source": "20261006T222626144Z-currency-format-redundant-64ad",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 8,
+          "sourceAttempt": 3,
+          "passed": true,
+          "score": 1,
+          "durationMs": 33266,
+          "files": [
+            "experiments/currency-format-redundant/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 5,
+            "deletions": 0,
+            "total": 5
+          },
+          "usage": {
+            "inputTokens": 10,
+            "cachedInputTokens": 145397,
+            "outputTokens": 1575,
+            "costUsd": 0.1829555,
+            "totalInputTokens": 145407,
+            "requests": 5
+          }
+        },
+        {
+          "source": "20261006T222626144Z-currency-format-redundant-64ad",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 9,
+          "sourceAttempt": 4,
+          "passed": true,
+          "score": 1,
+          "durationMs": 41903,
+          "files": [
+            "experiments/currency-format-redundant/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 5,
+            "deletions": 0,
+            "total": 5
+          },
+          "usage": {
+            "inputTokens": 18,
+            "cachedInputTokens": 276005,
+            "outputTokens": 2858,
+            "costUsd": 0.3033645,
+            "totalInputTokens": 276023,
+            "requests": 10
+          }
+        },
+        {
+          "source": "20261006T222626144Z-currency-format-redundant-64ad",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 10,
+          "sourceAttempt": 5,
+          "passed": true,
+          "score": 1,
+          "durationMs": 44465,
+          "files": [
+            "experiments/currency-format-redundant/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 6,
+            "deletions": 1,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 12,
+            "cachedInputTokens": 180342,
+            "outputTokens": 2751,
+            "costUsd": 0.246501,
+            "totalInputTokens": 180354,
+            "requests": 7
+          }
+        }
+      ],
+      "summary": {
+        "attempts": 10,
+        "successes": 10,
+        "passRate": 1,
+        "passRateInterval": [
+          0.7224598312333834,
+          1
+        ],
+        "medianDurationMs": 36522,
+        "medianCostUsd": 0.229604,
+        "medianDiffLines": 5,
+        "medianChangedFiles": 1,
+        "meanAssertionScore": 1,
+        "medianInputTokens": 12,
+        "medianOutputTokens": 2190.5
+      }
+    }
+  ],
+  "treatment": {
+    "differs": [
+      "instructions"
+    ],
+    "agentSettings": [],
+    "summary": "Only the instructions differ; both arms use claude · claude-opus-5."
+  },
+  "comparison": {
+    "winner": "candidate",
+    "basis": "success",
+    "reason": "70 percentage-point difference in task success.",
+    "passRateDelta": 0.7,
+    "assertionScoreDelta": 0.17500000000000004,
+    "signal": "convincing",
+    "minimumAttempts": 10,
+    "paired": {
+      "pairs": 10,
+      "leftWins": 0,
+      "rightWins": 7,
+      "bothPass": 3,
+      "bothFail": 0,
+      "discordant": 7,
+      "pValue": 0.015625000000000003
+    },
+    "pValue": 0.015625000000000003,
+    "statisticallySignificant": true,
+    "treatmentDelivery": "unknown",
+    "deliveryCheck": {
+      "status": "unknown",
+      "reason": "Input per request varies by about ±695 tokens between trials, more than the ~67-token treatment, so usage cannot confirm delivery.",
+      "basis": "request",
+      "instructionBytes": [
+        0,
+        267
+      ],
+      "expectedTokens": 66.8,
+      "observedTokens": -597.5,
+      "ratio": -8.952,
+      "spreadTokens": 695
+    }
+  },
+  "taskResults": [
+    {
+      "name": "format-price",
+      "variants": [
+        {
+          "name": "no-currency-rule",
+          "summary": {
+            "attempts": 10,
+            "successes": 3,
+            "passRate": 0.3,
+            "passRateInterval": [
+              0.10778928748621183,
+              0.6032267800204347
+            ],
+            "medianDurationMs": 51792.5,
+            "medianCostUsd": 0.301539,
+            "medianDiffLines": 11,
+            "medianChangedFiles": 1,
+            "meanAssertionScore": 0.825,
+            "medianInputTokens": 17,
+            "medianOutputTokens": 3465
+          }
+        },
+        {
+          "name": "currency-rule",
+          "summary": {
+            "attempts": 10,
+            "successes": 10,
+            "passRate": 1,
+            "passRateInterval": [
+              0.7224598312333834,
+              1
+            ],
+            "medianDurationMs": 36522,
+            "medianCostUsd": 0.229604,
+            "medianDiffLines": 5,
+            "medianChangedFiles": 1,
+            "meanAssertionScore": 1,
+            "medianInputTokens": 12,
+            "medianOutputTokens": 2190.5
+          }
+        }
+      ],
+      "comparison": {
+        "winner": "candidate",
+        "basis": "success",
+        "reason": "70 percentage-point difference in task success.",
+        "passRateDelta": 0.7,
+        "assertionScoreDelta": 0.17500000000000004,
+        "signal": "convincing",
+        "minimumAttempts": 10,
+        "paired": {
+          "pairs": 10,
+          "leftWins": 0,
+          "rightWins": 7,
+          "bothPass": 3,
+          "bothFail": 0,
+          "discordant": 7,
+          "pValue": 0.015625000000000003
+        },
+        "pValue": 0.015625000000000003,
+        "statisticallySignificant": true,
+        "treatmentDelivery": "unknown",
+        "deliveryCheck": {
+          "status": "unknown",
+          "reason": "Input per request varies by about ±695 tokens between trials, more than the ~67-token treatment, so usage cannot confirm delivery.",
+          "basis": "request",
+          "instructionBytes": [
+            0,
+            267
+          ],
+          "expectedTokens": 66.8,
+          "observedTokens": -597.5,
+          "ratio": -8.952,
+          "spreadTokens": 695
+        }
+      }
+    }
+  ],
+  "heterogeneity": {
+    "leaders": {
+      "candidate": 2,
+      "baseline": 0,
+      "tie": 0
+    },
+    "disagreement": false,
+    "passRateDeltaRange": [
+      0.6,
+      0.8
+    ],
+    "summary": "No run contradicts another: 2 favour currency-rule."
+  },
+  "warnings": [],
+  "artifacts": {
+    "json": "report.json",
+    "html": "report.html"
+  }
+}
