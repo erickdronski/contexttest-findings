@@ -65,7 +65,7 @@ agent. Every experiment below was re-run or newly run after that fix.
 
 Task success means every assertion passed: the fixture's tests, the allowed
 paths, and — for the currency experiments — a hidden check of the exact output
-format the agent never got to see.
+format not included in the task prompt or fixture tests.
 
 ### Finding 1 — explicit formatting guidance improved these tasks on both agents
 
@@ -157,11 +157,14 @@ The claim stays that narrow.
 - **Predictions first.** Each experiment's `HYPOTHESIS.md` states what would
   count as the rule working, and was committed before any trial ran — commit
   `af742fc` contains every prediction and no result.
-- **The agent cannot see the answer key.** Trials run inside a checkout of this
-  repository, so a setup step ([`tools/sanitize_worktree.py`](tools/sanitize_worktree.py))
+- **The answer key is removed from ordinary working-tree files.** Trials run
+  inside a checkout of this repository, so a setup step ([`tools/sanitize_worktree.py`](tools/sanitize_worktree.py))
   removes candidate rules, experiment configs, hypotheses, results, and this
   README from each trial worktree before the agent starts. CI verifies that it
-  does.
+  does. Committed answers remain recoverable through Git history when an
+  agent has Git access, or from the public repository when network access is
+  permitted. This is not fully blinded or adversarially isolated. The helper
+  refuses primary checkouts to protect the source files.
 - **Isolated agents.** Claude Code runs without the experimenter's user-level
   plugins, settings, or MCP servers (`--strict-mcp-config --setting-sources
   project,local`); Codex runs with `--ignore-user-config`. Models are pinned.
@@ -171,8 +174,10 @@ The claim stays that narrow.
   run twice; `contexttest aggregate` pools them while keeping pairs inside their
   own run, so disagreement between runs stays visible in the pooled report.
 - **Published without machine paths.** [`tools/publish_report.py`](tools/publish_report.py)
-  copies a report into `results/`, replaces local paths with placeholders, and
-  re-renders the HTML from the scrubbed JSON.
+  replaces known local paths with placeholders and re-renders the HTML from the
+  scrubbed JSON. It requires a new destination, checks for residual home paths,
+  and publishes both files only after rendering succeeds. Review output for
+  other identifying details before sharing; this is not a general secret scanner.
 
 ## Reproduce it
 
