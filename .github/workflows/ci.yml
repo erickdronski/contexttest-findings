@@ -15,6 +15,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Report export and worktree safety regressions
+        run: python -m unittest discover -s tests -v
       - name: Every experiment is complete and states its hypothesis up front
         run: |
           python - <<'PY'
@@ -60,13 +62,14 @@ jobs:
             fi
             echo "ok: $d starts red, as intended"
           done
-      - name: The trial worktree cannot see the answer key
+      - name: The trial working-tree files omit the answer key
         run: |
           # The agent works inside a checkout of this repository. If it could
           # read a candidate instruction file or an assertion, the arm without
           # instructions would receive the treatment anyway.
           copy="$(mktemp -d)"
-          git archive HEAD | tar -x -C "$copy"
+          git worktree add --detach "$copy" HEAD
+          trap 'cd "$GITHUB_WORKSPACE"; git worktree remove --force "$copy"' EXIT
           cd "$copy"
           python tools/sanitize_worktree.py
           leaks="$(find . -name '*.candidate.md' -o -name 'contexttest.json' -o -name 'HYPOTHESIS.md' -o -name 'README.md' -o -path './results*')"
