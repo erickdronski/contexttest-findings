@@ -4,6 +4,13 @@
 Real agent runs, pre-registered predictions, published data, null results and corrections included.</p>
 
 <p align="center">
+  <a href="#results">Results</a> ·
+  <a href="#first-a-correction">Correction</a> ·
+  <a href="#what-these-results-do-not-show">Limitations</a> ·
+  <a href="#reproduce-it">Reproduce</a>
+</p>
+
+<p align="center">
   <img alt="MIT license" src="https://img.shields.io/badge/license-MIT-101828">
   <img alt="70 valid live agent trials" src="https://img.shields.io/badge/live_trials-70_valid-6b21a8">
   <img alt="2 agents" src="https://img.shields.io/badge/agents-Claude_Code_%C2%B7_Codex-174ea6">
@@ -12,11 +19,19 @@ Real agent runs, pre-registered predictions, published data, null results and co
 
 ---
 
-Instruction files are full of rules everyone copies and nobody measures. This
-repository runs those rules as experiments with
-[contexttest](https://github.com/erickdronski/contexttest) and publishes what
-came back. Every number below came from a real agent run, and the raw reports
-are committed next to the experiments that produced them.
+This repository publishes controlled experiments on coding-agent instruction
+files using [ContextTest](https://github.com/erickdronski/contexttest). Each
+experiment includes its hypothesis, configuration, fixtures, and recorded
+results so readers can inspect both the conclusion and the method.
+
+The current dataset contains **70 valid live trials across five experiments**,
+run on **October 6, 2026**. It covers explicit formatting conventions and
+scope-discipline rules on small tasks. These results are evidence for those
+specific settings, not a general ranking of agents or instruction practices.
+
+The useful business question is whether maintaining a rule improves the work
+it governs. These experiments consider task success, change scope, duration,
+and reported cost while retaining null results and corrections.
 
 ## First, a correction
 
@@ -52,7 +67,7 @@ Task success means every assertion passed: the fixture's tests, the allowed
 paths, and — for the currency experiments — a hidden check of the exact output
 format the agent never got to see.
 
-### Finding 1 — a rule that carries information works, on both agents
+### Finding 1 — explicit formatting guidance improved these tasks on both agents
 
 The fixture is a small checkout module. The task asks for a `format_price(cents)`
 function "for the display string shown to customers at checkout." The rule says
@@ -64,7 +79,8 @@ Without the rule, Claude Code wrote `$12.50` in 9 of 10 attempts (the tenth
 wrote a bare `12.50`). With it, all 10 matched the house format. Codex, given
 the same rule through `AGENTS.md`, went from 0 of 5 to 5 of 5.
 
-The rule also made the work cheaper. Across the Claude Code arms:
+Reported cost and duration were also lower in the treated Claude Code arm.
+These are descriptive results from this small sample:
 
 | | without the rule | with the rule |
 |---|---|---|
@@ -89,9 +105,9 @@ contains `format_receipt_total`, whose docstring and code both render
 7 of 10 attempts. It read the module, saw the receipt formatter, and treated
 checkout as a different surface. With the rule, 10 of 10 matched.
 
-The practical reading: a convention that matters should be written down, even
-when the code already demonstrates it somewhere nearby. "The agent will pick it
-up from the codebase" held only 3 times in 10.
+The practical implication for this task: an explicit rule was more reliable
+than a nearby example. The untreated arm followed the convention in 3 of 10
+attempts. Other repositories and task families need their own replication.
 
 ### Finding 3 — the scope rule, actually delivered this time, still had little to do
 
@@ -121,18 +137,20 @@ The claim stays that narrow.
 - **Small samples.** Five to ten paired attempts per experiment. The paired
   test makes no assumption about the size of the effect, and the p-values above
   are exact, but a real 10–20% effect would be invisible at this scale.
-- **Shell commands were denied.** Trials ran with Claude Code's `acceptEdits`
-  permission mode, which in non-interactive runs approves file edits and refuses
-  shell commands. Agents could read and edit, not run their own tests. Both
-  arms ran under the same restriction.
-- **Delivery was proven by behaviour, not by tokens.** contexttest's passive
-  delivery check compares input tokens across arms. For rules this short, trial
-  to trial variation (about ±1,200 tokens) is larger than the rule itself
-  (about 67), so the check correctly reports `unknown`. Delivery is shown
-  instead by the rule arms following the rule in 25 of 25 attempts.
-- **The positive control proves the harness, not the rule genre.** A rule
-  carrying a fact the agent cannot infer will always look effective. The useful
-  result is the contrast with the rules that restate defaults.
+- **Claude Code shell commands were denied.** Those trials used `acceptEdits`
+  in non-interactive mode: Claude Code could read and edit, but could not run
+  its own shell-based tests. Both Claude Code arms had the same restriction.
+  Codex used its configured `workspace-write` sandbox; the agents did not
+  share an identical permission model.
+- **Token-based delivery checks vary by run.** ContextTest compares input
+  tokens across arms, but short rules can be smaller than trial-to-trial usage
+  variation. Some reports therefore mark delivery `unknown`; others mark it
+  `consistent`. Behaviour provides additional evidence: the treated currency
+  arms followed the supplied format in 25 of 25 attempts. This supports
+  treatment delivery without proving every internal step.
+- **The positive control checks whether the harness can detect an effect.**
+  It supplies a convention absent from the fixture. Success on that control
+  does not establish that every instruction of the same kind is effective.
 
 ## How the experiments are run
 
@@ -165,8 +183,8 @@ npx github:erickdronski/contexttest doctor --config experiments/currency-format/
 npx github:erickdronski/contexttest run    --config experiments/currency-format/contexttest.json
 ```
 
-`doctor` confirms how the instructions will reach the agent before anything is
-spent. Every Claude Code trial in this round cost **$13.85 in total**, about
+`doctor` inspects the configured instruction-delivery path before live trials
+start. The Claude Code trials in this round reported **$13.85 in total**, about
 $0.12 to $0.40 per trial; the Codex trials ran on a subscription and are not
 priced.
 
