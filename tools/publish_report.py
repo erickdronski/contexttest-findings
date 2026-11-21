@@ -5,8 +5,10 @@ the repository root, each trial's worktree, the home directory, and the
 mangled project key Claude Code derives from the repository path. None of that
 is evidence, and all of it identifies the machine. This rewrites those paths
 to stable placeholders, keeps every number and every line of agent output
-otherwise intact, and regenerates the HTML from the scrubbed JSON so the two
-files cannot disagree. A new destination is required: rendering and path checks
+otherwise intact by default, and regenerates the HTML from the scrubbed JSON.
+Pass --omit-agent-transcripts to replace nonempty agent stdout and stderr in
+each trial with a disclosure. Assertion output and trial measurements are kept.
+A new destination is required: rendering and path checks
 finish in a temporary directory before either artifact is published.
 
     python3 tools/publish_report.py .contexttest/reports/<run>/report.json \\
@@ -17,6 +19,7 @@ checkout instead of the published package, e.g.
 CONTEXTTEST_CLI="node ../contexttest/src/cli.mjs".
 """
 
+import argparse
 import json
 import os
 import re
@@ -72,17 +75,30 @@ def walk(value, scrub):
 
 
 def main(argv):
-    if len(argv) != 3:
-        sys.exit(__doc__)
-    source, destination = argv[1], argv[2]
+    parser = argparse.ArgumentParser(description="Publish a portable ContextTest report.")
+    parser.add_argument("source", help="input report JSON")
+    parser.add_argument("destination", type=Path, help="new directory for the public report")
+    parser.add_argument(
+        "--omit-agent-transcripts",
+        action="store_true",
+        help="replace per-trial agent stdout and stderr while preserving assertion output",
+    )
+    args = parser.parse_args(argv[1:])
     root = repository_root()
-    with open(source, encoding="utf-8") as handle:
+    with open(args.source, encoding="utf-8") as handle:
         report = json.load(handle)
+
+    if args.omit_agent_transcripts:
+        for variant in report.get("variants", []):
+            for trial in variant.get("trials", []):
+                for stream in ("stdout", "stderr"):
+                    if trial.get(stream):
+                        trial[stream] = "[Agent transcript omitted from public export]"
 
     report = walk(report, scrubber(root))
     report["artifacts"] = {"json": "report.json", "html": "report.html"}
 
-    destination = Path(destination)
+    destination = args.destination
     if destination.exists() or destination.is_symlink():
         raise ValueError(
             "destination already exists; choose a new directory to preserve published evidence"

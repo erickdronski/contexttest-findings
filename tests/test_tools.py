@@ -31,7 +31,7 @@ class TestPublishReport(unittest.TestCase):
         source = Path(command[-1])
         source.with_name("report.html").write_text(source.read_text())
 
-    def publish(self, renderer=None):
+    def publish(self, renderer=None, flags=()):
         with (
             patch.object(publisher, "repository_root", return_value=str(self.root)),
             patch.object(
@@ -40,7 +40,7 @@ class TestPublishReport(unittest.TestCase):
             patch.dict(os.environ, {"CONTEXTTEST_CLI": "test-renderer"}),
         ):
             publisher.main(
-                ["publish_report.py", str(self.source), str(self.destination)]
+                ["publish_report.py", *flags, str(self.source), str(self.destination)]
             )
 
     def test_complete_pair_published_after_rendering(self):
@@ -52,6 +52,38 @@ class TestPublishReport(unittest.TestCase):
         )
         self.assertTrue((self.destination / "report.html").is_file())
         self.assertFalse(list(self.root.glob(".report-draft-*")))
+
+    def test_agent_transcripts_remain_in_default_export(self):
+        trial = {"stdout": "agent's answer", "stderr": "ordinary agent diagnostic"}
+        self.source.write_text(json.dumps({"variants": [{"trials": [trial]}]}))
+        self.publish()
+        data = json.loads((self.destination / "report.json").read_text())
+        self.assertEqual(data["variants"][0]["trials"], [trial])
+
+    def test_omit_transcripts_preserves_grader_output_and_measurements(self):
+        trial = {
+            "stdout": "agent run /Users/anotherperson/task",
+            "stderr": "private run identifier",
+            "assertions": [{"stdout": "grader output", "stderr": "grader diagnostic"}],
+            "durationMs": 1234,
+            "exitCode": 1,
+            "passed": False,
+            "score": 0.5,
+            "usage": {"outputTokens": 45},
+        }
+        quiet_trial = {"stdout": "", "passed": True}
+        report = {"variants": [{"trials": [trial]}, {"trials": [quiet_trial]}]}
+        self.source.write_text(json.dumps(report))
+        self.publish(flags=["--omit-agent-transcripts"])
+        placeholder = "[Agent transcript omitted from public export]"
+        expected = {**trial, "stdout": placeholder, "stderr": placeholder}
+        for path in ("report.json", "report.html"):
+            # The test renderer copies JSON so both artifacts can be checked exactly.
+            exported = json.loads((self.destination / path).read_text())
+            self.assertEqual(exported["variants"], [
+                {"trials": [expected]}, {"trials": [quiet_trial]}
+            ])
+        self.assertEqual(json.loads(self.source.read_text()), report)
 
     def test_renderer_failure_leaves_no_partial_publication(self):
         def fail(*args, **kwargs):
