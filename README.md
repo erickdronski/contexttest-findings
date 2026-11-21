@@ -79,11 +79,13 @@ rounds. The November run finished at 02:57 UTC on November 21 (November 20
 Eastern). [Original fixture and hypotheses](https://github.com/erickdronski/contexttest-findings/tree/af742fce8090abdc83be08bfacc0a1cb41e7ee0a/experiments) · [Pinned harness](https://github.com/erickdronski/contexttest/tree/0c08733a767fdc0a9f17d811825ac2c8d46b4a80)
 
 **Claude memory isolation remains untested in this replication.** The v0.3.1
-change disables Claude Code's automatic memory between trials. On the first
-Claude batch the provider rejected authentication before inference on all ten
-invocations. Each exited with an error and zero model tokens. They contribute
-zero observations. The other three Claude configurations and the second currency
-batch were held. The 60 historical Claude observations remain labeled v0.3.0.
+change disables Claude Code's automatic memory between trials. An initial batch
+stopped at authentication. After sign-in, a retry with the original Claude Code
+2.1.272 and `claude-opus-5` reached the provider's weekly usage limit (HTTP 429).
+Both batches requested disabled auto-memory. All 20 invocations ended before
+inference with zero model tokens, so they contribute zero observations. The
+remaining batches were held. All 60 historical Claude observations retain their
+v0.3.0 label. The effect of the memory fix on those experiments remains unknown.
 [Memory fix](https://github.com/erickdronski/contexttest/blob/0c08733a767fdc0a9f17d811825ac2c8d46b4a80/src/lib/adapters.mjs#L107-L125)
 
 ### October 6, 2026 · ContextTest 0.3.0
