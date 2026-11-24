@@ -1,0 +1,942 @@
+{
+  "schemaVersion": 1,
+  "kind": "experiment",
+  "version": "0.3.2",
+  "runId": "20261124T224307893Z-currency-format-codex-becd",
+  "generatedAt": "2026-11-24T22:45:30.078Z",
+  "project": "currency-format-codex",
+  "commit": "af742fce8090abdc83be08bfacc0a1cb41e7ee0a",
+  "taskRefs": {
+    "format-price": "af742fce8090abdc83be08bfacc0a1cb41e7ee0a"
+  },
+  "instructionFile": "AGENTS.md",
+  "agent": {
+    "provider": "codex",
+    "model": "gpt-6-astra",
+    "isolate": true
+  },
+  "experiment": {
+    "attemptsPerVariant": 5,
+    "concurrency": 2,
+    "setupCommands": 1,
+    "configDigest": "5bc3284b98690cf3cb8bd31a23c8d46ef0740bde661732c2ac062d0e894ab03c",
+    "order": "sequential",
+    "seed": null
+  },
+  "runtime": {
+    "node": "v24.20.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "agents": [
+      {
+        "provider": "codex",
+        "executable": "codex",
+        "version": "codex-cli 0.156.1"
+      }
+    ]
+  },
+  "tasks": [
+    "format-price"
+  ],
+  "taskResults": [
+    {
+      "name": "format-price",
+      "ref": "af742fce8090abdc83be08bfacc0a1cb41e7ee0a",
+      "variants": [
+        {
+          "name": "no-currency-rule",
+          "summary": {
+            "attempts": 5,
+            "successes": 0,
+            "passRate": 0,
+            "passRateInterval": [
+              0,
+              0.43449149475208104
+            ],
+            "medianDurationMs": 28491,
+            "medianCostUsd": null,
+            "medianDiffLines": 7,
+            "medianChangedFiles": 1,
+            "meanAssertionScore": 0.75,
+            "medianInputTokens": 90857,
+            "medianOutputTokens": 505
+          }
+        },
+        {
+          "name": "currency-rule",
+          "summary": {
+            "attempts": 5,
+            "successes": 5,
+            "passRate": 1,
+            "passRateInterval": [
+              0.5655085052479191,
+              1
+            ],
+            "medianDurationMs": 29094,
+            "medianCostUsd": null,
+            "medianDiffLines": 7,
+            "medianChangedFiles": 1,
+            "meanAssertionScore": 1,
+            "medianInputTokens": 72365,
+            "medianOutputTokens": 632
+          }
+        }
+      ],
+      "comparison": {
+        "winner": "candidate",
+        "basis": "success",
+        "reason": "100 percentage-point difference in task success.",
+        "passRateDelta": 1,
+        "assertionScoreDelta": 0.25,
+        "signal": "directional",
+        "minimumAttempts": 5,
+        "paired": {
+          "pairs": 5,
+          "leftWins": 0,
+          "rightWins": 5,
+          "bothPass": 0,
+          "bothFail": 0,
+          "discordant": 5,
+          "pValue": 0.0625
+        },
+        "pValue": 0.0625,
+        "statisticallySignificant": false,
+        "treatmentDelivery": "unknown",
+        "deliveryCheck": {
+          "status": "unknown",
+          "reason": "Input per trial varies by about ±18788 tokens between trials, more than the ~67-token treatment, so usage cannot confirm delivery.",
+          "basis": "trial",
+          "instructionBytes": [
+            0,
+            267
+          ],
+          "expectedTokens": 66.8,
+          "observedTokens": -18492,
+          "ratio": -277.034,
+          "spreadTokens": 18788
+        }
+      }
+    }
+  ],
+  "variants": [
+    {
+      "name": "no-currency-rule",
+      "agent": {
+        "provider": "codex",
+        "model": "gpt-6-astra",
+        "isolate": true,
+        "digest": "bf83873e3e8aea7d"
+      },
+      "instructions": {
+        "mode": "disabled",
+        "bytes": 0,
+        "digest": null
+      },
+      "delivery": {
+        "file": "AGENTS.md",
+        "method": "native",
+        "bridgedVia": null
+      },
+      "invocation": {
+        "command": "codex",
+        "args": [
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--color",
+          "never",
+          "--json",
+          "-C",
+          "[WORKTREE]",
+          "--model",
+          "gpt-6-astra",
+          "--ignore-user-config",
+          "[PROMPT]"
+        ],
+        "env": {}
+      },
+      "trials": [
+        {
+          "id": "format-price-no-currency-rule-1",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 1,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 29181,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 62,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": false,
+              "message": "house currency format (hidden check) exited 1.",
+              "actual": 1,
+              "expected": 0,
+              "durationMs": 29,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "got ['12.50', '0.05', '999.00'], want ['12.50 USD', '0.05 USD', '999.00 USD']\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 110455,
+            "cachedInputTokens": 99584,
+            "outputTokens": 496,
+            "costUsd": null,
+            "totalInputTokens": 110455,
+            "requests": null
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "[Agent transcript omitted from public export]",
+          "stderr": "[Agent transcript omitted from public export]"
+        },
+        {
+          "id": "format-price-no-currency-rule-2",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 2,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 28491,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 78,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": false,
+              "message": "house currency format (hidden check) exited 1.",
+              "actual": 1,
+              "expected": 0,
+              "durationMs": 36,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "got ['12.50', '0.05', '999.00'], want ['12.50 USD', '0.05 USD', '999.00 USD']\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 90857,
+            "cachedInputTokens": 83968,
+            "outputTokens": 557,
+            "costUsd": null,
+            "totalInputTokens": 90857,
+            "requests": null
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "[Agent transcript omitted from public export]",
+          "stderr": "[Agent transcript omitted from public export]"
+        },
+        {
+          "id": "format-price-no-currency-rule-3",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 3,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 30579,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 90,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": false,
+              "message": "house currency format (hidden check) exited 1.",
+              "actual": 1,
+              "expected": 0,
+              "durationMs": 48,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "got ['12.50', '0.05', '999.00'], want ['12.50 USD', '0.05 USD', '999.00 USD']\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 91370,
+            "cachedInputTokens": 73088,
+            "outputTokens": 844,
+            "costUsd": null,
+            "totalInputTokens": 91370,
+            "requests": null
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "[Agent transcript omitted from public export]",
+          "stderr": "[Agent transcript omitted from public export]"
+        },
+        {
+          "id": "format-price-no-currency-rule-4",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 4,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 27336,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 48,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": false,
+              "message": "house currency format (hidden check) exited 1.",
+              "actual": 1,
+              "expected": 0,
+              "durationMs": 22,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "got ['12.50', '0.05', '999.00'], want ['12.50 USD', '0.05 USD', '999.00 USD']\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 71737,
+            "cachedInputTokens": 59904,
+            "outputTokens": 505,
+            "costUsd": null,
+            "totalInputTokens": 71737,
+            "requests": null
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "[Agent transcript omitted from public export]",
+          "stderr": "[Agent transcript omitted from public export]"
+        },
+        {
+          "id": "format-price-no-currency-rule-5",
+          "task": "format-price",
+          "variant": "no-currency-rule",
+          "attempt": 5,
+          "passed": false,
+          "score": 0.75,
+          "durationMs": 22575,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 64,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": false,
+              "message": "house currency format (hidden check) exited 1.",
+              "actual": 1,
+              "expected": 0,
+              "durationMs": 32,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "got ['$12.50', '$0.05', '$999.00'], want ['12.50 USD', '0.05 USD', '999.00 USD']\n"
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 72069,
+            "cachedInputTokens": 59392,
+            "outputTokens": 480,
+            "costUsd": null,
+            "totalInputTokens": 72069,
+            "requests": null
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "[Agent transcript omitted from public export]",
+          "stderr": "[Agent transcript omitted from public export]"
+        }
+      ],
+      "summary": {
+        "attempts": 5,
+        "successes": 0,
+        "passRate": 0,
+        "passRateInterval": [
+          0,
+          0.43449149475208104
+        ],
+        "medianDurationMs": 28491,
+        "medianCostUsd": null,
+        "medianDiffLines": 7,
+        "medianChangedFiles": 1,
+        "meanAssertionScore": 0.75,
+        "medianInputTokens": 90857,
+        "medianOutputTokens": 505
+      }
+    },
+    {
+      "name": "currency-rule",
+      "agent": {
+        "provider": "codex",
+        "model": "gpt-6-astra",
+        "isolate": true,
+        "digest": "bf83873e3e8aea7d"
+      },
+      "instructions": {
+        "mode": "source",
+        "source": "AGENTS.candidate.md",
+        "bytes": 267,
+        "digest": "b869d494d82abbaa62f76042cadb25ef895c0e507bc6f58967fbde01ec5ee078"
+      },
+      "delivery": {
+        "file": "AGENTS.md",
+        "method": "native",
+        "bridgedVia": null
+      },
+      "invocation": {
+        "command": "codex",
+        "args": [
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--color",
+          "never",
+          "--json",
+          "-C",
+          "[WORKTREE]",
+          "--model",
+          "gpt-6-astra",
+          "--ignore-user-config",
+          "[PROMPT]"
+        ],
+        "env": {}
+      },
+      "trials": [
+        {
+          "id": "format-price-currency-rule-1",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 1,
+          "passed": true,
+          "score": 1,
+          "durationMs": 29650,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 81,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "house currency format (hidden check) passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 43,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": ""
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 88538,
+            "cachedInputTokens": 77696,
+            "outputTokens": 632,
+            "costUsd": null,
+            "totalInputTokens": 88538,
+            "requests": null
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "[Agent transcript omitted from public export]",
+          "stderr": "[Agent transcript omitted from public export]"
+        },
+        {
+          "id": "format-price-currency-rule-2",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 2,
+          "passed": true,
+          "score": 1,
+          "durationMs": 29094,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 70,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "house currency format (hidden check) passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 32,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": ""
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 72365,
+            "cachedInputTokens": 65920,
+            "outputTokens": 646,
+            "costUsd": null,
+            "totalInputTokens": 72365,
+            "requests": null
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "[Agent transcript omitted from public export]",
+          "stderr": "[Agent transcript omitted from public export]"
+        },
+        {
+          "id": "format-price-currency-rule-3",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 3,
+          "passed": true,
+          "score": 1,
+          "durationMs": 31593,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 129,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "house currency format (hidden check) passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 41,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": ""
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 110338,
+            "cachedInputTokens": 96640,
+            "outputTokens": 738,
+            "costUsd": null,
+            "totalInputTokens": 110338,
+            "requests": null
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "[Agent transcript omitted from public export]",
+          "stderr": "[Agent transcript omitted from public export]"
+        },
+        {
+          "id": "format-price-currency-rule-4",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 4,
+          "passed": true,
+          "score": 1,
+          "durationMs": 23672,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 57,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "house currency format (hidden check) passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 29,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": ""
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 72189,
+            "cachedInputTokens": 60288,
+            "outputTokens": 479,
+            "costUsd": null,
+            "totalInputTokens": 72189,
+            "requests": null
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "[Agent transcript omitted from public export]",
+          "stderr": "[Agent transcript omitted from public export]"
+        },
+        {
+          "id": "format-price-currency-rule-5",
+          "task": "format-price",
+          "variant": "currency-rule",
+          "attempt": 5,
+          "passed": true,
+          "score": 1,
+          "durationMs": 23772,
+          "assertions": [
+            {
+              "type": "agentExitCode",
+              "pass": true,
+              "message": "Agent completed successfully.",
+              "actual": 0,
+              "expected": 0
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "fixture tests passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 871,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+            },
+            {
+              "type": "command",
+              "pass": true,
+              "message": "house currency format (hidden check) passed.",
+              "actual": 0,
+              "expected": 0,
+              "durationMs": 50,
+              "timedOut": false,
+              "stdout": "",
+              "stderr": ""
+            },
+            {
+              "type": "allowedPaths",
+              "pass": true,
+              "message": "All changes stayed inside allowed paths.",
+              "violations": []
+            }
+          ],
+          "files": [
+            "experiments/currency-format/fixture/money.py"
+          ],
+          "diff": {
+            "additions": 7,
+            "deletions": 0,
+            "total": 7
+          },
+          "usage": {
+            "inputTokens": 72307,
+            "cachedInputTokens": 59392,
+            "outputTokens": 620,
+            "costUsd": null,
+            "totalInputTokens": 72307,
+            "requests": null
+          },
+          "exitCode": 0,
+          "timedOut": false,
+          "stdout": "[Agent transcript omitted from public export]",
+          "stderr": "[Agent transcript omitted from public export]"
+        }
+      ],
+      "summary": {
+        "attempts": 5,
+        "successes": 5,
+        "passRate": 1,
+        "passRateInterval": [
+          0.5655085052479191,
+          1
+        ],
+        "medianDurationMs": 29094,
+        "medianCostUsd": null,
+        "medianDiffLines": 7,
+        "medianChangedFiles": 1,
+        "meanAssertionScore": 1,
+        "medianInputTokens": 72365,
+        "medianOutputTokens": 632
+      }
+    }
+  ],
+  "treatment": {
+    "differs": [
+      "instructions"
+    ],
+    "agentSettings": [],
+    "summary": "Only the instructions differ; both arms use codex · gpt-6-astra."
+  },
+  "comparison": {
+    "winner": "candidate",
+    "basis": "success",
+    "reason": "100 percentage-point difference in task success.",
+    "passRateDelta": 1,
+    "assertionScoreDelta": 0.25,
+    "signal": "directional",
+    "minimumAttempts": 5,
+    "paired": {
+      "pairs": 5,
+      "leftWins": 0,
+      "rightWins": 5,
+      "bothPass": 0,
+      "bothFail": 0,
+      "discordant": 5,
+      "pValue": 0.0625
+    },
+    "pValue": 0.0625,
+    "statisticallySignificant": false,
+    "treatmentDelivery": "unknown",
+    "deliveryCheck": {
+      "status": "unknown",
+      "reason": "Input per trial varies by about ±18788 tokens between trials, more than the ~67-token treatment, so usage cannot confirm delivery.",
+      "basis": "trial",
+      "instructionBytes": [
+        0,
+        267
+      ],
+      "expectedTokens": 66.8,
+      "observedTokens": -18492,
+      "ratio": -277.034,
+      "spreadTokens": 18788
+    }
+  },
+  "warnings": [],
+  "artifacts": {
+    "json": "report.json",
+    "html": "report.html"
+  }
+}
