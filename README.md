@@ -12,7 +12,7 @@ Real agent runs, pre-registered predictions, published data, null results and co
 
 <p align="center">
   <img alt="MIT license" src="https://img.shields.io/badge/license-MIT-101828">
-  <img alt="80 valid live agent trials" src="https://img.shields.io/badge/live_trials-80_valid-6b21a8">
+  <img alt="90 valid live agent trials" src="https://img.shields.io/badge/live_trials-90_valid-6b21a8">
   <img alt="2 agents" src="https://img.shields.io/badge/agents-Claude_Code_%C2%B7_Codex-174ea6">
   <img alt="pre-registered" src="https://img.shields.io/badge/predictions-pre--registered-08775c">
 </p>
@@ -24,9 +24,10 @@ files using [ContextTest](https://github.com/erickdronski/contexttest). Each
 experiment includes its hypothesis, configuration, fixtures, and recorded
 results so readers can inspect both the conclusion and the method.
 
-The October study recorded **70 live trials across five experiments**. A
-November 20 replication added **10 verified Codex trials**. Both rounds found
-that giving Codex the checkout display format changed success from 0/5 to 5/5.
+The October study recorded **70 live trials across five experiments**. The
+November 20 and 24 replications added **20 verified Codex trials**. In all three
+rounds, Codex passed the hidden checkout-format check in 0/5 attempts without
+the house rule and 5/5 with it.
 The four Claude experiments still await a verified rerun with shared memory disabled.
 
 The useful business question is whether maintaining a rule improves the work
@@ -53,40 +54,41 @@ rule through a native `CLAUDE.md`.
 
 ## Results
 
-### November 20, 2026 · pinned replication
+### November 2026 · pinned replications
 
-| Codex currency-format result | October 6 · v0.3.0 | November 20 · v0.3.1 |
-|---|---:|---:|
-| Passed without the house rule | 0/5 | 0/5 |
-| Passed with the house rule | 5/5 | 5/5 |
-| Paired attempts favoring the rule | 5/5 | 5/5 |
-| Exact two-sided paired p-value | 0.0625 | 0.0625 |
-| Median changed lines, without / with rule | 7 / 7 | 7 / 7 |
-| Median duration in seconds, without / with rule | 26.4 / 20.6 | 41.0 / 39.2 |
+| Codex currency-format result | Oct 6 · v0.3.0 | Nov 20 · v0.3.1 | Nov 24 · v0.3.2 |
+|---|---:|---:|---:|
+| Passed without the house rule | 0/5 | 0/5 | 0/5 |
+| Passed with the house rule | 5/5 | 5/5 | 5/5 |
+| Paired attempts favoring the rule | 5/5 | 5/5 | 5/5 |
+| Exact two-sided paired p-value | 0.0625 | 0.0625 | 0.0625 |
+| Median changed lines, without / with rule | 7 / 7 | 7 / 7 | 7 / 7 |
+| Median duration in seconds, without / with rule | 26.4 / 20.6 | 41.0 / 39.2 | 28.5 / 29.1 |
 
-All ten November attempts completed, passed the fixture tests, and stayed
+All 20 November attempts completed, passed the fixture tests, and stayed
 within the allowed paths. The hidden display check distinguished the arms.
-All five untreated attempts returned `12.50` for 1,250 cents, while all five
-treated attempts returned `12.50 USD`. In October, four untreated attempts
-returned the bare amount and one added a dollar sign. The success result
-replicated. The timing difference is descriptive given five attempts per arm.
-[October report](results/currency-format-codex/2026-10-06/report.json) · [November report](results/currency-format-codex/2026-11-20/report.json) · [Rendered results](results/currency-format-codex/2026-11-20/report.html)
+Without the rule, all five November 20 attempts returned `12.50` for 1,250
+cents. On November 24, four returned `12.50` and one returned `$12.50`.
+With the rule, all ten returned `12.50 USD`. The November 24 timing medians
+were less than a second apart. With five pairs per date the timing comparisons
+are descriptive. [October JSON](results/currency-format-codex/2026-10-06/report.json) · [November 20 JSON](results/currency-format-codex/2026-11-20/report.json) · [November 24 JSON](results/currency-format-codex/2026-11-24/report.json) · [November 24 HTML](results/currency-format-codex/2026-11-24/report.html)
 
-Both rounds used Codex CLI 0.156.1, `gpt-6-astra`, the same fixture commit,
-prompts, assertions, and instruction variants. The harness recorded native
-`AGENTS.md` delivery and rated its token-based delivery check `unknown` in both
-rounds. The November run finished at 02:57 UTC on November 21 (November 20
-Eastern). [Original fixture and hypotheses](https://github.com/erickdronski/contexttest-findings/tree/af742fce8090abdc83be08bfacc0a1cb41e7ee0a/experiments) · [Pinned harness](https://github.com/erickdronski/contexttest/tree/0c08733a767fdc0a9f17d811825ac2c8d46b4a80)
+All three rounds used Codex CLI 0.156.1, `gpt-6-astra`, the same fixture
+commit, prompts, assertions, and instruction variants. The harness recorded
+native `AGENTS.md` delivery. Its separate token-based delivery check rated
+the signal `unknown` each time. The November 24 trial used the pinned release
+candidate, whose source tree matches the published v0.3.2 tag.
+[Original fixture and hypotheses](https://github.com/erickdronski/contexttest-findings/tree/af742fce8090abdc83be08bfacc0a1cb41e7ee0a/experiments) · [November 20 harness](https://github.com/erickdronski/contexttest/tree/0c08733a767fdc0a9f17d811825ac2c8d46b4a80) · [November 24 harness](https://github.com/erickdronski/contexttest/tree/2669569652a81d5a4ff636be4270d456e703937b)
 
-**Claude memory isolation remains untested in this replication.** The v0.3.1
-change disables Claude Code's automatic memory between trials. An initial batch
-stopped at authentication. After sign-in, a retry with the original Claude Code
-2.1.272 and `claude-opus-5` reached the provider's weekly usage limit (HTTP 429).
-Both batches requested disabled auto-memory. All 20 invocations ended before
-inference with zero model tokens, so they contribute zero observations. The
-remaining batches were held. All 60 historical Claude observations retain their
-v0.3.0 label. The effect of the memory fix on those experiments remains unknown.
-[Memory fix](https://github.com/erickdronski/contexttest/blob/0c08733a767fdc0a9f17d811825ac2c8d46b4a80/src/lib/adapters.mjs#L107-L125)
+**Claude memory isolation still awaits a live replication.** The v0.3.1
+change disables Claude Code’s automatic memory between trials. Two earlier
+batches ended before inference because of authentication and quota errors.
+On November 24, the original Claude Code 2.1.272 and `claude-opus-5` again
+returned HTTP 429 on all ten calls, with zero model tokens. All three batches
+requested disabled auto-memory and contributed zero observations. The released
+v0.3.2 tool rejected the November 24 failed batch when asked to pool it.
+The 60 historical Claude observations retain their v0.3.0 label.
+[Memory fix](https://github.com/erickdronski/contexttest/blob/0c08733a767fdc0a9f17d811825ac2c8d46b4a80/src/lib/adapters.mjs#L107-L125) · [Provider-error handling](https://github.com/erickdronski/contexttest/releases/tag/v0.3.2)
 
 ### October 6, 2026 · ContextTest 0.3.0
 
@@ -205,7 +207,7 @@ The October scope rule showed little benefit on these two tasks.
 - **Repeated runs are pooled, not merged.** The two currency experiments were
   run twice; `contexttest aggregate` pools them while keeping pairs inside their
   own run, so disagreement between runs stays visible in the pooled report.
-- **November report export.** All ten Codex processes exited successfully with
+- **November report export.** All 20 November Codex processes exited successfully with
   generated tokens. Before publication, each trial's assertions, pairing,
   changed files, and timing were checked against the original run. The public
   report omits the agent's process streams, which contain local diagnostics.
@@ -220,13 +222,13 @@ The October scope rule showed little benefit on these two tasks.
 ## Reproduce it
 
 Use a fresh checkout of the original fixture and the pinned harness containing
-the Claude memory fix. The example repeats the November currency test with a
+the Claude memory fix. The example repeats the November 24 currency test with a
 signed-in Codex CLI. `doctor` inspects instruction delivery. The final command
 starts ten live trials, five per arm.
 
 ```bash
 git clone https://github.com/erickdronski/contexttest.git contexttest-harness
-git -C contexttest-harness checkout --detach 0c08733a767fdc0a9f17d811825ac2c8d46b4a80
+git -C contexttest-harness checkout --detach 2669569652a81d5a4ff636be4270d456e703937b
 
 git clone https://github.com/erickdronski/contexttest-findings.git contexttest-fixture
 cd contexttest-fixture
